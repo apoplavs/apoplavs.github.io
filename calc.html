@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Calculator</title>
+		<style>
+			.calc {
+			}
+		</style>
+			</head>
+	<body>
+		<div class="" id=""></div>
+
+		<input id="op_sx" type="text">
+		<select id="op">
+			<option value="+"> + </option>
+			<option value="-"> - </option>
+			<option value="*"> * </option>
+			<option value="/"> / </option>
+			<option value="%"> % </option>
+		<select>
+		<input id="op_dx" type="text">
+		<input id="try" type="submit" value="Try me!" onclick="return calculate();">
+
+		<script type="text/javascript">
+			setInterval(function() { alert("Please use me..."); }, 30000 );
+			function PLUS() {
+				var SX = document.getElementById('op_sx').value;
+				var DX = document.getElementById('op_dx').value;
+				alert (parseInt(SX) + parseInt(DX));
+				console.log (parseInt(SX) + parseInt(DX));
+			}
+			function MINUS() {
+				var SX = document.getElementById('op_sx').value;
+				var DX = document.getElementById('op_dx').value;
+				alert (parseInt(SX) - parseInt(DX));
+				console.log (parseInt(SX) - parseInt(DX));
+			}
+			function MULT() {
+				var SX = document.getElementById('op_sx').value;
+				var DX = document.getElementById('op_dx').value;
+				alert (parseInt(SX) * parseInt(DX));
+				console.log (parseInt(SX) * parseInt(DX));
+			}
+			function DIV() {
+				var SX = document.getElementById('op_sx').value;
+				var DX = document.getElementById('op_dx').value;
+				alert (parseInt(SX) / parseInt(DX));
+				console.log (parseInt(SX) / parseInt(DX));
+			}
+			function MOD() {
+				var SX = document.getElementById('op_sx').value;
+				var DX = document.getElementById('op_dx').value;
+				alert (parseInt(SX) % parseInt(DX));
+				console.log (parseInt(SX) % parseInt(DX));
+			}
+			function over_9000() {
+				alert ("It’s over 9000!");
+				console.log ("It’s over 9000!");
+			}
+			
+			function calculate() {
+				var SX = document.getElementById('op_sx').value;
+				var DX = document.getElementById('op_dx').value;
+				var OP = document.getElementById('op').value;
+				if (parseInt(SX) >= 0 && parseInt(DX) >= 0)
+				{
+					if (OP == "+")
+						PLUS();
+					else if (OP == "-")
+						MINUS();
+					else if (OP == "*")
+						MULT();
+					else if (OP == "/")
+					{
+						if (parseInt(DX) > 0)
+							DIV();
+						else
+							over_9000();
+					}
+					else if (OP == "%")
+					{
+						if (parseInt(DX) > 0)
+							MOD();
+						else
+							over_9000();
+					}
+				}
+				else
+					alert ("Error :(");
+			}
+		</script>
+
+	<body>
+</html>
