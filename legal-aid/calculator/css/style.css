@@ -1,0 +1,37 @@
+html {
+	background-color: rgba(0, 80, 0, 0.5);
+}
+
+#calculator {
+	border: 3px ridge #008080;
+	width: 30%;
+}
+#area {
+	background: white;
+}
+#calculator td {
+	width: 40px;
+}
+button {
+	width: 100%;
+	height: 100%;
+	border-radius: 1px;
+}
+#label-names {
+	font-size: 8pt;
+	text-align: center;
+}
+#crimes-count {
+	text-align: center;
+}
+
+/*
+@media screen and (min-width: 300px) and (max-width: 600px) {
+button {
+	font-size: 14pt;
+	width: 99%;
+	padding: 4% 0;
+	margin: 2% 0;
+	border-radius: 7px;
+}
+}*/
