@@ -3,7 +3,7 @@ html {
 	text-align: center;
 }
 
-@media screen and (min-resolution: 326dpi) {
+@media screen and (min-width: 1136px) and (max-width: 1334px) and (min-height: 640px) and (max-height: 750px) {
 button {
 	font-size: 14pt;
 	width: 99%;
@@ -14,7 +14,7 @@ button {
 }
 }
 
-@media screen and (min-resolution: 132dpi) {
+@media screen and (width: 1024px) and (height: 768px), (width: 2048px) and (height: 1536px){
 button {
 	font-size: 12pt;
 	width: 50%;
@@ -25,7 +25,7 @@ button {
 }
 }
 
-@media screen and (max-resolution: 131dpi) {
+@media screen and (min-width: 800px) {
 button {
 	font-size: 12pt;
 	width: 25%;
