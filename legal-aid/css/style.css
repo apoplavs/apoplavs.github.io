@@ -3,32 +3,35 @@ html {
 	text-align: center;
 }
 
-@media screen and (min-width: 300px) and (max-width: 750px) {
+@media screen and (min-resolution: 326dpi) {
 button {
 	font-size: 14pt;
 	width: 99%;
 	padding: 4% 0;
 	margin: 2% 0;
+	background-color: white;
 	border-radius: 7px;
 }
 }
 
-@media screen and (min-width: 751px) and (max-width: 1536px) {
+@media screen and (min-resolution: 132dpi) {
 button {
 	font-size: 12pt;
 	width: 50%;
 	padding: 2% 0;
 	margin: 1% 0;
+	background-color: white;
 	border-radius: 10px;
 }
 }
 
-@media screen and (min-width: 1537px) {
+@media screen and (max-resolution: 131dpi) {
 button {
 	font-size: 12pt;
 	width: 25%;
 	padding: 1% 0;
 	margin: 10px 0;
+	background-color: white;
 	border-radius: 10px;
 }
 }
