@@ -3,7 +3,7 @@ html {
 	text-align: center;
 }
 
-@media screen and (min-width: 300px) and (max-width: 600px) {
+@media screen and (min-width: 300px) and (max-width: 750px) {
 button {
 	font-size: 14pt;
 	width: 99%;
@@ -13,7 +13,7 @@ button {
 }
 }
 
-@media screen and (min-width: 600px) and (max-width: 1200px) {
+@media screen and (min-width: 751px) and (max-width: 1536px) {
 button {
 	font-size: 12pt;
 	width: 50%;
@@ -23,7 +23,7 @@ button {
 }
 }
 
-@media screen and (min-width: 1201px) {
+@media screen and (min-width: 1537px) {
 button {
 	font-size: 12pt;
 	width: 25%;
