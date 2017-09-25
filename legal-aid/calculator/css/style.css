@@ -1,28 +1,41 @@
 html {
-	background-color: rgba(0, 80, 0, 0.5);
+	background-color: rgba(0, 80, 0, 0.7);
 }
 
 #calculator {
-	border: 3px ridge #008080;
-	width: 30%;
+	border: 3px ridge #55552b;
+	border-radius: 5px;
+	width: 500px;
+	height: 250px;
+	background: radial-gradient(#aaaa55,  #77773c, #888844);
 }
-#area {
-	background: white;
+#area, #part, #article {
+	background: #e0ebeb;
+	border-radius: 1px;
+	font-size: 12px;
 }
+#part, #article {
+	font-size: 17px;
+}
+
 #calculator td {
-	width: 40px;
+	width: 50px;
 }
 button {
 	width: 100%;
 	height: 100%;
 	border-radius: 1px;
+	background: radial-gradient(#ecf9f2, #d9f2e6, #ecf9f2);
 }
 #label-names {
-	font-size: 8pt;
+	height: 30px;
+	font-size: 9pt;
 	text-align: center;
 }
+
 #crimes-count {
 	text-align: center;
+	font-size: 18pt;
 }
 
 /*
