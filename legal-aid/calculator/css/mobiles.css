@@ -1,43 +1,61 @@
 html {
-	background-color: rgba(0, 80, 0, 0.7);
+	background: radial-gradient(#77773c,  #666644, #55552b);
 }
 
+@media screen and (orientation: portrait) {
+	#calculator {
+		display: none;
+	}
+	html {
+		background-color: black;
+		background-image: url(../res/rotate-device.png);
+		background-repeat: no-repeat; 
+		background-position: center center; 
+		background-size: contain; 
+		background-attachment: fixed;
+	}
+}
+
+
+@media screen and (orientation: landscape) {
 #calculator {
-	border: 3px ridge #55552b;
+	border: 2px dashed #666644;
 	border-radius: 5px;
-	width: 500px;
-	height: 250px;
-	background: radial-gradient(#aaaa55,  #77773c, #888844);
+	width: 850px;
+	height: 400px;
+	background: radial-gradient(#77773c,  #666644, #55552b);
+	font-size: 20pt;
 }
 #area, #part, #article {
-	background: #e0ebeb;
-	border-radius: 1px;
-	font-size: 12px;
+	background: #f0f0f0;
+	border-radius: 3px;
+	font-size: 16pt;
 }
 #part, #article {
-	font-size: 17px;
+	font-size: 20pt;
 }
 
 #calculator td {
-	width: 50px;
+	width: 85px;
 }
 button {
 	width: 100%;
 	height: 100%;
-	border-radius: 1px;
-	background: radial-gradient(#ecf9f2, #d9f2e6, #ecf9f2);
+	border-radius: 3px;
+	background: radial-gradient(rgba(0, 80, 0, 0.1), rgba(0, 80, 0, 0.4), rgba(0, 80, 0, 0.6));
+	font-size: 20pt;
 }
 #label-names {
 	height: 30px;
-	font-size: 9pt;
+	font-size: 12pt;
 	text-align: center;
 }
 
 #crimes-count {
 	text-align: center;
-	font-size: 18pt;
+	font-size: 24pt;
 }
-
+}
 /*
 @media screen and (min-width: 300px) and (max-width: 600px) {
 button {
