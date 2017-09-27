@@ -5,69 +5,70 @@
 	<title>калькулятор</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" media="screen and (min-device-width: 300px) and (max-device-width: 450px), (min-device-width: 540px) and (max-device-width: 800px) and (orientation: landscape)" href="css/mobiles.css" />
-	<link rel="stylesheet" media="only screen and (device-width: 768px)" href="css/tablets.css" />
+	<link rel="stylesheet" media="screen and (device-width: 768px), (device-width:1024px)" href="css/tablets.css" />
 </head>
 	<body>
 	</br>
 		<table id="calculator" align="center">
 			<tr>
 				<td colspan="2">
-				ч.<input type="number" id="part" min="1" max="5">
+				ч.<input type="text" id="part" disabled>
 				</td>
 				<td colspan="2">
-				ст.<input type="number" id="article" min="109" max="447">
+				ст.<input type="text" id="article" disabled>
 				</td>
-				<td colspan="5" rowspan="5" id="area">
-				</td>
-			</tr>
-			<tr>
-				<td>
-				<button>7</button>
-				</td>
-				<td>
-				<button>8</button>
-				</td>
-				<td>
-				<button>9</button>
-				</td>
-				<td>
-				<button>&#8592;</button>
+				<td colspan="5" rowspan="5">
+				<textarea readonly id="area"></textarea>
 				</td>
 			</tr>
 			<tr>
 				<td>
-				<button>4</button>
+				<button id="button-7" onclick="button7()">7</button>
 				</td>
 				<td>
-				<button>5</button>
+				<button id="button-8" onclick="button8()">8</button>
 				</td>
 				<td>
-				<button>6</button>
+				<button id="button-9" onclick="button9()">9</button>
 				</td>
 				<td>
-				<button>С</button>
+				<button id="button-del" onclick="buttonDel()">&#8592;</button>
 				</td>
 			</tr>
 			<tr>
 				<td>
-				<button>1</button>
+				<button id="button-4" onclick="button4()">4</button>
 				</td>
 				<td>
-				<button>2</button>
+				<button id="button-5" onclick="button5()">5</button>
 				</td>
 				<td>
-				<button>3</button>
+				<button id="button-6" onclick="button6()">6</button>
+				</td>
+				<td>
+				<button id="button-C" onclick="buttonC()">С</button>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<button id="button-1" onclick="button1()">1</button>
+				</td>
+				<td>
+				<button id="button-2" onclick="button2()">2</button>
+				</td>
+				<td>
+				<button id="button-3" onclick="button3()">3</button>
 				</td>
 				<td rowspan="2">
-				<button>=</button>
+				<button  id="button-enter" onclick="buttonEnter()">=</button>
 				</td>
 			</tr>
 			<tr>
 				<td>
-				<button>-x</button>
+				<button id="button-X" onclick="buttonX()">-x</button>
 				</td>
 				<td colspan="2">
-				<button>0</button>
+				<button id="button-0" onclick="button0()">0</button>
 				</td>
 			</tr>
 			<tr id="label-names">
@@ -92,23 +93,14 @@
 				</td>
 			</tr>
 			<tr id="crimes-count">
-				<td colspan="2">
-				_1_
-				</td>
-				<td colspan="2">
-				_2_
-				</td>
-				<td colspan="2">
-				_3_
-				</td>
-				<td colspan="2">
-				_4_
-				</td>
-				<td colspan="2">
-				_5_
-				</td>
+				<td colspan="2" id="count-1">0</td>
+				<td colspan="2" id="count-2">0</td>
+				<td colspan="2" id="count-3">0</td>
+				<td colspan="2" id="count-4">0</td>
+				<td colspan="2" id="count-5">0</td>
 			</tr>
 		</table>
 		<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+			<script type="text/javascript" src="js/calculator.js"></script>
 	</body>
 </html>

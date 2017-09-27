@@ -24,13 +24,18 @@ html {
 	}
 #calculator {
 	margin-top: 2%;
-	border: 2px dashed #666644;
+	border: 1px dashed #666644;
 	border-radius: 5px;
-	width: 99%;
+	width: 100%;
 	height: 95%;
 	min-height: 500px;
 	background: radial-gradient(#77773c,  #666644, #55552b);
 	font-size: 20pt;
+}
+#area {
+	width: 100%;
+	height: 100%;
+	resize: none;
 }
 #area, #part, #article {
 	background: #f0f0f0;
@@ -38,7 +43,7 @@ html {
 	font-size: 16pt;
 }
 #part, #article {
-	min-width: 50%;
+	width: 60%;
 	font-size: 24pt;
 }
 
@@ -51,6 +56,10 @@ button {
 	border-radius: 3px;
 	background: radial-gradient(rgba(0, 80, 0, 0.1), rgba(0, 80, 0, 0.4), rgba(0, 80, 0, 0.6));
 	font-size: 20pt;
+}
+button:active {
+	background: radial-gradient(rgb(50, 200, 50), rgb(15, 150, 15), rgb(0, 100, 0));
+	color: white;
 }
 #label-names {
 	height: 30px;
