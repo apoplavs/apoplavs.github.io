@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>автозвіт</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<!-- <link rel="stylesheet" media="screen and (min-device-width: 300px) and (max-device-width: 450px), (min-device-width: 540px) and (max-device-width: 800px) and (orientation: landscape)" href="css/mobiles.css" />
+	<link rel="stylesheet" media="screen and (device-width: 768px), (device-width:1024px)" href="css/tablets.css" /> -->
+	<style type="text/css">
+		#rest {
+			background: white;
+		}
+	</style>
+</head>
+	<body>
+		</br></br>
+		<table class="main-table" align="center">
+			<tr>
+				<td><b>1. Розмір прожиткового мінімуму, грн.</b></br>
+				<small>для працездатних осіб на момент подання адвокатом акта</small></td>
+				<td><select>
+					<option value="1600">1600 грн</option>
+					<option value="1684">1684 грн</option>
+					<option value="1762">1762 грн</option>
+					<option value="Acer">Acer</option>
+					<option value="Asus">Asus</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>2</td>
+			</tr>
+			
+		</table>
+		<div align="center">
+	<!-- <button id="button-1" onclick="button1()" >відкрити нову сторінку</button> -->
+	<button id="button-2" onclick="makeReport()">сформувати документ</button></br>
+		
+			<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+			<script src='js/pdfmake/build/pdfmake.min.js'></script>
+  			<script src='js/pdfmake/build/vfs_fonts.js'></script>
+			<script type="text/javascript" src="js/main.js"></script>
+	</body>
+</html>

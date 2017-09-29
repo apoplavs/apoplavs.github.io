@@ -1,0 +1,65 @@
+html {
+background-color: white;
+}
+.main-table {
+	/*text-align: center;*/
+	width: 70%;
+	/*border: 1px ridge #55552b;*/
+}
+.main-table tr td {
+	border-bottom: 1px dotted #d7e0da;
+}
+
+.main-table tr td:first-child {
+	width: 80%;
+}
+.main-table select {
+	width: 100%;
+	border-radius: 1px;
+	border-color: #376346;
+}
+
+
+
+#calculator {
+	margin-top: 80px;
+	border: 5px ridge #55552b;
+	border-radius: 5px;
+	width: 600px;
+	height: 300px;
+	background: radial-gradient(#aaaa55, #77773c, #888844);
+}
+#area {
+	width: 100%;
+	height: 100%;
+	resize: none;
+}
+#area, #part, #article {
+	background: #e0ebeb;
+	border-radius: 1px;
+	font-size: 12px;
+}
+#part, #article {
+	width: 60%;
+	font-size: 17px;
+}
+
+#calculator td {
+	width: 50px;
+}
+button {
+	width: 10%;
+	height: 50px;
+	border-radius: 1px;
+	background: radial-gradient(#ecf9f2, #d9f2e6, #ecf9f2);
+}
+#label-names {
+	height: 30px;
+	font-size: 9pt;
+	text-align: center;
+}
+
+#crimes-count {
+	text-align: center;
+	font-size: 18pt;
+}
