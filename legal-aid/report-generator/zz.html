@@ -15,31 +15,368 @@
 	<body>
 		</br></br>
 		<table class="main-table" align="center">
+		<tr>
+			<th colspan="3">Кількість виїздів адвоката</th>
+		</tr>
+		<tr>
+			<td colspan="2">для побачення з особою, якій надається БВПД, участі у процесуальних діях та/або збирання доказів</td>
+			<td><input type="number" min="1" max="50" name="num-trips"></td>
+		</tr>
+		<tr>
+				<th colspan="3">Припинення участі адвоката до завершення строку дії доручення,<i> якщо:</i></th>
+		</tr>
+		<tr>
+			<td colspan="2"><b>- під час першого конфіденційного побачення</b> з адвокатом особа, якій надається БВПД, заявила про відмову від його послуг у письмовій формі, або ж адвокат внаслідок конфлікту інтересів чи з інших причин прийняв рішення про відмову від надання БВПД особі;</td>
+			<td><input type="checkbox" name="onoffswitch1" class="onoffswitch-checkbox" id="myonoffswitch1">
+				<label class="onoffswitch-label" for="myonoffswitch1">
+						<span class="onoffswitch-inner"></span>
+				</label>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">- адвокат припинив надання БВПД до завершення строку дії доручення <b>в інший час після конфіденційного побачення</b> з будь-яких інших підстав, визначених законом</td>
+			<td><input type="checkbox" name="onoffswitch2" class="onoffswitch-checkbox" id="myonoffswitch2">
+				<label class="onoffswitch-label" for="myonoffswitch2">
+						<span class="onoffswitch-inner"></span>
+				</label>
+			</td>
+		</tr>
+		<tr>
+				<th colspan="3">Особлива категорія особи, якій надається БВПД:</th>
+		</tr>
+		<tr>
+			<td colspan="2">- у віці до 18 років;</td>
+			<td><input type="checkbox" name="onoffswitch3" class="onoffswitch-checkbox" id="myonoffswitch3">
+				<label class="onoffswitch-label" for="myonoffswitch3">
+						<span class="onoffswitch-inner"></span>
+				</label>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">- яка через свої фізичні або психічні вади (німа, глуха, сліпа тощо) не може сама реалізувати своє право на захист;</td>
+			<td><input type="checkbox" name="onoffswitch4" class="onoffswitch-checkbox" id="myonoffswitch4">
+				<label class="onoffswitch-label" for="myonoffswitch4">
+						<span class="onoffswitch-inner"></span>
+				</label>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">- яка не володіє мовою, якою ведеться провадження;</td>
+			<td><input type="checkbox" name="onoffswitch5" class="onoffswitch-checkbox" id="myonoffswitch5">
+				<label class="onoffswitch-label" for="myonoffswitch5">
+						<span class="onoffswitch-inner"></span>
+				</label>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">- у якої виявлено інфекційну хворобу, що підтверджується відповідною медичною довідкою</td>
+			<td><input type="checkbox" name="onoffswitch6" class="onoffswitch-checkbox" id="myonoffswitch6">
+				<label class="onoffswitch-label" for="myonoffswitch6">
+						<span class="onoffswitch-inner"></span>
+				</label>
+			</td>
+		</tr>
+		<tr>
+				<th colspan="3">Сумарна кількість дій адвоката з надання БВПД:</th>
+		</tr>
+		<tr>
+			<td colspan="2">зазначених у реєстрі дій адвоката (побачення з особою, якій надається БВПД, участь у процесуальних діях, складення процесуальних документів)</br><small>* У разі якщо затриману особу звільнено до моменту прибуття адвоката, вказується 0</small></td>
+			<td><input type="number" min="0" max="50" name="num-actions" onchange="showTripInNight(this.value);"></td>
+		</tr>
+		<tr>
+			<td colspan="2"><i>у разі, якщо кількість дій адвоката = 0 </i>чи припав час виїзду повністю або частково на нічний час (з 22.00 до 6.00) або вихідні (субота, неділя), або святкові/неробочі дні</td>
+			<td><input type="checkbox" name="onoffswitch7" class="onoffswitch-checkbox" id="myonoffswitch7">
+				<label class="onoffswitch-label" for="myonoffswitch7">
+						<span class="onoffswitch-inner"></span>
+				</label>
+			</td>
+		</tr>
+		<tr>
+			<th colspan="3">Частка дій адвоката у нічний час, вихідні, святкові та неробочі дні від загальної кількості таких дій</th>
+		</tr>
+		<tr>
+			<td colspan="2">кількість дій, які повністю або частково припадають на: нічний час (з 22.00 до 6.00) або вихідні (субота, неділя), або святкові/неробочі дні</td>
+			<td><input type="number" min="0" max="50" name="num-actions-in-night"></td>
+		</tr>
+		<tr>
+			<th colspan="3">Розмір прожиткового мінімуму, грн.</th>
+		</tr>
+		<tr>
+			<td>для працездатних осіб на момент подання адвокатом акта</td>
+			<td></td>
+			<td><select>
+					<option value="1600">1600 грн</option>
+					<option value="1684">1684 грн</option>
+					<option value="1762" selected>1762 грн</option>
+					</select>
+				</td>
+		</tr>
+		<tr>
+			<th colspan="3"><b>Строк подання акта</b></th>
+		</tr>
+		<tr>
+			<td>починаючи з дня, наступного за днем завершення надання БВПД/відповідної стадії провадження (процесу)</td>
+			<td colspan="2"><select>
+					<option value="1" selected>до 45 днів</option>
+					<option value="0.75">від 46 до 60 днів</option>
+					<option value="0.5" >від 61 до 90 днів</option>
+					<option value="0.25" >від 91 до 120 днів</option>
+					<option value="0" >понад 120 днів</option>
+					</select>
+				</td>
+		</tr>
+		<tr>
+			<th colspan="3">Побачення з особою, якій надається БВПД</th>
+		</tr>
+		<tr>
+			<th>Дата і час початку та закінчення</th>
+			<th colspan="2"></th>
+		</tr>
+		<tr class="no-border widter">
+			<td> №1 - <input type="text" name="meet1" maxlength="80"></td>
+			<td colspan="2"></td>
+		</tr>
+		<tr class="no-border widter">
+			<td> №2 - <input type="text" name="meet2" maxlength="80"></td>
+			<td colspan="2"></td>
+		</tr>
+		<tr class="no-border widter">
+			<td> №3 - <input type="text" name="meet3" maxlength="80"></td>
+			<td colspan="2"></td>
+		</tr>
+		<tr class="no-border widter">
+			<td> №4 - <input type="text" name="meet4" maxlength="80"></td>
+			<td colspan="2"></td>
+		</tr>
+		<tr class="no-border widter">
+			<td> №5 - <input type="text" name="meet5" maxlength="80"></td>
+			<td colspan="2"></td>
+		</tr>
+		<tr class="no-border widter">
+			<td> №6 - <input type="text" name="meet6" maxlength="80"></td>
+			<td colspan="2"></td>
+		</tr>
+		<tr class="no-border widter">
+			<td> №7 - <input type="text" name="meet7" maxlength="80"></td>
+			<td colspan="2"></td>
+		</tr>
+		<tr class="no-border widter">
+			<td> №8 - <input type="text" name="meet8" maxlength="80"></td>
+			<td colspan="2"></td>
+		</tr>
+		<tr class="no-border widter">
+			<td> №9 - <input type="text" name="meet9" maxlength="80"></td>
+			<td colspan="2"></td>
+		</tr>
+		<tr class="no-border widter">
+			<td>№10-<input type="text" name="meet10" maxlength="80"></td>
+			<td colspan="2"></td>
+		</tr>
+		<tr>
+			<th colspan="3">Участь у процесуальних діях</th>
+		</tr>
+		<tr>
+			<th>Найменування процесуальної дії</th>
+			<th>початок</th>
+			<th>закінчення</th>
+		</tr>
+		<tr class="widter">
+			<td> №1 - <input type="text" name="proc-action1" maxlength="80"></td>
+			<td><input type="date" name="date-start-proc-action1" class="date-time"><input type="time" name="time-start-proc-action1" class="date-time"></td>
+			<td><input type="date" name="date-end-proc-action1" class="date-time"><input type="time" name="time-end-proc-action1" class="date-time"></td>
+		</tr>
+		<tr class="widter">
+			<td> №2 - <input type="text" name="proc-action2" maxlength="80"></td>
+			<td><input type="date" name="date-start-proc-action2" class="date-time"><input type="time" name="time-start-proc-action2" class="date-time"></td>
+			<td><input type="date" name="date-end-proc-action2" class="date-time"><input type="time" name="time-end-proc-action2" class="date-time"></td>
+		</tr>
+		<tr class="widter">
+			<td> №3 - <input type="text" name="proc-action3" maxlength="80"></td>
+			<td><input type="date" name="date-start-proc-action3" class="date-time"><input type="time" name="time-start-proc-action3" class="date-time"></td>
+			<td><input type="date" name="date-end-proc-action3" class="date-time"><input type="time" name="time-end-proc-action3" class="date-time"></td>
+		</tr>
+		<tr class="widter">
+			<td> №4 - <input type="text" name="proc-action4" maxlength="80"></td>
+			<td><input type="date" name="date-start-proc-action4" class="date-time"><input type="time" name="time-start-proc-action4" class="date-time"></td>
+			<td><input type="date" name="date-end-proc-action4" class="date-time"><input type="time" name="time-end-proc-action4" class="date-time"></td>
+		</tr>
+		<tr class="widter">
+			<td> №5 - <input type="text" name="proc-action5" maxlength="80"></td>
+			<td><input type="date" name="date-start-proc-action5" class="date-time"><input type="time" name="time-start-proc-action5" class="date-time"></td>
+			<td><input type="date" name="date-end-proc-action5" class="date-time"><input type="time" name="time-end-proc-action5" class="date-time"></td>
+		</tr>
+		<tr class="widter">
+			<td> №6 - <input type="text" name="proc-action6" maxlength="80"></td>
+			<td><input type="date" name="date-start-proc-action6" class="date-time"><input type="time" name="time-start-proc-action6" class="date-time"></td>
+			<td><input type="date" name="date-end-proc-action6" class="date-time"><input type="time" name="time-end-proc-action6" class="date-time"></td>
+		</tr>
+		<tr class="widter">
+			<td> №7 - <input type="text" name="proc-action7" maxlength="80"></td>
+			<td><input type="date" name="date-start-proc-action7" class="date-time"><input type="time" name="time-start-proc-action7" class="date-time"></td>
+			<td><input type="date" name="date-end-proc-action7" class="date-time"><input type="time" name="time-end-proc-action7" class="date-time"></td>
+		</tr>
+		<tr class="widter">
+			<td> №8 - <input type="text" name="proc-action8" maxlength="80"></td>
+			<td><input type="date" name="date-start-proc-action8" class="date-time"><input type="time" name="time-start-proc-action8" class="date-time"></td>
+			<td><input type="date" name="date-end-proc-action8" class="date-time"><input type="time" name="time-end-proc-action8" class="date-time"></td>
+		</tr>
+		<tr class="widter">
+			<td> №9 - <input type="text" name="proc-action9" maxlength="80"></td>
+			<td><input type="date" name="date-start-proc-action9" class="date-time"><input type="time" name="time-start-proc-action9" class="date-time"></td>
+			<td><input type="date" name="date-end-proc-action9" class="date-time"><input type="time" name="time-end-proc-action9" class="date-time"></td>
+		</tr>
+		<tr class="widter">
+			<td>№10-<input type="text" name="proc-action10" maxlength="80"></td>
+			<td><input type="date" name="date-start-proc-action10" class="date-time"><input type="time" name="time-start-proc-action10" class="date-time"></td>
+			<td><input type="date" name="date-end-proc-action10" class="date-time"><input type="time" name="time-end-proc-action10" class="date-time"></td>
+		</tr>
+		<tr>
+			<th colspan="3">Складення процесуальних документів</th>
+		</tr>
+		<tr>
+			<th>Найменування процесуального документа</th>
+			<th colspan="2"><small>Дата і час реєстрації органом (службовою особою), якому (якій) адресований документ</small></th>
+		</tr>
+		<tr class="widter">
+			<td> №1 - <input type="text" name="proc-doc1" maxlength="80"></td>
+			<td><input type="date" name="date-proc-doc1" class="date-time"></td>
+			<td><input type="time" name="time-proc-doc1" class="date-time"></td>
+		</tr>
+		<tr class="widter">
+			<td> №2 - <input type="text" name="proc-doc2" maxlength="80"></td>
+			<td><input type="date" name="date-proc-doc2" class="date-time"></td>
+			<td><input type="time" name="time-proc-doc2" class="date-time"></td>
+		</tr>
+		<tr class="widter">
+			<td> №3 - <input type="text" name="proc-doc3" maxlength="80"></td>
+			<td><input type="date" name="date-proc-doc3" class="date-time"></td>
+			<td><input type="time" name="time-proc-doc3" class="date-time"></td>
+		</tr>
+		<tr class="widter">
+			<td> №4 - <input type="text" name="proc-doc4" maxlength="80"></td>
+			<td><input type="date" name="date-proc-doc4" class="date-time"></td>
+			<td><input type="time" name="time-proc-doc4" class="date-time"></td>
+		</tr>
+		<tr class="widter">
+			<td> №5 - <input type="text" name="proc-doc5" maxlength="80"></td>
+			<td><input type="date" name="date-proc-doc5" class="date-time"></td>
+			<td><input type="time" name="time-proc-doc5" class="date-time"></td>
+		</tr>
+		<tr class="widter">
+			<td> №6 - <input type="text" name="proc-doc6" maxlength="80"></td>
+			<td><input type="date" name="date-proc-doc6" class="date-time"></td>
+			<td><input type="time" name="time-proc-doc6" class="date-time"></td>
+		</tr>
+		<tr class="widter">
+			<td> №7 - <input type="text" name="proc-doc7" maxlength="80"></td>
+			<td><input type="date" name="date-proc-doc7" class="date-time"></td>
+			<td><input type="time" name="time-proc-doc7" class="date-time"></td>
+		</tr>
+		<tr class="widter">
+			<td> №8 - <input type="text" name="proc-doc8" maxlength="80"></td>
+			<td><input type="date" name="date-proc-doc8" class="date-time"></td>
+			<td><input type="time" name="time-proc-doc8" class="date-time"></td>
+		</tr>
+		<tr class="widter">
+			<td> №9 - <input type="text" name="proc-doc9" maxlength="80"></td>
+			<td><input type="date" name="date-proc-doc9" class="date-time"></td>
+			<td><input type="time" name="time-proc-doc9" class="date-time"></td>
+		</tr>
+		<tr class="widter">
+			<td>№10-<input type="text" name="proc-doc10" maxlength="80"></td>
+			<td><input type="date" name="date-proc-doc10" class="date-time"></td>
+			<td><input type="time" name="time-proc-doc10" class="date-time"></td>
+		</tr>
+		<!-- не дороблено змінити id, name, for і вставити до калькулятора-->
+		<tr>
+				<th colspan="3">Оскарження адвокатом рішення щодо обрання особі запобіжного заходу у вигляді тримання під вартою</th>
+		</tr>
+		<tr>
+			<td colspan="2">клопотання слідчого, прокурора про обрання затриманій особі запобіжного заходу не подавалося або стосувалося більш м’якого запобіжного заходу, ніж тримання під вартою</td>
+			<td><input type="checkbox" name="onoffswitch3" class="onoffswitch-checkbox" id="myonoffswitch3">
+				<label class="onoffswitch-label" for="myonoffswitch3">
+						<span class="onoffswitch-inner"></span>
+				</label>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">- яка через свої фізичні або психічні вади (німа, глуха, сліпа тощо) не може сама реалізувати своє право на захист;</td>
+			<td><input type="checkbox" name="onoffswitch4" class="onoffswitch-checkbox" id="myonoffswitch4">
+				<label class="onoffswitch-label" for="myonoffswitch4">
+						<span class="onoffswitch-inner"></span>
+				</label>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">- яка не володіє мовою, якою ведеться провадження;</td>
+			<td><input type="checkbox" name="onoffswitch5" class="onoffswitch-checkbox" id="myonoffswitch5">
+				<label class="onoffswitch-label" for="myonoffswitch5">
+						<span class="onoffswitch-inner"></span>
+				</label>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">- у якої виявлено інфекційну хворобу, що підтверджується відповідною медичною довідкою</td>
+			<td><input type="checkbox" name="onoffswitch6" class="onoffswitch-checkbox" id="myonoffswitch6">
+				<label class="onoffswitch-label" for="myonoffswitch6">
+						<span class="onoffswitch-inner"></span>
+				</label>
+			</td>
+		</tr>
+		<!-- не дороблено змінити id, name, for і вставити до калькулятора-->
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 			<tr>
 				<td><b>1. Розмір прожиткового мінімуму, грн.</b></br>
 				<small>для працездатних осіб на момент подання адвокатом акта</small></td>
 				<td><select>
 					<option value="1600">1600 грн</option>
 					<option value="1684">1684 грн</option>
-					<option value="1762">1762 грн</option>
-					<option value="Acer">Acer</option>
-					<option value="Asus">Asus</option>
+					<option value="1762" selected>1762 грн</option>
 					</select>
 				</td>
 			</tr>
 			<tr>
-				<td>1</td>
 				<td>2</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td></td>
 			</tr>
 			
 		</table>
-		<div align="center">
+		<!-- <div align="center"> -->
 	<!-- <button id="button-1" onclick="button1()" >відкрити нову сторінку</button> -->
 	<button id="button-2" onclick="makeReport()">сформувати документ</button></br>
 		
 			<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 			<script src='js/pdfmake/build/pdfmake.min.js'></script>
-  			<script src='js/pdfmake/build/vfs_fonts.js'></script>
-			<script type="text/javascript" src="js/main.js"></script>
+				<script src='js/pdfmake/build/vfs_fonts.js'></script>
+			<script type="text/javascript" src="js/zz.js"></script>
 	</body>
 </html>

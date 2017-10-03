@@ -62,7 +62,16 @@ function button2() {
 
 
 
-
+function showTripInNight(value) {
+	var isshow = document.getElementById("myonoffswitch7");
+	if (value == 0) {
+		isshow.disabled = false;
+	}
+	else {
+		isshow.disabled = true;
+		isshow.checked = false;
+	}
+}
 
 
 
