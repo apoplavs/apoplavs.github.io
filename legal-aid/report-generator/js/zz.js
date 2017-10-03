@@ -63,13 +63,24 @@ function button2() {
 
 
 function showTripInNight(value) {
-	var isshow = document.getElementById("myonoffswitch7");
+	var isshow = document.getElementById("trip-in-night");
+	var istrip = document.getElementById("myonoffswitch7");
 	if (value == 0) {
-		isshow.disabled = false;
+		isshow.style.display = 'table-row'
 	}
 	else {
-		isshow.disabled = true;
-		isshow.checked = false;
+		isshow.style.display = 'none'
+		istrip.checked = false;
+	}
+}
+
+function showNextField(element) {
+	var next_row = element.parentElement.parentElement.nextElementSibling;
+	if (element.value != '') {
+		next_row.style.display = 'table-row'
+	}
+	else {
+		next_row.style.display = 'none'
 	}
 }
 

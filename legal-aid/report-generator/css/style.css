@@ -53,6 +53,25 @@ tr:hover td:nth-child(1) {
 .widter input {
 	width: 90% !important;
 }
+.widter:nth-of-type(n+4) {
+	display: none;
+}
+/*.widter:nth-of-type(4) {
+	display: none;
+}
+.widter:nth-of-type(5) {
+	display: none;
+}
+.widter:nth-of-type(6) {
+	display: none;
+}
+.widter:nth-of-type(7) {
+	display: none;
+}*/
+
+#trip-in-night {
+	display: none;
+}
 
 /*main-table tr td:nth-child(1) {
 	width: 10px;
