@@ -79,10 +79,30 @@ function showNextField(element) {
 	if (element.value != '') {
 		next_row.style.display = 'table-row'
 	}
-	else {
-		next_row.style.display = 'none'
+}
+
+function turnOff(IDelements) {
+	for (i = 0; i < IDelements.length; i++) {
+		document.getElementById(IDelements[i]).checked = false;
 	}
 }
+function turnOn(IDelements) {
+	for (i = 0; i < IDelements.length; i++) {
+		document.getElementById(IDelements[i]).checked = true;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
