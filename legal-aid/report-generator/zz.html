@@ -5,7 +5,6 @@
 	<meta name="description" content="Створити звіт онлайн про розрахунок розміру винагороди адвоката за надання безоплатної вторинної правової допомоги"> 
 	<title>Створити звіт БВПД онлайн</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<script src="http://code.jquery.com/jquery-latest.js"></script>
 	<!-- <link rel="stylesheet" media="screen and (min-device-width: 300px) and (max-device-width: 450px), (min-device-width: 540px) and (max-device-width: 800px) and (orientation: landscape)" href="css/mobiles.css" />
 	<link rel="stylesheet" media="screen and (device-width: 768px), (device-width:1024px)" href="css/tablets.css" /> -->
 	
@@ -28,50 +27,66 @@
 		window.stop();
 	}
 </script>
-		</br></br>
+		</br>
+		<form>
 		<table class="main-table" align="center">
+		<tr>
+			<th colspan="3">Загальні дані</th>
+		</tr>
+		<tr class="no-border">
+			<td colspan="3">П.І.Б. адвоката, який (яка) надав(ла) БВПД <input style="float: right;" type="text" id="lawyerName" maxlength="45" required></td>
+		</tr>
+		<tr class="no-border">
+			<td>Доручення центру з надання БВПД від</td>
+			<td><input type="date" class="date-time" name="arrandDate" required></td>
+			<td>№&nbsp;<input style="width: 80%;" type="text" name="arrandNum" maxlength="15" required></td>
+		</tr>
+		<tr class="no-border">
+			<td colspan="2">П.І.Б., дата народження особи, якій надано БВПД <input style="float: right;" type="text" name="detaineeName" maxlength="50" required></td>
+			<td><input type="date" class="date-time" name="detaineeDate" required></td>
+		</tr>
 		<tr>
 			<th colspan="3">Кількість виїздів адвоката</th>
 		</tr>
 		<tr>
 			<td colspan="2">для побачення з особою, якій надається БВПД, участі у процесуальних діях та/або збирання доказів</td>
-			<td><input type="number" min="1" max="50" name="num-trips" required></td>
+			<td><input type="number" value="1" min="0" max="50" name="numTrips" required></td>
 		</tr>
 		<tr>
-				<th colspan="3">Припинення участі адвоката до завершення строку дії доручення,<i> якщо:</i></th>
+			<th colspan="3">Припинення участі адвоката до завершення строку дії доручення,<i> якщо:</i></th>
 		</tr>
 		<tr>
 			<td colspan="2"><b>- під час першого конфіденційного побачення</b> з адвокатом особа, якій надається БВПД, заявила про відмову від його послуг у письмовій формі;</td>
-			<td><input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" onclick="turnOff(['myonoffswitch1', 'myonoffswitch2']);turnOn(['document1'])">
+			<td><input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" onchange="turnOff(['myonoffswitch1', 'myonoffswitch2']);turnOn(['document1']);fun1('terminatePart', 'v1', this.checked);fun1('terminatePart', 'v2', false);fun1('terminatePart', 'v3', false)">
 				<label class="onoffswitch-label" for="myonoffswitch">
-						<span class="onoffswitch-inner"></span>
+					<span class="onoffswitch-inner"></span>
 				</label>
 			</td>
 		</tr>
 		<tr>
 			<td colspan="2"><b>- під час першого конфіденційного побачення</b> адвокат внаслідок конфлікту інтересів чи з інших причин прийняв рішення про відмову від надання БВПД особі;</td>
-			<td><input type="checkbox" name="onoffswitch1" class="onoffswitch-checkbox" id="myonoffswitch1" onclick="turnOff(['myonoffswitch', 'myonoffswitch2', 'document1'])">
+			<td><input type="checkbox" name="onoffswitch1" class="onoffswitch-checkbox" id="myonoffswitch1" onchange="turnOff(['myonoffswitch', 'myonoffswitch2', 'document1']);fun1('terminatePart', 'v2', this.checked)">
 				<label class="onoffswitch-label" for="myonoffswitch1">
-						<span class="onoffswitch-inner"></span>
+					<span class="onoffswitch-inner"></span>
 				</label>
 			</td>
 		</tr>
 		<tr>
 			<td colspan="2">- адвокат припинив надання БВПД до завершення строку дії доручення <b>в інший час після конфіденційного побачення</b> з будь-яких інших підстав, визначених законом</td>
-			<td><input type="checkbox" name="onoffswitch2" class="onoffswitch-checkbox" id="myonoffswitch2" onclick="turnOff(['myonoffswitch1', 'myonoffswitch', 'document1'])">
+			<td><input type="checkbox" name="onoffswitch2" class="onoffswitch-checkbox" id="myonoffswitch2" onchange="turnOff(['myonoffswitch1', 'myonoffswitch', 'document1']);fun1('terminatePart', 'v3', this.checked)">
 				<label class="onoffswitch-label" for="myonoffswitch2">
-						<span class="onoffswitch-inner"></span>
+					<span class="onoffswitch-inner"></span>
 				</label>
 			</td>
 		</tr>
 		<tr>
-				<th colspan="3">Особлива категорія особи, якій надається БВПД:</th>
+			<th colspan="3">Особлива категорія особи, якій надається БВПД:</th>
 		</tr>
 		<tr>
 			<td colspan="2">- у віці до 18 років;</td>
 			<td><input type="checkbox" name="onoffswitch3" class="onoffswitch-checkbox" id="myonoffswitch3">
 				<label class="onoffswitch-label" for="myonoffswitch3">
-						<span class="onoffswitch-inner"></span>
+					<span class="onoffswitch-inner"></span>
 				</label>
 			</td>
 		</tr>
@@ -79,7 +94,7 @@
 			<td colspan="2">- яка через свої фізичні або психічні вади (німа, глуха, сліпа тощо) не може сама реалізувати своє право на захист;</td>
 			<td><input type="checkbox" name="onoffswitch4" class="onoffswitch-checkbox" id="myonoffswitch4">
 				<label class="onoffswitch-label" for="myonoffswitch4">
-						<span class="onoffswitch-inner"></span>
+					<span class="onoffswitch-inner"></span>
 				</label>
 			</td>
 		</tr>
@@ -87,72 +102,30 @@
 			<td colspan="2">- яка не володіє мовою, якою ведеться провадження;</td>
 			<td><input type="checkbox" name="onoffswitch5" class="onoffswitch-checkbox" id="myonoffswitch5">
 				<label class="onoffswitch-label" for="myonoffswitch5">
-						<span class="onoffswitch-inner"></span>
+					<span class="onoffswitch-inner"></span>
 				</label>
 			</td>
 		</tr>
 		<tr>
 			<td colspan="2">- у якої виявлено інфекційну хворобу, що підтверджується відповідною медичною довідкою</td>
-			<td><input type="checkbox" name="onoffswitch6" class="onoffswitch-checkbox" id="myonoffswitch6" onclick="this.checked ? turnOn(['document8']) : turnOff(['document8'])">
+			<td><input type="checkbox" name="onoffswitch6" class="onoffswitch-checkbox" id="myonoffswitch6" onchange="(this.checked ? turnOn(['document8']) : turnOff(['document8']))">
 				<label class="onoffswitch-label" for="myonoffswitch6">
-						<span class="onoffswitch-inner"></span>
+					<span class="onoffswitch-inner"></span>
 				</label>
 			</td>
 		</tr>
 		<tr>
-				<th colspan="3">Оскарження адвокатом рішення щодо обрання особі запобіжного заходу у вигляді тримання під вартою</th>
-		</tr>
-		<tr>
-				<th><small>Процесуальна дія</small></th>
-				<th colspan="2"><small>Результат <small>(за результатом останньої процесуальної дії)</small></small></th>
-		</tr>
-		<tr>
-			<td>клопотання слідчого, прокурора про обрання затриманій особі запобіжного заходу не подавалося або стосувалося більш м’якого запобіжного заходу, ніж тримання під вартою</td>
-			<td colspan="2"><input type="radio" class="radiobox" name="appeal-decision" id="appeal-decision1">
-			</td>
-		</tr>
-		<tr>
-			<td rowspan="2">Розгляд клопотання слідчого, прокурора про обрання затриманій особі запобіжного заходу у вигляді тримання під вартою</td>
-			<td colspan="2"><input type="radio" class="radiobox" name="appeal-decision" id="appeal-decision2">
-				<label for="appeal-decision2"><small>обрано запобіжний захід у вигляді тримання під вартою</small></label><br/><br/>
-				<input type="radio" class="radiobox" name="appeal-decision" id="appeal-decision3">
-				<label for="appeal-decision3"><small>обрано більш м’який запобіжний захід або постановлено ухвалу про відмову в застосуванні запобіжного заходу</small></label>
-			</td>
-		</tr>
-		<tr>
-		</tr>
-		<tr>
-			<td rowspan="2">Розгляд апеляційної скарги адвоката на судове рішення про обрання запобіжного заходу у вигляді тримання під вартою</td>
-			<td colspan="2"><input type="radio" class="radiobox" name="appeal-decision" id="appeal-decision4">
-				<label for="appeal-decision4"><small>запобіжний захід у вигляді тримання під вартою залишено без змін</small></label><br/><br/>
-				<input type="radio" class="radiobox" name="appeal-decision" id="appeal-decision5">
-				<label for="appeal-decision5"><small>запобіжний захід у вигляді тримання під вартою змінено на більш м’який</small></label>
-			</td>
-		</tr>
-		<tr>
-		</tr>
-		<tr>
-			<td rowspan="2">Розгляд апеляційної скарги сторони обвинувачення на судове рішення про обрання запобіжного заходу більш м’якого, ніж тримання під вартою, або ухвалу про відмову в застосуванні запобіжного заходу</td>
-			<td colspan="2"><input type="radio" class="radiobox" name="appeal-decision" id="appeal-decision6">
-				<label for="appeal-decision6"><small>запобіжний захід чи ухвалу про відмову в застосуванні запобіжного заходу залишено без змін</small></label><br/><br/>
-				<input type="radio" class="radiobox" name="appeal-decision" id="appeal-decision7">
-				<label for="appeal-decision7"><small>обрано запобіжний захід у вигляді тримання під вартою</small></label>
-			</td>
-		</tr>
-		<tr>
-		</tr>
-		<tr>
-				<th colspan="3">Сумарна кількість дій адвоката з надання БВПД:</th>
+			<th colspan="3">Сумарна кількість дій адвоката з надання БВПД:</th>
 		</tr>
 		<tr>
 			<td colspan="2">зазначених у реєстрі дій адвоката (побачення з особою, якій надається БВПД, участь у процесуальних діях, складення процесуальних документів)</br><small>* У разі якщо затриману особу звільнено до моменту прибуття адвоката, вказується 0</small></td>
-			<td><input type="number" min="0" max="50" name="num-actions" onchange="showTripInNight(this.value);" required></td>
+			<td><input type="number" value="1" min="0" max="50" name="num-actions" onchange="showTripInNight(this.value);" required></td>
 		</tr>
 		<tr id="trip-in-night">
 			<td colspan="2"><i>у разі, якщо кількість дій адвоката = 0 </i>чи припав час виїзду повністю або частково на нічний час (з 22.00 до 6.00) або вихідні (субота, неділя), або святкові/неробочі дні</td>
 			<td><input type="checkbox" name="onoffswitch7" class="onoffswitch-checkbox" id="myonoffswitch7">
 				<label class="onoffswitch-label" for="myonoffswitch7">
-						<span class="onoffswitch-inner"></span>
+					<span class="onoffswitch-inner"></span>
 				</label>
 			</td>
 		</tr>
@@ -161,7 +134,87 @@
 		</tr>
 		<tr>
 			<td colspan="2">кількість дій, які повністю або частково припадають на: нічний час (з 22.00 до 6.00) або вихідні (субота, неділя), або святкові/неробочі дні</td>
-			<td><input type="number" min="0" max="50" name="num-actions-in-night"></td>
+			<td><input type="number" value="0" min="0" max="50" name="num-actions-in-night" required></td>
+		</tr>
+
+
+
+
+
+
+
+		<tr>
+			<th colspan="3">Обрання затриманій особі запобіжного заходу (ЗЗ) у вигляді тримання під вартою</th>
+		</tr>
+		<tr>
+			<td colspan="2">Чи подавалося слідчим / прокурором клопотання про обрання затриманій особі ЗЗ у вигляді тримання під вартою?</td>
+			<td><input type="checkbox" name="onoffswitch8" class="onoffswitch-checkbox" id="myonoffswitch8" checked>
+				<label class="onoffswitch-label" for="myonoffswitch8">
+					<span class="onoffswitch-inner"></span>
+				</label>
+			</td>
+		</tr>
+		<tr>
+			<td>Яке рішення прийняв суд за підсумками розгляду такого клопотання?</td>
+
+
+			/////////// here
+			todo: need continued show elements using JS
+
+
+
+
+
+
+
+			<td colspan="2"><select onchange="this.options[this.selectedIndex].value == 2 ? changeDisplay('lawerApeal', 'table-row'),changeDisplay('prosecutorApeal', 'none') : changeDisplay('lawerApeal', 'none'),changeDisplay('prosecutorApeal', 'table-row')">
+				<option value="1" selected>обрано більш м’який ЗЗ або постановлено ухвалу про відмову в застосуванні ЗЗ</option>
+				<option value="2">обрано ЗЗ у вигляді тримання під вартою</option>
+				</select>
+			</td>
+		</tr>
+		<tr id="lawerApeal">
+			<td colspan="2">Чи подавали Ви апеляційну скаргу адвоката на судове рішення про обрання ЗЗ у вигляді тримання під вартою?</td>
+			<td><input type="checkbox" name="onoffswitch9" class="onoffswitch-checkbox" id="myonoffswitch9">
+				<label class="onoffswitch-label" for="myonoffswitch9">
+					<span class="onoffswitch-inner"></span>
+				</label>
+			</td>
+		</tr>
+		<tr id="lawerApeal1">
+			<td>Яке рішення прийняв суд за результатами розгляду такої апеляційної скарги?</td>
+			<td colspan="2"><select>
+				<option value="1" selected>ЗЗ у вигляді тримання під вартою залишено без змін</option>
+				<option value="2">ЗЗ у вигляді тримання під вартою змінено на більш м'який</option>
+				</select>
+			</td>
+		</tr>
+		<tr id="prosecutorApeal">
+			<td colspan="2">Чи подавала сторона обвинувачення апеляційну скаргу на судове рішення про обрання ЗЗ більш м’якого, ніж тримання під вартою, або ухвалу про відмову в застосуванні ЗЗ?</td>
+			<td><input type="checkbox" name="onoffswitch10" class="onoffswitch-checkbox" id="myonoffswitch10">
+				<label class="onoffswitch-label" for="myonoffswitch10">
+					<span class="onoffswitch-inner"></span>
+				</label>
+			</td>
+		</tr>
+		<tr id="prosecutorApeal1">
+			<td>Яке рішення прийняв суд за результатами розгляду такої апеляційної скарги?</td>
+			<td colspan="2"><select>
+				<option value="1" selected>ЗЗ чи ухвалу про відмову в застосуванні ЗЗ залишено без змін</option>
+				<option value="2">обрано ЗЗ у вигляді тримання під вартою</option>
+				</select>
+			</td>
+		</tr>
+
+
+
+
+
+
+
+
+
+		<tr>
 		</tr>
 		<tr>
 			<th colspan="3">Розмір прожиткового мінімуму, грн.</th>
@@ -170,10 +223,10 @@
 			<td>для працездатних осіб на момент подання адвокатом акта</td>
 			<td></td>
 			<td><select>
-					<option value="1600">1600 грн</option>
-					<option value="1684">1684 грн</option>
-					<option value="1762" selected>1762 грн</option>
-					</select>
+				<option value="1600">1600 грн</option>
+				<option value="1684">1684 грн</option>
+				<option value="1762" selected>1762 грн</option>
+				</select>
 				</td>
 		</tr>
 		<tr>
@@ -182,12 +235,12 @@
 		<tr>
 			<td>починаючи з дня, наступного за днем завершення надання БВПД/відповідної стадії провадження (процесу)</td>
 			<td colspan="2"><select>
-					<option value="1" selected>до 45 днів</option>
-					<option value="0.75">від 46 до 60 днів</option>
-					<option value="0.5" >від 61 до 90 днів</option>
-					<option value="0.25" >від 91 до 120 днів</option>
-					<option value="0" >понад 120 днів</option>
-					</select>
+				<option value="1" selected>до 45 днів</option>
+				<option value="0.75">від 46 до 60 днів</option>
+				<option value="0.5" >від 61 до 90 днів</option>
+				<option value="0.25" >від 91 до 120 днів</option>
+				<option value="0" >понад 120 днів</option>
+				</select>
 				</td>
 		</tr>
 		<tr>
@@ -359,7 +412,7 @@
 		</tr>
 		</colgroup>
 		<tr>
-				<th colspan="3">Перелік завірених адвокатом копій процесуальних та інших документів, що підтверджують наведені дані</th>
+			<th colspan="3">Перелік завірених адвокатом копій процесуальних та інших документів, що підтверджують наведені дані</th>
 		</tr>
 		<tr>
 			<td colspan="2">заява затриманого про відмову від захисника</td>
@@ -403,63 +456,21 @@
 		</tr>
 		<tr>
 			<td colspan="2" class="widter"><input type="text" name="meet3" maxlength="100" id="document10"></td>
-			<td>інше (зазначити)</td>
+			<td><i>інше (зазначити)</i></td>
 		</tr>
 		<tr>
 			<td colspan="2">Загальна кількість аркушів документів</td>
-			<td><input type="number" min="0" id="document-pages"></td>
+			<td><input type="number" value="0" min="0" id="document-pages" required></td>
 		</tr>
-		
-		
+		<tr class="no-border">
+			<td></td>
+			<td colspan="2"><button type="submit" onclick="makeReport()" class="submit-button">Створити звіт</button></td>
+		</tr>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-			<tr>
-				<td><b>1. Розмір прожиткового мінімуму, грн.</b></br>
-				<small>для працездатних осіб на момент подання адвокатом акта</small></td>
-				<td><select>
-					<option value="1600">1600 грн</option>
-					<option value="1684">1684 грн</option>
-					<option value="1762" selected>1762 грн</option>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<td>2</td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>2</td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>2</td>
-				<td></td>
-			</tr>
-			
 		</table>
-		<!-- <div align="center"> -->
-	<!-- <button id="button-1" onclick="button1()" >відкрити нову сторінку</button> -->
-	<button id="button-2" onclick="makeReport()">сформувати документ</button></br>
-		
+		</form>
+		<br/>
+		<br/>
 			<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 			<!-- <script src='js/pdfmake/build/pdfmake.min.js'></script> -->
 				<!-- <script src='js/pdfmake/build/vfs_fonts.js'></script> -->
