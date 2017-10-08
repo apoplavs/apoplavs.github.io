@@ -5,6 +5,9 @@ var data = {
 	detaineeName: '______________________________________________________________',
 	detaineeDate: '__ __ / __ __ / __ __ __ __',
 	numTrips: {v: '____', k: function() {
+		if (data.terminatePart.v1 || data.terminatePart.v2) {
+			return (1);
+		}
 		return (parseInt(this.v) || 0);
 	}},
 	terminatePart: {v1: false, v2: false, v3: false, k: function() {
@@ -14,6 +17,9 @@ var data = {
 		return (1);
 	}},
 	specCategory: {v1: false, v2: false, v3: false, v4: false, k: function() {
+		if (data.terminatePart.v1 || data.terminatePart.v2) {
+			return (1);
+		}
 		var i = 0;
 		if (this.v1) {i++;}
 		if (this.v2) {i++;}
@@ -27,15 +33,22 @@ var data = {
 		}
 			return (1.3);
 	}},
+	numActs: {v1: 0, v2: false, k: function() {
+		if (this.v1 || this.v2 || this.v3) {
+			return (0.5);
+		}
+		return (1);
+	}},
 
 }
  function fun1(field, f1, value) {
- 	data[field][f1] = value;
+ 	// data[field][f1] = value;
+ 	data.terminatePart.k();
 
  	// console.log(field);
  	// var a = data.numTrips.k();
  	// data.numTrips.k = parseInt(data.numTrips.v) || 0;
- 	console.log(data.terminatePart.k());
+ 	// console.log(data.terminatePart.k());
  }
 
 function button2() {
@@ -102,10 +115,10 @@ function showTripInNight(value) {
 	var isshow = document.getElementById("trip-in-night");
 	var istrip = document.getElementById("myonoffswitch7");
 	if (value == 0) {
-		isshow.style.display = 'table-row'
+		isshow.style.display = 'table-row';
 	}
 	else {
-		isshow.style.display = 'none'
+		isshow.style.display = 'none';
 		istrip.checked = false;
 	}
 }
@@ -113,12 +126,29 @@ function showTripInNight(value) {
 function showNextField(element) {
 	var next_row = element.parentElement.parentElement.nextElementSibling;
 	if (element.value != '') {
-		next_row.style.display = 'table-row'
+		next_row.style.display = 'table-row';
 	}
 }
 
-function changeDisplay(IDelement, display) {
-		document.getElementById(IDelement).style.display = display;
+function showAppeal(element) {
+	var lawerApeal = document.getElementById('lawerApeal');
+	var lawerApeal1 = lawerApeal.nextElementSibling;
+	var prosecutorApeal = document.getElementById('prosecutorApeal');
+	var prosecutorApeal1 = prosecutorApeal.nextElementSibling;
+	if (element.value == 1) {
+		turnOff(['myonoffswitch9']);
+		lawerApeal.style.display = 'none';
+		lawerApeal1.style.display = 'none';
+		prosecutorApeal.style.display = 'table-row';
+		prosecutorApeal1.style.display = 'table-row';
+	}
+	else {
+		turnOff(['myonoffswitch10']);
+		lawerApeal.style.display = 'table-row';
+		lawerApeal1.style.display = 'table-row';
+		prosecutorApeal.style.display = 'none';
+		prosecutorApeal1.style.display = 'none';
+	}
 }
 
 function turnOff(IDelements) {

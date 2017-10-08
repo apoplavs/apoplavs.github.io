@@ -57,7 +57,7 @@
 		</tr>
 		<tr>
 			<td colspan="2"><b>- під час першого конфіденційного побачення</b> з адвокатом особа, якій надається БВПД, заявила про відмову від його послуг у письмовій формі;</td>
-			<td><input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" onchange="turnOff(['myonoffswitch1', 'myonoffswitch2']);turnOn(['document1']);fun1('terminatePart', 'v1', this.checked);fun1('terminatePart', 'v2', false);fun1('terminatePart', 'v3', false)">
+			<td><input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" onclick="turnOff(['myonoffswitch1', 'myonoffswitch2']);fun1('terminatePart', 'v1', this.checked);fun1('terminatePart', 'v2', false);fun1('terminatePart', 'v3', false)" onchange="(this.checked ? turnOn(['document1']) : turnOff(['document1']))">
 				<label class="onoffswitch-label" for="myonoffswitch">
 					<span class="onoffswitch-inner"></span>
 				</label>
@@ -65,7 +65,7 @@
 		</tr>
 		<tr>
 			<td colspan="2"><b>- під час першого конфіденційного побачення</b> адвокат внаслідок конфлікту інтересів чи з інших причин прийняв рішення про відмову від надання БВПД особі;</td>
-			<td><input type="checkbox" name="onoffswitch1" class="onoffswitch-checkbox" id="myonoffswitch1" onchange="turnOff(['myonoffswitch', 'myonoffswitch2', 'document1']);fun1('terminatePart', 'v2', this.checked)">
+			<td><input type="checkbox" name="onoffswitch1" class="onoffswitch-checkbox" id="myonoffswitch1" onclick="turnOff(['myonoffswitch', 'myonoffswitch2', 'document1']);fun1('terminatePart', 'v2', this.checked)" onchange="(this.checked ? turnOff(['document1']) : turnOn(['document1']))">
 				<label class="onoffswitch-label" for="myonoffswitch1">
 					<span class="onoffswitch-inner"></span>
 				</label>
@@ -73,7 +73,7 @@
 		</tr>
 		<tr>
 			<td colspan="2">- адвокат припинив надання БВПД до завершення строку дії доручення <b>в інший час після конфіденційного побачення</b> з будь-яких інших підстав, визначених законом</td>
-			<td><input type="checkbox" name="onoffswitch2" class="onoffswitch-checkbox" id="myonoffswitch2" onchange="turnOff(['myonoffswitch1', 'myonoffswitch', 'document1']);fun1('terminatePart', 'v3', this.checked)">
+			<td><input type="checkbox" name="onoffswitch2" class="onoffswitch-checkbox" id="myonoffswitch2" onclick="turnOff(['myonoffswitch1', 'myonoffswitch', 'document1']);fun1('terminatePart', 'v3', this.checked)" onchange="(this.checked ? turnOff(['document1']) : turnOn(['document1']))">
 				<label class="onoffswitch-label" for="myonoffswitch2">
 					<span class="onoffswitch-inner"></span>
 				</label>
@@ -136,19 +136,12 @@
 			<td colspan="2">кількість дій, які повністю або частково припадають на: нічний час (з 22.00 до 6.00) або вихідні (субота, неділя), або святкові/неробочі дні</td>
 			<td><input type="number" value="0" min="0" max="50" name="num-actions-in-night" required></td>
 		</tr>
-
-
-
-
-
-
-
 		<tr>
 			<th colspan="3">Обрання затриманій особі запобіжного заходу (ЗЗ) у вигляді тримання під вартою</th>
 		</tr>
 		<tr>
 			<td colspan="2">Чи подавалося слідчим / прокурором клопотання про обрання затриманій особі ЗЗ у вигляді тримання під вартою?</td>
-			<td><input type="checkbox" name="onoffswitch8" class="onoffswitch-checkbox" id="myonoffswitch8" checked>
+			<td><input type="checkbox" name="onoffswitch8" class="onoffswitch-checkbox" id="myonoffswitch8" checked onclick="(!this.checked ? turnOff(['myonoffswitch9', 'myonoffswitch10', 'document2']) : turnOn(['document2']))">
 				<label class="onoffswitch-label" for="myonoffswitch8">
 					<span class="onoffswitch-inner"></span>
 				</label>
@@ -156,18 +149,7 @@
 		</tr>
 		<tr>
 			<td>Яке рішення прийняв суд за підсумками розгляду такого клопотання?</td>
-
-
-			/////////// here
-			todo: need continued show elements using JS
-
-
-
-
-
-
-
-			<td colspan="2"><select onchange="this.options[this.selectedIndex].value == 2 ? changeDisplay('lawerApeal', 'table-row'),changeDisplay('prosecutorApeal', 'none') : changeDisplay('lawerApeal', 'none'),changeDisplay('prosecutorApeal', 'table-row')">
+			<td colspan="2"><select onchange="showAppeal(this.options[this.selectedIndex]);">
 				<option value="1" selected>обрано більш м’який ЗЗ або постановлено ухвалу про відмову в застосуванні ЗЗ</option>
 				<option value="2">обрано ЗЗ у вигляді тримання під вартою</option>
 				</select>
@@ -197,24 +179,13 @@
 				</label>
 			</td>
 		</tr>
-		<tr id="prosecutorApeal1">
+		<tr>
 			<td>Яке рішення прийняв суд за результатами розгляду такої апеляційної скарги?</td>
 			<td colspan="2"><select>
 				<option value="1" selected>ЗЗ чи ухвалу про відмову в застосуванні ЗЗ залишено без змін</option>
 				<option value="2">обрано ЗЗ у вигляді тримання під вартою</option>
 				</select>
 			</td>
-		</tr>
-
-
-
-
-
-
-
-
-
-		<tr>
 		</tr>
 		<tr>
 			<th colspan="3">Розмір прожиткового мінімуму, грн.</th>
@@ -420,7 +391,7 @@
 		</tr>
 		<tr>
 			<td colspan="2">клопотання слідчого, прокурора про застосування запобіжного заходу</td>
-			<td><input type="checkbox" class="checkbox" id="document2"></td>
+			<td><input type="checkbox" class="checkbox" id="document2" checked></td>
 		</tr>
 		<tr>
 			<td colspan="2">повідомлення про підозру</td>
@@ -460,7 +431,7 @@
 		</tr>
 		<tr>
 			<td colspan="2">Загальна кількість аркушів документів</td>
-			<td><input type="number" value="0" min="0" id="document-pages" required></td>
+			<td><input type="number" min="0" id="document-pages" required></td>
 		</tr>
 		<tr class="no-border">
 			<td></td>

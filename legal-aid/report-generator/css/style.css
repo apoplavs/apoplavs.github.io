@@ -159,6 +159,9 @@ tr:hover td:nth-child(1) {
   box-shadow: 0 3px #777;
   transform: translateY(4px);
 }
+#lawerApeal, #lawerApeal1 {
+	display: none;
+}
 
 
 
