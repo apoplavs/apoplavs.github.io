@@ -4,18 +4,21 @@ var data = {
 	arrandNum: '_____ – ________________',
 	detaineeName: '______________________________________________________________',
 	detaineeDate: '__ __ / __ __ / __ __ __ __',
-	numTrips: {v: '____', k: function() {
+		//кількість виїздів адвоката
+	numTrips: {v: 1, k: function() {
 		if (data.terminatePart.v1 || data.terminatePart.v2) {
 			return (1);
 		}
-		return (parseInt(this.v) || 0);
+		return (this.v || 0);
 	}},
+		//Припинення участі адвоката до завершення строку дії доручення
 	terminatePart: {v1: false, v2: false, v3: false, k: function() {
 		if (this.v1 || this.v2 || this.v3) {
 			return (0.5);
 		}
 		return (1);
 	}},
+	//Особлива категорія особи
 	specCategory: {v1: false, v2: false, v3: false, v4: false, k: function() {
 		if (data.terminatePart.v1 || data.terminatePart.v2) {
 			return (1);
@@ -33,22 +36,85 @@ var data = {
 		}
 			return (1.3);
 	}},
-	numActs: {v1: 0, v2: false, k: function() {
-		if (this.v1 || this.v2 || this.v3) {
-			return (0.5);
+
+	//Сумарна кількість дій
+	numActs: {v1: 1, v2: false, k: function() {
+		if (data.terminatePart.v1 || data.terminatePart.v2) {
+			return (1);
 		}
-		return (1);
+		switch (this.v1) {
+			case 0:
+				return (0.25);
+			case 1:
+				return (1);
+			case 2:
+				return (2);
+			case 3:
+				return (2.53);
+			case 4:
+				return (2.93);
+			case 5:
+				return (3.25);
+			case 6:
+				return (3.42);
+			case 7:
+				return (3.56);
+			case 8:
+				return (3.69);
+			case 9:
+				return (3.8);
+			case 10:
+				return (3.9);
+			case 11:
+				return (3.99);
+			case 12:
+				return (4.07);
+			case 13:
+				return (4.15);
+			case 14:
+				return (4.22);
+		}
+		return (4.29);
+	}},
+	//кількість дій в нічний час
+	actsInNight: {v1: 0, percent: 3.05, k: function() {
+		if (data.numActs.v1 == 0 && data.numActs.v2) {
+			return (1.5);
+		}
+		var i = 0;
+		if (this.v1) {i++;}
+		if (this.v2) {i++;}
+		if (this.v3) {i++;}
+		if (this.v4) {i++;}
+		if (i == 0) {
+			return (1);
+		}
+		if (i == 1) {
+			return (1.2);
+		}
+			return (1.3);
 	}},
 
 }
- function fun1(field, f1, value) {
- 	// data[field][f1] = value;
- 	data.terminatePart.k();
+function fun1(field, f1, value) {
+	 data[field][f1] = value;
+	// data.terminatePart.k();
 
- 	// console.log(field);
- 	// var a = data.numTrips.k();
- 	// data.numTrips.k = parseInt(data.numTrips.v) || 0;
- 	// console.log(data.terminatePart.k());
+	 // console.log(data[field].k());
+	// var a = data.numTrips.k();
+	// data.numTrips.k = parseInt(data.numTrips.v) || 0;
+	// console.log(data.terminatePart.k());
+ }
+
+// IN FEATURE
+function setData(attr, field, value) {
+	 data[attr][field] = value;
+	// data.terminatePart.k();
+
+	 console.log(data[field].k());
+	// var a = data.numTrips.k();
+	// data.numTrips.k = parseInt(data.numTrips.v) || 0;
+	// console.log(data.terminatePart.k());
  }
 
 function button2() {
@@ -161,6 +227,26 @@ function turnOn(IDelements) {
 		document.getElementById(IDelements[i]).checked = true;
 	}
 }
+
+function calcPercents() {
+	console.log('numActs = ' + data.numActs.v1);
+	console.log('actsInNight = ' + data.actsInNight.v1);
+	// console.log('calcPercents');
+	var percent = document.getElementById('percent');
+	if (data.numActs.v1 > 0 && data.actsInNight.v1 <= data.numActs.v1) {
+		data.actsInNight.percent =(data.actsInNight.v1 / data.numActs.v1) * 100;
+		data.actsInNight.percent = data.actsInNight.percent.toFixed(2);
+		percent.innerHTML = data.actsInNight.percent + ' %';
+		percent.style.color = 'green';
+	} else if (data.actsInNight.v1 > data.numActs.v1) {
+		console.log(data.actsInNight.v1 + '>' + data.numActs.v1);
+		percent.innerHTML = 'НЕКОРЕКТНЕ ЗНАЧЕННЯ';
+		percent.style.color = 'red';
+		data.actsInNight.percent = 0;
+		data.actsInNight.v1 = 0;
+	}
+}
+
 
 function makeReport(argument) {
 	// body...
