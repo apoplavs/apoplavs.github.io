@@ -77,41 +77,82 @@ var data = {
 		return (4.29);
 	}},
 	//кількість дій в нічний час
-	actsInNight: {v1: 0, percent: 3.05, k: function() {
+	actsInNight: {v1: 0, percent: 0, k: function() {
 		if (data.numActs.v1 == 0 && data.numActs.v2) {
 			return (1.5);
 		}
-		var i = 0;
-		if (this.v1) {i++;}
-		if (this.v2) {i++;}
-		if (this.v3) {i++;}
-		if (this.v4) {i++;}
-		if (i == 0) {
-			return (1);
+		if (this.percent >= 50) {
+			return (1.5);
 		}
-		if (i == 1) {
+		if (this.percent >= 30) {
+			return (1.4);
+		}
+		if (this.percent >= 20) {
+			return (1.3);
+		}
+		if (this.percent >= 10) {
 			return (1.2);
 		}
-			return (1.3);
+		return (1);
 	}},
 
+	//обрання затриманій особі запобіжного заходу у вигляді тримання під вартою
+	osk: {
+		//чи подавалося слідчим/прокурором клопотання про обрання затриманій особі ЗЗ
+		takePetition: true,
+		//чи обрано ЗЗ у вигляді тримання під вартою
+		satisfiedPetition: false,
+		//чи подавав адвокат апеляційну скаргу на судове рішення
+		appealLawer: false,
+		//чи задовольнили апеляцію адвоката
+		satisfiedAppealLawer: false,
+		//чи подавала сторона обвинувачення апеляційну скаргу на судове рішення
+		appealProsecutor: false,
+		//чи задовольнили апеляцію сторони обвинувачення
+		satisfiedAppealProsecutor: false,
+		k: function() {
+		if (data.terminatePart.v1 || data.terminatePart.v2 || !this.takePetition
+			|| (this.takePetition && this.satisfiedPetition && !this.appealLawer)
+			|| (!this.satisfiedPetition && this.appealProsecutor && this.satisfiedAppealProsecutor)) {
+			return (1);
+		}
+		// якщо подавалось клопотання про ЗЗ, воно було задоволено і адвокат подав апеляцію
+		if (this.satisfiedPetition && this.appealLawer) {
+			// якщо апеляція скасувала ЗЗ (3.5) якщо ні (2)
+			return (satisfiedAppealLawer ? 3.5 : 2);
+		}
+		/* якщо подавалось клопотання про ЗЗ, воно НЕ було задоволено (обрано більш мякий ЗЗ)
+		* i сторона обвинувачення не подавала апеляцію, або вона не була задоволена
+		*/
+		if (!this.satisfiedPetition && (!this.appealProsecutor
+			|| (this.appealProsecutor && !this.satisfiedAppealProsecutor))) {
+			return (5);
+		}
+		return (1);
+	}},
+	//розмір прожиткового мінімуму
+	paymentPerHour: {v1: 1762, k: function() {
+		return ((this.v1 * 0.025).toFixed(3));
+	}},
+	//строк подання акту
+	termSubmission: {v1: 1, k: function() {
+		return (this.v1);
+	}},
+	//Побачення з особою, якій надається БВПД
+	meetings: {v1: '', v2: '', v3: '', v4: '', v5: '', v6: '', v7: '', v8: '', v9: '', v10: ''},
+	//Участь у процесуальних діях
+	procActions: {v1: '', v2: '', v3: '', v4: '', v5: '', v6: '', v7: '', v8: '', v9: '', v10: ''}
+
+
 }
+
+
+
 function fun1(field, f1, value) {
 	 data[field][f1] = value;
 	// data.terminatePart.k();
 
 	 // console.log(data[field].k());
-	// var a = data.numTrips.k();
-	// data.numTrips.k = parseInt(data.numTrips.v) || 0;
-	// console.log(data.terminatePart.k());
- }
-
-// IN FEATURE
-function setData(attr, field, value) {
-	 data[attr][field] = value;
-	// data.terminatePart.k();
-
-	 console.log(data[field].k());
 	// var a = data.numTrips.k();
 	// data.numTrips.k = parseInt(data.numTrips.v) || 0;
 	// console.log(data.terminatePart.k());
@@ -229,24 +270,32 @@ function turnOn(IDelements) {
 }
 
 function calcPercents() {
-	console.log('numActs = ' + data.numActs.v1);
-	console.log('actsInNight = ' + data.actsInNight.v1);
-	// console.log('calcPercents');
 	var percent = document.getElementById('percent');
+	if (data.actsInNight.v1 > data.numActs.v1) {
+		document.getElementById('actsInNight').value = data.numActs.v1;
+		data.actsInNight.v1 = data.numActs.v1;
+	}
+	if (data.numActs.v1 == 0) {
+		percent.innerHTML = '0.00 %';
+	}
 	if (data.numActs.v1 > 0 && data.actsInNight.v1 <= data.numActs.v1) {
 		data.actsInNight.percent =(data.actsInNight.v1 / data.numActs.v1) * 100;
 		data.actsInNight.percent = data.actsInNight.percent.toFixed(2);
 		percent.innerHTML = data.actsInNight.percent + ' %';
-		percent.style.color = 'green';
-	} else if (data.actsInNight.v1 > data.numActs.v1) {
-		console.log(data.actsInNight.v1 + '>' + data.numActs.v1);
-		percent.innerHTML = 'НЕКОРЕКТНЕ ЗНАЧЕННЯ';
-		percent.style.color = 'red';
-		data.actsInNight.percent = 0;
-		data.actsInNight.v1 = 0;
 	}
 }
 
+
+// IN FEATURE
+function setData(attr, field, value) {
+	 data[attr][field] = value;
+	// data.terminatePart.k();
+
+	 console.log(data[field].k());
+	// var a = data.numTrips.k();
+	// data.numTrips.k = parseInt(data.numTrips.v) || 0;
+	// console.log(data.terminatePart.k());
+ }
 
 function makeReport(argument) {
 	// body...

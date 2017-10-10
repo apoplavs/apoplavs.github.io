@@ -4,8 +4,8 @@ background-color: whitesmoke;
 }
 .main-table {
 	width: 70%;
-	min-width: 800px;
-	max-width: 1000px;
+	min-width: 850px;
+	max-width: 1100px;
 	border-collapse: collapse;
 	box-shadow: 0 -2px 10px #006400;
 	/*border-radius: 10px;*/
@@ -123,12 +123,12 @@ tr:hover td:nth-child(1) {
 }
 .onoffswitch-inner:before {
 		content: "ТАК";
-		padding-left: 20px;
+		padding-left: 22px;
 		background-color: #6D8F76; color: #FFFFFF;
 }
 .onoffswitch-inner:after {
 		content: "НІ";
-		padding-right: 25px;
+		padding-right: 27px;
 		background-color: #F5F5FF; color: #827878;
 		text-align: right;
 }

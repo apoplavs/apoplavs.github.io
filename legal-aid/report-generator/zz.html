@@ -5,7 +5,6 @@
 	<meta name="description" content="Створити звіт онлайн про розрахунок розміру винагороди адвоката за надання безоплатної вторинної правової допомоги"> 
 	<title>Створити звіт БВПД онлайн</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<script type="text/javascript" src="js/zz.js"></script>
 	<!-- <link rel="stylesheet" media="screen and (min-device-width: 300px) and (max-device-width: 450px), (min-device-width: 540px) and (max-device-width: 800px) and (orientation: landscape)" href="css/mobiles.css" />
 	<link rel="stylesheet" media="screen and (device-width: 768px), (device-width:1024px)" href="css/tablets.css" /> -->
 	
@@ -136,7 +135,7 @@
 		<tr>
 			<td>кількість дій, які повністю або частково припадають на: нічний час (з 22.00 до 6.00) або вихідні (субота, неділя), або святкові/неробочі дні</td>
 			<big><td id="percent"> 0.00 %</td></big>
-			<td><input type="number" value="0" min="0" max="50" name="num-actions-in-night" oninput="fun1('actsInNight', 'v1', parseInt(this.value));calcPercents();" required></td>
+			<td><input type="number" value="0" min="0" max="50" name="num-actions-in-night" id="actsInNight" oninput="fun1('actsInNight', 'v1', parseInt(this.value));calcPercents();" required></td>
 		</tr>
 		<tr>
 			<th colspan="3">Обрання затриманій особі запобіжного заходу (ЗЗ) у вигляді тримання під вартою</th>
@@ -277,7 +276,7 @@
 		<tr class="widter">
 			<td> №1 - <input type="text" name="proc-action1" maxlength="80"></td>
 			<td><input type="date" name="date-start-proc-action1" class="date-time"><input type="time" name="time-start-proc-action1" class="date-time"></td>
-			<td><input type="date" name="date-end-proc-action1" class="date-time"><input type="time" name="time-end-proc-action1" class="date-time"></td>
+			<td><input type="date" name="date-end-proc-action1" class="date-time" onchange="console.log(this.value);"><input type="time" name="time-end-proc-action1" class="date-time"></td>
 		</tr>
 		<tr class="widter">
 			<td> №2 - <input type="text" name="proc-action2" maxlength="80"></td>
@@ -447,6 +446,6 @@
 			<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 			<!-- <script src='js/pdfmake/build/pdfmake.min.js'></script> -->
 				<!-- <script src='js/pdfmake/build/vfs_fonts.js'></script> -->
-			<!-- <script type="text/javascript" src="js/zz.js"></script> -->
+			<script type="text/javascript" src="js/zz.js"></script>
 	</body>
 </html>
