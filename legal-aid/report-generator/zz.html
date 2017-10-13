@@ -18,7 +18,7 @@
 	<div align="center">
 		<br/><br/><br/>
 	<h2>для роботи сайтом необхідно увімкнути JavaScript у веб-переглядачі</h2>
-		<a target="_blank" class="outer" href="https://support.google.com/adsense/answer/12654?hl=uk"><big>ок Google як увімкнути JavaScript?</big></a></div>
+		<a target="_blank" class="outer" href="https://support.google.com/adsense/answer/12654?hl=uk">ок Google як увімкнути JavaScript?</a></div>
 </noscript>
 	<body>
 <script>
@@ -28,36 +28,36 @@
 	}
 </script>
 		</br>
-		<form>
+		<form onsubmit="makeReport();return(false);">
 		<table class="main-table" align="center">
 		<tr>
 			<th colspan="3">Загальні дані</th>
 		</tr>
 		<tr class="no-border">
-			<td colspan="3">П.І.Б. адвоката, який (яка) надав(ла) БВПД <input style="float: right;" type="text" id="lawyerName" maxlength="45" required></td>
+			<td colspan="3">П.І.Б. адвоката, який (яка) надав(ла) БВПД <input style="float: right;" type="text" id="lawyerName" maxlength="45" required onchange="setData('commonData', 'lawyerName', this.value, '');"></td>
 		</tr>
 		<tr class="no-border">
 			<td>Доручення центру з надання БВПД від</td>
-			<td><input type="date" class="date-time" name="arrandDate" required></td>
-			<td>№&nbsp;<input style="width: 80%;" type="text" name="arrandNum" maxlength="15" required></td>
+			<td><input type="date" class="date-time" name="arrandDate" required onchange="setData('commonData', 'arrandDate', this.value, 'date');"></td>
+			<td>№&nbsp;<input style="width: 80%;" type="text" name="arrandNum" maxlength="15" required onchange="setData('commonData', 'arrandNum', this.value, '');"></td>
 		</tr>
 		<tr class="no-border">
-			<td colspan="2">П.І.Б., дата народження особи, якій надано БВПД <input style="float: right;" type="text" name="detaineeName" maxlength="50" required></td>
-			<td><input type="date" class="date-time" name="detaineeDate" required></td>
+			<td colspan="2">П.І.Б., дата народження особи, якій надано БВПД <input style="float: right;" type="text" name="detaineeName" maxlength="50" required onchange="setData('commonData', 'detaineeName', this.value, '');"></td>
+			<td><input type="date" class="date-time" name="detaineeDate" required onchange="setData('commonData', 'detaineeDate', this.value, 'date');"></td>
 		</tr>
 		<tr>
 			<th colspan="3">Кількість виїздів адвоката</th>
 		</tr>
 		<tr>
 			<td colspan="2">для побачення з особою, якій надається БВПД, участі у процесуальних діях та/або збирання доказів</td>
-			<td><input type="number" value="1" min="0" max="50" name="numTrips" required></td>
+			<td><input type="number" value="1" min="0" max="50" name="numTrips" required onchange="setData('numTrips', 'v1', this.value, 'num');"></td>
 		</tr>
 		<tr>
 			<th colspan="3">Припинення участі адвоката до завершення строку дії доручення,<i> якщо:</i></th>
 		</tr>
 		<tr>
 			<td colspan="2"><b>- під час першого конфіденційного побачення</b> з адвокатом особа, якій надається БВПД, заявила про відмову від його послуг у письмовій формі;</td>
-			<td><input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" onclick="turnOff(['myonoffswitch1', 'myonoffswitch2']);fun1('terminatePart', 'v1', this.checked);fun1('terminatePart', 'v2', false);fun1('terminatePart', 'v3', false)" onchange="(this.checked ? turnOn(['document1']) : turnOff(['document1']))">
+			<td><input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" onclick="changeTerm(1, this.checked);">
 				<label class="onoffswitch-label" for="myonoffswitch">
 					<span class="onoffswitch-inner"></span>
 				</label>
@@ -65,7 +65,7 @@
 		</tr>
 		<tr>
 			<td colspan="2"><b>- під час першого конфіденційного побачення</b> адвокат внаслідок конфлікту інтересів чи з інших причин прийняв рішення про відмову від надання БВПД особі;</td>
-			<td><input type="checkbox" name="onoffswitch1" class="onoffswitch-checkbox" id="myonoffswitch1" onclick="turnOff(['myonoffswitch', 'myonoffswitch2', 'document1']);fun1('terminatePart', 'v2', this.checked)" onchange="(this.checked ? turnOff(['document1']) : turnOn(['document1']))">
+			<td><input type="checkbox" name="onoffswitch1" class="onoffswitch-checkbox" id="myonoffswitch1" onclick="changeTerm(2, this.checked);">
 				<label class="onoffswitch-label" for="myonoffswitch1">
 					<span class="onoffswitch-inner"></span>
 				</label>
@@ -73,7 +73,7 @@
 		</tr>
 		<tr>
 			<td colspan="2">- адвокат припинив надання БВПД до завершення строку дії доручення <b>в інший час після конфіденційного побачення</b> з будь-яких інших підстав, визначених законом</td>
-			<td><input type="checkbox" name="onoffswitch2" class="onoffswitch-checkbox" id="myonoffswitch2" onclick="turnOff(['myonoffswitch1', 'myonoffswitch', 'document1']);fun1('terminatePart', 'v3', this.checked)" onchange="(this.checked ? turnOff(['document1']) : turnOn(['document1']))">
+			<td><input type="checkbox" name="onoffswitch2" class="onoffswitch-checkbox" id="myonoffswitch2" onclick="changeTerm(3, this.checked);">
 				<label class="onoffswitch-label" for="myonoffswitch2">
 					<span class="onoffswitch-inner"></span>
 				</label>
@@ -84,7 +84,7 @@
 		</tr>
 		<tr>
 			<td colspan="2">- у віці до 18 років;</td>
-			<td><input type="checkbox" name="onoffswitch3" class="onoffswitch-checkbox" id="myonoffswitch3">
+			<td><input type="checkbox" name="onoffswitch3" class="onoffswitch-checkbox" id="myonoffswitch3" onchange="setData('specCategory', 'v1', this.checked, '');">
 				<label class="onoffswitch-label" for="myonoffswitch3">
 					<span class="onoffswitch-inner"></span>
 				</label>
@@ -92,7 +92,7 @@
 		</tr>
 		<tr>
 			<td colspan="2">- яка через свої фізичні або психічні вади (німа, глуха, сліпа тощо) не може сама реалізувати своє право на захист;</td>
-			<td><input type="checkbox" name="onoffswitch4" class="onoffswitch-checkbox" id="myonoffswitch4">
+			<td><input type="checkbox" name="onoffswitch4" class="onoffswitch-checkbox" id="myonoffswitch4" onchange="setData('specCategory', 'v2', this.checked, '');">
 				<label class="onoffswitch-label" for="myonoffswitch4">
 					<span class="onoffswitch-inner"></span>
 				</label>
@@ -100,7 +100,7 @@
 		</tr>
 		<tr>
 			<td colspan="2">- яка не володіє мовою, якою ведеться провадження;</td>
-			<td><input type="checkbox" name="onoffswitch5" class="onoffswitch-checkbox" id="myonoffswitch5">
+			<td><input type="checkbox" name="onoffswitch5" class="onoffswitch-checkbox" id="myonoffswitch5" onchange="setData('specCategory', 'v3', this.checked, '');">
 				<label class="onoffswitch-label" for="myonoffswitch5">
 					<span class="onoffswitch-inner"></span>
 				</label>
@@ -108,7 +108,7 @@
 		</tr>
 		<tr>
 			<td colspan="2">- у якої виявлено інфекційну хворобу, що підтверджується відповідною медичною довідкою</td>
-			<td><input type="checkbox" name="onoffswitch6" class="onoffswitch-checkbox" id="myonoffswitch6" onchange="(this.checked ? turnOn(['document8']) : turnOff(['document8']))">
+			<td><input type="checkbox" name="onoffswitch6" class="onoffswitch-checkbox" id="myonoffswitch6" onchange="if(this.checked){turnOn(['document8']);setData('documents', 'v8', true, '');setData('specCategory', 'v4', true, '');}else{turnOff(['document8']);setData('documents', 'v8', false, '');setData('specCategory', 'v4', false, '');}">
 				<label class="onoffswitch-label" for="myonoffswitch6">
 					<span class="onoffswitch-inner"></span>
 				</label>
@@ -119,11 +119,11 @@
 		</tr>
 		<tr>
 			<td colspan="2">зазначених у реєстрі дій адвоката (побачення з особою, якій надається БВПД, участь у процесуальних діях, складення процесуальних документів)</br><small>* У разі якщо затриману особу звільнено до моменту прибуття адвоката, вказується 0</small></td>
-			<td><input type="number" value="1" min="0" max="50" name="num-actions" oninput="fun1('numActs', 'v1', parseInt(this.value));calcPercents();" onchange="showTripInNight(this.value);" required></td>
+			<td><input type="number" value="1" min="0" max="50" name="num-actions" oninput="setData('numActs', 'v1', this.value, 'num');calcPercents();" onchange="showTripInNight(this.value);" required></td>
 		</tr>
 		<tr id="trip-in-night">
 			<td colspan="2"><i>у разі, якщо кількість дій адвоката = 0 </i>чи припав час виїзду повністю або частково на нічний час (з 22.00 до 6.00) або вихідні (субота, неділя), або святкові/неробочі дні</td>
-			<td><input type="checkbox" name="onoffswitch7" class="onoffswitch-checkbox" id="myonoffswitch7">
+			<td><input type="checkbox" name="onoffswitch7" class="onoffswitch-checkbox" id="myonoffswitch7" onchange="setData('numActs', 'v2', this.checked, '');">
 				<label class="onoffswitch-label" for="myonoffswitch7">
 					<span class="onoffswitch-inner"></span>
 				</label>
@@ -134,23 +134,26 @@
 		</tr>
 		<tr>
 			<td>кількість дій, які повністю або частково припадають на: нічний час (з 22.00 до 6.00) або вихідні (субота, неділя), або святкові/неробочі дні</td>
-			<big><td id="percent"> 0.00 %</td></big>
-			<td><input type="number" value="0" min="0" max="50" name="num-actions-in-night" id="actsInNight" oninput="fun1('actsInNight', 'v1', parseInt(this.value));calcPercents();" required></td>
+			<td><big> &nbsp; &nbsp; <output id="percent"> 0.00 %</output></big></td>
+			<td><input type="number" value="0" min="0" max="50" name="num-actions-in-night" id="actsInNight" oninput="setData('actsInNight', 'v1', this.value, 'num');calcPercents();" required></td>
 		</tr>
 		<tr>
 			<th colspan="3">Обрання затриманій особі запобіжного заходу (ЗЗ) у вигляді тримання під вартою</th>
 		</tr>
 		<tr>
 			<td colspan="2">Чи подавалося слідчим / прокурором клопотання про обрання затриманій особі ЗЗ у вигляді тримання під вартою?</td>
-			<td><input type="checkbox" name="onoffswitch8" class="onoffswitch-checkbox" id="myonoffswitch8" checked onclick="(!this.checked ? turnOff(['myonoffswitch9', 'myonoffswitch10', 'document2']) : turnOn(['document2']))">
+			<td><input type="checkbox" name="onoffswitch8" class="onoffswitch-checkbox" id="myonoffswitch8" checked onchange="if(this.checked){turnOn(['document2']);setData('documents', 'v2', true, '');setData('osk', 'takePetition', true, '');}else {turnOff(['document2']);setData('documents', 'v2', false, '');setData('osk', 'takePetition', false, '');}">
 				<label class="onoffswitch-label" for="myonoffswitch8">
 					<span class="onoffswitch-inner"></span>
 				</label>
 			</td>
 		</tr>
 		<tr>
+			// continued here
+
+
 			<td>Яке рішення прийняв суд за підсумками розгляду такого клопотання?</td>
-			<td colspan="2"><select onchange="showAppeal(this.options[this.selectedIndex]);">
+			<td colspan="2"><select onchange="console.log(this.options[this.selectedIndex]);showAppeal(this.options[this.selectedIndex]);">
 				<option value="1" selected>обрано більш м’який ЗЗ або постановлено ухвалу про відмову в застосуванні ЗЗ</option>
 				<option value="2">обрано ЗЗ у вигляді тримання під вартою</option>
 				</select>
@@ -275,7 +278,7 @@
 		<colgroup>
 		<tr class="widter">
 			<td> №1 - <input type="text" name="proc-action1" maxlength="80"></td>
-			<td><input type="date" name="date-start-proc-action1" class="date-time"><input type="time" name="time-start-proc-action1" class="date-time"></td>
+			<td><input type="date" name="date-start-proc-action1" class="date-time"><input type="time" name="time-start-proc-action1" class="date-time" onchange="console.log(this.value);"></td>
 			<td><input type="date" name="date-end-proc-action1" class="date-time" onchange="console.log(this.value);"><input type="time" name="time-end-proc-action1" class="date-time"></td>
 		</tr>
 		<tr class="widter">
@@ -427,7 +430,7 @@
 			<td><input type="checkbox" class="checkbox" id="document10"></td>
 		</tr>
 		<tr>
-			<td colspan="2" class="widter"><input type="text" name="meet3" maxlength="100" id="document10"></td>
+			<td colspan="2" class="widter"><input type="text" name="meet3" maxlength="100" id="document11"></td>
 			<td><i>інше (зазначити)</i></td>
 		</tr>
 		<tr>
@@ -436,7 +439,7 @@
 		</tr>
 		<tr class="no-border">
 			<td></td>
-			<td colspan="2"><button type="submit" onclick="makeReport()" class="submit-button">Створити звіт</button></td>
+			<td colspan="2"><button type="submit" class="submit-button">Створити звіт</button></td>
 		</tr>
 
 		</table>

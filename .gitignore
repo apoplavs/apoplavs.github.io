@@ -1,0 +1,6 @@
+# shared files
+/legal-aid/.idea/*
+CMake*
+.nfs*
+.DS*
+._*

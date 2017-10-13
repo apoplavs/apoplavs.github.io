@@ -1,15 +1,17 @@
 var data = {
-	lawyerName: '________________________________________________',
-	arrandDate: '__ __ / __ __ / __ __ __ __',
-	arrandNum: '_____ – ________________',
-	detaineeName: '______________________________________________________________',
-	detaineeDate: '__ __ / __ __ / __ __ __ __',
+	commonData: {
+        lawyerName: '________________________________________________',
+        arrandDate: '__ __ / __ __ / __ __ __ __',
+        arrandNum: '_____ – ________________',
+        detaineeName: '______________________________________________________________',
+        detaineeDate: '__ __ / __ __ / __ __ __ __'
+	},
 		//кількість виїздів адвоката
-	numTrips: {v: 1, k: function() {
+	numTrips: {v1: 1, k: function() {
 		if (data.terminatePart.v1 || data.terminatePart.v2) {
 			return (1);
 		}
-		return (this.v || 0);
+		return (this.v1 || 0);
 	}},
 		//Припинення участі адвоката до завершення строку дії доручення
 	terminatePart: {v1: false, v2: false, v3: false, k: function() {
@@ -119,7 +121,7 @@ var data = {
 		// якщо подавалось клопотання про ЗЗ, воно було задоволено і адвокат подав апеляцію
 		if (this.satisfiedPetition && this.appealLawer) {
 			// якщо апеляція скасувала ЗЗ (3.5) якщо ні (2)
-			return (satisfiedAppealLawer ? 3.5 : 2);
+			return (this.satisfiedAppealLawer ? 3.5 : 2);
 		}
 		/* якщо подавалось клопотання про ЗЗ, воно НЕ було задоволено (обрано більш мякий ЗЗ)
 		* i сторона обвинувачення не подавала апеляцію, або вона не була задоволена
@@ -141,10 +143,78 @@ var data = {
 	//Побачення з особою, якій надається БВПД
 	meetings: {v1: '', v2: '', v3: '', v4: '', v5: '', v6: '', v7: '', v8: '', v9: '', v10: ''},
 	//Участь у процесуальних діях
-	procActions: {v1: '', v2: '', v3: '', v4: '', v5: '', v6: '', v7: '', v8: '', v9: '', v10: ''}
+	/* vN - назва процесуальної дії;
+	* dsN (date Start)N - дата початку процесульної дії;
+	* tsN (time Start)N - час початку процесульної дії;
+	* deN (date End)N - дата закінчення процесульної дії;
+	* teN (time Start)N - час закінчення процесульної дії;
+	*/
+	procActions: {v1: '', ds1: '', ts1: '', de1: '', te1: '',
+        v2: '', ds2: '', ts2: '', de2: '', te2: '',
+        v3: '', ds3: '', ts3: '', de3: '', te3: '',
+        v4: '', ds4: '', ts4: '', de4: '', te4: '',
+        v5: '', ds5: '', ts5: '', de5: '', te5: '',
+        v6: '', ds6: '', ts6: '', de6: '', te6: '',
+        v7: '', ds7: '', ts7: '', de7: '', te7: '',
+        v8: '', ds8: '', ts8: '', de8: '', te8: '',
+        v9: '', ds9: '', ts9: '', de9: '', te9: '',
+		v10: '', ds10: '', ts10: '', de10: '', te10: ''},
+    //Складення процесуальних документів
+    /* vN - Найменування процесуального документа;
+    * dN  - дата реєстрації документа органом якому адресований документ;
+    * tN  - час реєстрації документа органом якому адресований документ;
+    */
+    procDocs: {v1: '', d1: '', t1: '',
+        v2: '', d2: '', t2: '',
+        v3: '', d3: '', t3: '',
+        v4: '', d4: '', t4: '',
+        v5: '', d5: '', t5: '',
+        v6: '', d6: '', t6: '',
+        v7: '', d7: '', t7: '',
+        v8: '', d8: '', t8: '',
+        v9: '', d9: '', t9: '',
+        v10: '', d10: '', t10: ''},
+    //Перелік завірених адвокатом копій процесуальних та інших документів, що підтверджують наведені дані
+    documents: {v1: false, //заява затриманого про відмову від захисника
+		v2: false, //клопотання слідчого, прокурора про застосування запобіжного заходу
+		v3: false, //повідомлення про підозру
+		v4: false, //ухвала слідчого судді, суду про застосування запобіжного заходу
+        v5: false, //апеляційна скарга захисника на ухвалу слідчого судді, суду про застосування запобіжного заходу
+        v6: false, //заперечення на апеляційну скаргу прокурора на ухвалу слідчого судді, суду про застосування запобіжного заходу
+        v7: false, //ухвала апеляційного суду за результатами розгляду апеляційної скарги прокурора/адвоката
+        v8: false, //медична довідка, що підтверджує наявність у особи інфекційної хвороби
+        v9: false, //скарга адвоката в порядку статті 206 КПК
+        v10: false, //ухвала слідчого судді за результатами розгляду скарги адвоката в порядку статті 206 КПК
+        other: '', //інше
+        sheets: 0 //Загальна кількість аркушів документів
+	}
+};
 
+// IN FEATURE
+function setData(attr, field, value, type) {
+    switch (type) {
+        case 'num' :
+            data[attr][field] = (parseInt(value) || 0);
+            break;
+        case 'date' :
+            data[attr][field] = value.replace('/-/g', '/');
+            break;
+        default :
+            data[attr][field] = value;
+    }
 
+    // data.terminatePart.k();
+
+    console.log(data[field].k());
+    // var a = data.numTrips.k();
+    // data.numTrips.k = parseInt(data.numTrips.v) || 0;
+    // console.log(data.terminatePart.k());
 }
+
+function makeReport(argument) {
+    // body...
+}
+
 
 
 
@@ -237,6 +307,10 @@ function showNextField(element) {
 	}
 }
 
+/**
+ * показує або ховає і вимикає поля для вибору субєкта, який подавав апеляційну скаргу
+ * @param element
+ */
 function showAppeal(element) {
 	var lawerApeal = document.getElementById('lawerApeal');
 	var lawerApeal1 = lawerApeal.nextElementSibling;
@@ -244,6 +318,7 @@ function showAppeal(element) {
 	var prosecutorApeal1 = prosecutorApeal.nextElementSibling;
 	if (element.value == 1) {
 		turnOff(['myonoffswitch9']);
+        setData('osk', 'appealLawer', false, '');
 		lawerApeal.style.display = 'none';
 		lawerApeal1.style.display = 'none';
 		prosecutorApeal.style.display = 'table-row';
@@ -251,6 +326,7 @@ function showAppeal(element) {
 	}
 	else {
 		turnOff(['myonoffswitch10']);
+        setData('osk', 'appealProsecutor', false, '');
 		lawerApeal.style.display = 'table-row';
 		lawerApeal1.style.display = 'table-row';
 		prosecutorApeal.style.display = 'none';
@@ -263,12 +339,16 @@ function turnOff(IDelements) {
 		document.getElementById(IDelements[i]).checked = false;
 	}
 }
+
 function turnOn(IDelements) {
 	for (i = 0; i < IDelements.length; i++) {
 		document.getElementById(IDelements[i]).checked = true;
 	}
 }
 
+/**
+ * розрахунок відсотка кількості дій у нічний час
+ */
 function calcPercents() {
 	var percent = document.getElementById('percent');
 	if (data.actsInNight.v1 > data.numActs.v1) {
@@ -285,21 +365,53 @@ function calcPercents() {
 	}
 }
 
-
-// IN FEATURE
-function setData(attr, field, value) {
-	 data[attr][field] = value;
-	// data.terminatePart.k();
-
-	 console.log(data[field].k());
-	// var a = data.numTrips.k();
-	// data.numTrips.k = parseInt(data.numTrips.v) || 0;
-	// console.log(data.terminatePart.k());
- }
-
-function makeReport(argument) {
-	// body...
+/**
+ * викликається в розділі припинення участі адвоката до завершення строку дії доручення
+ * для виключення інших (крім вибраного) випадків припинення участі та заміни значення в data
+ * @param n
+ * @param stan
+ */
+function changeTerm(n, stan) {
+	switch (n) {
+		case 1:
+            if(stan){
+            	turnOff(['myonoffswitch1', 'myonoffswitch2']);
+                setData('terminatePart', 'v2', false, '');
+                setData('terminatePart', 'v3', false, '');
+            	turnOn(['document1']);
+                setData('documents', 'v1', true, '');
+            	setData('terminatePart', 'v1', true, '');
+            }else{
+            	turnOff(['document1']);
+                setData('documents', 'v1', false, '');
+            	setData('terminatePart', 'v1', false, '');
+            }
+            break;
+        case 2:
+            if(stan){
+                turnOff(['myonoffswitch', 'myonoffswitch2', 'document1']);
+                setData('terminatePart', 'v1', false, '');
+                setData('terminatePart', 'v3', false, '');
+                setData('documents', 'v1', false, '');
+                setData('terminatePart', 'v2', true, '');
+            }else{
+                setData('terminatePart', 'v2', false, '');
+            }
+            break;
+        case 3:
+            if(stan){
+                turnOff(['myonoffswitch', 'myonoffswitch1', 'document1']);
+                setData('terminatePart', 'v1', false, '');
+                setData('terminatePart', 'v2', false, '');
+                setData('documents', 'v1', false, '');
+                setData('terminatePart', 'v3', true, '');
+            }else{
+                setData('terminatePart', 'v3', false, '');
+            }
+            break;
+	}
 }
+
 
 
 
