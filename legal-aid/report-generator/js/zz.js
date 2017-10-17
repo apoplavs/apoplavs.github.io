@@ -176,7 +176,7 @@ var data = {
         v10: '', d10: '', t10: ''},
     //Перелік завірених адвокатом копій процесуальних та інших документів, що підтверджують наведені дані
     documents: {v1: false, //заява затриманого про відмову від захисника
-		v2: false, //клопотання слідчого, прокурора про застосування запобіжного заходу
+		v2: true, //клопотання слідчого, прокурора про застосування запобіжного заходу
 		v3: false, //повідомлення про підозру
 		v4: false, //ухвала слідчого судді, суду про застосування запобіжного заходу
         v5: false, //апеляційна скарга захисника на ухвалу слідчого судді, суду про застосування запобіжного заходу
@@ -190,7 +190,7 @@ var data = {
 	}
 };
 
-// IN FEATURE
+// IN F
 function setData(attr, field, value, type) {
     switch (type) {
         case 'num' :
@@ -199,36 +199,28 @@ function setData(attr, field, value, type) {
         case 'date' :
             data[attr][field] = value.replace('/-/g', '/');
             break;
+        case 'flo' :
+            data[attr][field] = (parseFloat(value) || 0);
+            break;
         default :
             data[attr][field] = value;
     }
-
-    // data.terminatePart.k();
-
-    console.log(data[field].k());
-    // var a = data.numTrips.k();
-    // data.numTrips.k = parseInt(data.numTrips.v) || 0;
-    // console.log(data.terminatePart.k());
+    makeReport()
 }
 
-function makeReport(argument) {
-    // body...
+function makeReport() {
+	console.log('(2 x ' + data.numTrips.k() + ' + ' + '2 x ' + data.specCategory.k() + ' x ' + data.numActs.k() + ' x ' +
+        data.osk.k() + ' x ' + data.terminatePart.k() + ') x ' + data.paymentPerHour.k() + ' x ' + data.actsInNight.k() + ' x ' + data.termSubmission.k());
+
+    var sum = (2 * data.numTrips.k() + 2 * data.specCategory.k() * data.numActs.k() * data.osk.k() * data.terminatePart.k())
+		* data.paymentPerHour.k() * data.actsInNight.k() * data.termSubmission.k();
+    // костиль щоб заокруглювало як і exel
+    sum += 0.0004;
+    sum = sum.toFixed(2);
+    alert(sum);
 }
 
-
-
-
-function fun1(field, f1, value) {
-	 data[field][f1] = value;
-	// data.terminatePart.k();
-
-	 // console.log(data[field].k());
-	// var a = data.numTrips.k();
-	// data.numTrips.k = parseInt(data.numTrips.v) || 0;
-	// console.log(data.terminatePart.k());
- }
-
-function button2() {
+function makePDF() {
 		var a = 14;
 		var docDefinition = {
 				content: [
@@ -319,6 +311,8 @@ function showAppeal(element) {
 	if (element.value == 1) {
 		turnOff(['myonoffswitch9']);
         setData('osk', 'appealLawer', false, '');
+        // Встановлює, що ЗЗ у вигляді тримання під вартою не обрано
+        setData('osk', 'satisfiedPetition', false, '');
 		lawerApeal.style.display = 'none';
 		lawerApeal1.style.display = 'none';
 		prosecutorApeal.style.display = 'table-row';
@@ -327,6 +321,8 @@ function showAppeal(element) {
 	else {
 		turnOff(['myonoffswitch10']);
         setData('osk', 'appealProsecutor', false, '');
+        // Встановлює, що обрано ЗЗ у вигляді тримання під вартою
+        setData('osk', 'satisfiedPetition', true, '');
 		lawerApeal.style.display = 'table-row';
 		lawerApeal1.style.display = 'table-row';
 		prosecutorApeal.style.display = 'none';
@@ -411,6 +407,29 @@ function changeTerm(n, stan) {
             break;
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

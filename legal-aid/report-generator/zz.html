@@ -34,23 +34,23 @@
 			<th colspan="3">Загальні дані</th>
 		</tr>
 		<tr class="no-border">
-			<td colspan="3">П.І.Б. адвоката, який (яка) надав(ла) БВПД <input style="float: right;" type="text" id="lawyerName" maxlength="45" required onchange="setData('commonData', 'lawyerName', this.value, '');"></td>
+			<td colspan="3">П.І.Б. адвоката, який (яка) надав(ла) БВПД <input style="float: right;" type="text" id="lawyerName" maxlength="45" onchange="setData('commonData', 'lawyerName', this.value, '');"></td>
 		</tr>
 		<tr class="no-border">
 			<td>Доручення центру з надання БВПД від</td>
-			<td><input type="date" class="date-time" name="arrandDate" required onchange="setData('commonData', 'arrandDate', this.value, 'date');"></td>
-			<td>№&nbsp;<input style="width: 80%;" type="text" name="arrandNum" maxlength="15" required onchange="setData('commonData', 'arrandNum', this.value, '');"></td>
+			<td><input type="date" class="date-time" name="arrandDate" onchange="setData('commonData', 'arrandDate', this.value, 'date');"></td>
+			<td>№&nbsp;<input style="width: 80%;" type="text" name="arrandNum" maxlength="15" onchange="setData('commonData', 'arrandNum', this.value, '');"></td>
 		</tr>
 		<tr class="no-border">
-			<td colspan="2">П.І.Б., дата народження особи, якій надано БВПД <input style="float: right;" type="text" name="detaineeName" maxlength="50" required onchange="setData('commonData', 'detaineeName', this.value, '');"></td>
-			<td><input type="date" class="date-time" name="detaineeDate" required onchange="setData('commonData', 'detaineeDate', this.value, 'date');"></td>
+			<td colspan="2">П.І.Б., дата народження особи, якій надано БВПД <input style="float: right;" type="text" name="detaineeName" maxlength="50" onchange="setData('commonData', 'detaineeName', this.value, '');"></td>
+			<td><input type="date" class="date-time" name="detaineeDate" onchange="setData('commonData', 'detaineeDate', this.value, 'date');"></td>
 		</tr>
 		<tr>
 			<th colspan="3">Кількість виїздів адвоката</th>
 		</tr>
 		<tr>
 			<td colspan="2">для побачення з особою, якій надається БВПД, участі у процесуальних діях та/або збирання доказів</td>
-			<td><input type="number" value="1" min="0" max="50" name="numTrips" required onchange="setData('numTrips', 'v1', this.value, 'num');"></td>
+			<td><input type="number" value="1" min="0" max="50" name="numTrips" onchange="setData('numTrips', 'v1', this.value, 'num');"></td>
 		</tr>
 		<tr>
 			<th colspan="3">Припинення участі адвоката до завершення строку дії доручення,<i> якщо:</i></th>
@@ -149,11 +149,8 @@
 			</td>
 		</tr>
 		<tr>
-			// continued here
-
-
 			<td>Яке рішення прийняв суд за підсумками розгляду такого клопотання?</td>
-			<td colspan="2"><select onchange="console.log(this.options[this.selectedIndex]);showAppeal(this.options[this.selectedIndex]);">
+			<td colspan="2"><select onchange="showAppeal(this.options[this.selectedIndex]);">
 				<option value="1" selected>обрано більш м’який ЗЗ або постановлено ухвалу про відмову в застосуванні ЗЗ</option>
 				<option value="2">обрано ЗЗ у вигляді тримання під вартою</option>
 				</select>
@@ -161,7 +158,7 @@
 		</tr>
 		<tr id="lawerApeal">
 			<td colspan="2">Чи подавали Ви апеляційну скаргу адвоката на судове рішення про обрання ЗЗ у вигляді тримання під вартою?</td>
-			<td><input type="checkbox" name="onoffswitch9" class="onoffswitch-checkbox" id="myonoffswitch9">
+			<td><input type="checkbox" name="onoffswitch9" class="onoffswitch-checkbox" id="myonoffswitch9" onchange="setData('osk', 'appealLawer', this.checked, '');">
 				<label class="onoffswitch-label" for="myonoffswitch9">
 					<span class="onoffswitch-inner"></span>
 				</label>
@@ -169,7 +166,7 @@
 		</tr>
 		<tr id="lawerApeal1">
 			<td>Яке рішення прийняв суд за результатами розгляду такої апеляційної скарги?</td>
-			<td colspan="2"><select>
+			<td colspan="2"><select onchange="this.options[this.selectedIndex].value == 1 ? setData('osk', 'satisfiedAppealLawer', false, '') : setData('osk', 'satisfiedAppealLawer', true, '')">
 				<option value="1" selected>ЗЗ у вигляді тримання під вартою залишено без змін</option>
 				<option value="2">ЗЗ у вигляді тримання під вартою змінено на більш м'який</option>
 				</select>
@@ -177,7 +174,7 @@
 		</tr>
 		<tr id="prosecutorApeal">
 			<td colspan="2">Чи подавала сторона обвинувачення апеляційну скаргу на судове рішення про обрання ЗЗ більш м’якого, ніж тримання під вартою, або ухвалу про відмову в застосуванні ЗЗ?</td>
-			<td><input type="checkbox" name="onoffswitch10" class="onoffswitch-checkbox" id="myonoffswitch10">
+			<td><input type="checkbox" name="onoffswitch10" class="onoffswitch-checkbox" id="myonoffswitch10" onchange="setData('osk', 'appealProsecutor', this.checked, '');">
 				<label class="onoffswitch-label" for="myonoffswitch10">
 					<span class="onoffswitch-inner"></span>
 				</label>
@@ -185,7 +182,7 @@
 		</tr>
 		<tr>
 			<td>Яке рішення прийняв суд за результатами розгляду такої апеляційної скарги?</td>
-			<td colspan="2"><select>
+			<td colspan="2"><select onchange="this.options[this.selectedIndex].value == 1 ? setData('osk', 'satisfiedAppealProsecutor', false, '') : setData('osk', 'satisfiedAppealProsecutor', true, '')">
 				<option value="1" selected>ЗЗ чи ухвалу про відмову в застосуванні ЗЗ залишено без змін</option>
 				<option value="2">обрано ЗЗ у вигляді тримання під вартою</option>
 				</select>
@@ -197,7 +194,7 @@
 		<tr>
 			<td>для працездатних осіб на момент подання адвокатом акта</td>
 			<td></td>
-			<td><select>
+			<td><select onchange="setData('paymentPerHour', 'v1', this.options[this.selectedIndex].value, 'num');">
 				<option value="1600">1600 грн</option>
 				<option value="1684">1684 грн</option>
 				<option value="1762" selected>1762 грн</option>
@@ -209,7 +206,7 @@
 		</tr>
 		<tr>
 			<td>починаючи з дня, наступного за днем завершення надання БВПД/відповідної стадії провадження (процесу)</td>
-			<td colspan="2"><select>
+			<td colspan="2"><select onchange="setData('termSubmission', 'v1', this.options[this.selectedIndex].value, 'flo');">
 				<option value="1" selected>до 45 днів</option>
 				<option value="0.75">від 46 до 60 днів</option>
 				<option value="0.5" >від 61 до 90 днів</option>
@@ -227,43 +224,43 @@
 		</tr>
 		<colgroup>
 		<tr class="no-border widter">
-			<td> №1 - <input type="text" name="meet1" maxlength="80"></td>
+			<td> №1 - <input type="text" name="meet1" maxlength="80" onchange="setData('meetings', 'v1', this.value, '');"></td>
 			<td colspan="2"></td>
 		</tr>
 		<tr class="no-border widter">
-			<td> №2 - <input type="text" name="meet2" maxlength="80"></td>
+			<td> №2 - <input type="text" name="meet2" maxlength="80" onchange="setData('meetings', 'v2', this.value, '');"></td>
 			<td colspan="2"></td>
 		</tr>
 		<tr class="no-border widter">
-			<td> №3 - <input type="text" name="meet3" maxlength="80" onchange="showNextField(this);"></td>
+			<td> №3 - <input type="text" name="meet3" maxlength="80" onchange="setData('meetings', 'v3', this.value, '');showNextField(this);"></td>
 			<td colspan="2"></td>
 		</tr>
 		<tr class="no-border widter">
-			<td> №4 - <input type="text" name="meet4" maxlength="80" onchange="showNextField(this);"></td>
+			<td> №4 - <input type="text" name="meet4" maxlength="80" onchange="setData('meetings', 'v4', this.value, '');showNextField(this);"></td>
 			<td colspan="2"></td>
 		</tr>
 		<tr class="no-border widter">
-			<td> №5 - <input type="text" name="meet5" maxlength="80" onchange="showNextField(this);"></td>
+			<td> №5 - <input type="text" name="meet5" maxlength="80" onchange="setData('meetings', 'v5', this.value, '');showNextField(this);"></td>
 			<td colspan="2"></td>
 		</tr>
 		<tr class="no-border widter">
-			<td> №6 - <input type="text" name="meet6" maxlength="80" onchange="showNextField(this);"></td>
+			<td> №6 - <input type="text" name="meet6" maxlength="80" onchange="setData('meetings', 'v6', this.value, '');showNextField(this);"></td>
 			<td colspan="2"></td>
 		</tr>
 		<tr class="no-border widter">
-			<td> №7 - <input type="text" name="meet7" maxlength="80" onchange="showNextField(this);"></td>
+			<td> №7 - <input type="text" name="meet7" maxlength="80" onchange="setData('meetings', 'v7', this.value, '');showNextField(this);"></td>
 			<td colspan="2"></td>
 		</tr>
 		<tr class="no-border widter">
-			<td> №8 - <input type="text" name="meet8" maxlength="80" onchange="showNextField(this);"></td>
+			<td> №8 - <input type="text" name="meet8" maxlength="80" onchange="setData('meetings', 'v8', this.value, '');showNextField(this);"></td>
 			<td colspan="2"></td>
 		</tr>
 		<tr class="no-border widter">
-			<td> №9 - <input type="text" name="meet9" maxlength="80" onchange="showNextField(this);"></td>
+			<td> №9 - <input type="text" name="meet9" maxlength="80" onchange="setData('meetings', 'v9', this.value, '');showNextField(this);"></td>
 			<td colspan="2"></td>
 		</tr>
 		<tr class="no-border widter">
-			<td>№10-<input type="text" name="meet10" maxlength="80"></td>
+			<td>№10-<input type="text" name="meet10" maxlength="80" onchange="setData('meetings', 'v10', this.value, '');"></td>
 			<td colspan="2"></td>
 		</tr>
 		</colgroup>
@@ -277,54 +274,54 @@
 		</tr>
 		<colgroup>
 		<tr class="widter">
-			<td> №1 - <input type="text" name="proc-action1" maxlength="80"></td>
-			<td><input type="date" name="date-start-proc-action1" class="date-time"><input type="time" name="time-start-proc-action1" class="date-time" onchange="console.log(this.value);"></td>
-			<td><input type="date" name="date-end-proc-action1" class="date-time" onchange="console.log(this.value);"><input type="time" name="time-end-proc-action1" class="date-time"></td>
+			<td> №1 - <input type="text" name="proc-action1" maxlength="80" onchange="setData('procActions', 'v1', this.value, '');"></td>
+			<td><input type="date" name="date-start-proc-action1" class="date-time" onchange="setData('procActions', 'ds1', this.value, 'date');"><input type="time" name="time-start-proc-action1" class="date-time" onchange="setData('procActions', 'ts1', this.value, '');"></td>
+			<td><input type="date" name="date-end-proc-action1" class="date-time" onchange="setData('procActions', 'de1', this.value, 'date');"><input type="time" name="time-end-proc-action1" class="date-time" onchange="setData('procActions', 'te1', this.value, '');"></td>
 		</tr>
 		<tr class="widter">
-			<td> №2 - <input type="text" name="proc-action2" maxlength="80"></td>
-			<td><input type="date" name="date-start-proc-action2" class="date-time"><input type="time" name="time-start-proc-action2" class="date-time"></td>
-			<td><input type="date" name="date-end-proc-action2" class="date-time"><input type="time" name="time-end-proc-action2" class="date-time"></td>
+			<td> №2 - <input type="text" name="proc-action2" maxlength="80" onchange="setData('procActions', 'v2', this.value, '');"></td>
+			<td><input type="date" name="date-start-proc-action2" class="date-time" onchange="setData('procActions', 'ds2', this.value, 'date');"><input type="time" name="time-start-proc-action2" class="date-time" onchange="setData('procActions', 'ts2', this.value, '');"></td>
+			<td><input type="date" name="date-end-proc-action2" class="date-time" onchange="setData('procActions', 'de2', this.value, 'date');"><input type="time" name="time-end-proc-action2" class="date-time" onchange="setData('procActions', 'te2', this.value, '');"></td>
 		</tr>
 		<tr class="widter">
-			<td> №3 - <input type="text" name="proc-action3" maxlength="80" onchange="showNextField(this);"></td>
-			<td><input type="date" name="date-start-proc-action3" class="date-time"><input type="time" name="time-start-proc-action3" class="date-time"></td>
-			<td><input type="date" name="date-end-proc-action3" class="date-time"><input type="time" name="time-end-proc-action3" class="date-time"></td>
+			<td> №3 - <input type="text" name="proc-action3" maxlength="80" onchange="setData('procActions', 'v3', this.value, '');showNextField(this);"></td>
+			<td><input type="date" name="date-start-proc-action3" class="date-time" onchange="setData('procActions', 'ds3', this.value, 'date');"><input type="time" name="time-start-proc-action3" class="date-time" onchange="setData('procActions', 'ts3', this.value, '');"></td>
+			<td><input type="date" name="date-end-proc-action3" class="date-time" onchange="setData('procActions', 'de3', this.value, 'date');"><input type="time" name="time-end-proc-action3" class="date-time" onchange="setData('procActions', 'te3', this.value, '');"></td>
 		</tr>
 		<tr class="widter">
-			<td> №4 - <input type="text" name="proc-action4" maxlength="80" onchange="showNextField(this);"></td>
-			<td><input type="date" name="date-start-proc-action4" class="date-time"><input type="time" name="time-start-proc-action4" class="date-time"></td>
-			<td><input type="date" name="date-end-proc-action4" class="date-time"><input type="time" name="time-end-proc-action4" class="date-time"></td>
+			<td> №4 - <input type="text" name="proc-action4" maxlength="80" onchange="setData('procActions', 'v4', this.value, '');showNextField(this);"></td>
+			<td><input type="date" name="date-start-proc-action4" class="date-time" onchange="setData('procActions', 'ds4', this.value, 'date');"><input type="time" name="time-start-proc-action4" class="date-time" onchange="setData('procActions', 'ts4', this.value, '');"></td>
+			<td><input type="date" name="date-end-proc-action4" class="date-time" onchange="setData('procActions', 'de4', this.value, 'date');"><input type="time" name="time-end-proc-action4" class="date-time" onchange="setData('procActions', 'te4', this.value, '');"></td>
 		</tr>
 		<tr class="widter">
-			<td> №5 - <input type="text" name="proc-action5" maxlength="80" onchange="showNextField(this);"></td>
-			<td><input type="date" name="date-start-proc-action5" class="date-time"><input type="time" name="time-start-proc-action5" class="date-time"></td>
-			<td><input type="date" name="date-end-proc-action5" class="date-time"><input type="time" name="time-end-proc-action5" class="date-time"></td>
+			<td> №5 - <input type="text" name="proc-action5" maxlength="80" onchange="setData('procActions', 'v5', this.value, '');showNextField(this);"></td>
+			<td><input type="date" name="date-start-proc-action5" class="date-time" onchange="setData('procActions', 'ds5', this.value, 'date');"><input type="time" name="time-start-proc-action5" class="date-time" onchange="setData('procActions', 'ts5', this.value, '');"></td>
+			<td><input type="date" name="date-end-proc-action5" class="date-time" onchange="setData('procActions', 'de5', this.value, 'date');"><input type="time" name="time-end-proc-action5" class="date-time" onchange="setData('procActions', 'te5', this.value, '');"></td>
 		</tr>
 		<tr class="widter">
-			<td> №6 - <input type="text" name="proc-action6" maxlength="80" onchange="showNextField(this);"></td>
-			<td><input type="date" name="date-start-proc-action6" class="date-time"><input type="time" name="time-start-proc-action6" class="date-time"></td>
-			<td><input type="date" name="date-end-proc-action6" class="date-time"><input type="time" name="time-end-proc-action6" class="date-time"></td>
+			<td> №6 - <input type="text" name="proc-action6" maxlength="80" onchange="setData('procActions', 'v6', this.value, '');showNextField(this);"></td>
+			<td><input type="date" name="date-start-proc-action6" class="date-time" onchange="setData('procActions', 'ds6', this.value, 'date');"><input type="time" name="time-start-proc-action6" class="date-time" onchange="setData('procActions', 'ts6', this.value, '');"></td>
+			<td><input type="date" name="date-end-proc-action6" class="date-time" onchange="setData('procActions', 'de6', this.value, 'date');"><input type="time" name="time-end-proc-action6" class="date-time" onchange="setData('procActions', 'te6', this.value, '');"></td>
 		</tr>
 		<tr class="widter">
-			<td> №7 - <input type="text" name="proc-action7" maxlength="80" onchange="showNextField(this);"></td>
-			<td><input type="date" name="date-start-proc-action7" class="date-time"><input type="time" name="time-start-proc-action7" class="date-time"></td>
-			<td><input type="date" name="date-end-proc-action7" class="date-time"><input type="time" name="time-end-proc-action7" class="date-time"></td>
+			<td> №7 - <input type="text" name="proc-action7" maxlength="80" onchange="setData('procActions', 'v7', this.value, '');showNextField(this);"></td>
+			<td><input type="date" name="date-start-proc-action7" class="date-time" onchange="setData('procActions', 'ds7', this.value, 'date');"><input type="time" name="time-start-proc-action7" class="date-time" onchange="setData('procActions', 'ts7', this.value, '');"></td>
+			<td><input type="date" name="date-end-proc-action7" class="date-time" onchange="setData('procActions', 'de7', this.value, 'date');"><input type="time" name="time-end-proc-action7" class="date-time" onchange="setData('procActions', 'te7', this.value, '');"></td>
 		</tr>
 		<tr class="widter">
-			<td> №8 - <input type="text" name="proc-action8" maxlength="80" onchange="showNextField(this);"></td>
-			<td><input type="date" name="date-start-proc-action8" class="date-time"><input type="time" name="time-start-proc-action8" class="date-time"></td>
-			<td><input type="date" name="date-end-proc-action8" class="date-time"><input type="time" name="time-end-proc-action8" class="date-time"></td>
+			<td> №8 - <input type="text" name="proc-action8" maxlength="80" onchange="setData('procActions', 'v8', this.value, '');showNextField(this);"></td>
+			<td><input type="date" name="date-start-proc-action8" class="date-time" onchange="setData('procActions', 'ds8', this.value, 'date');"><input type="time" name="time-start-proc-action8" class="date-time" onchange="setData('procActions', 'ts8', this.value, '');"></td>
+			<td><input type="date" name="date-end-proc-action8" class="date-time" onchange="setData('procActions', 'de8', this.value, 'date');"><input type="time" name="time-end-proc-action8" class="date-time" onchange="setData('procActions', 'te8', this.value, '');"></td>
 		</tr>
 		<tr class="widter">
-			<td> №9 - <input type="text" name="proc-action9" maxlength="80" onchange="showNextField(this);"></td>
-			<td><input type="date" name="date-start-proc-action9" class="date-time"><input type="time" name="time-start-proc-action9" class="date-time"></td>
-			<td><input type="date" name="date-end-proc-action9" class="date-time"><input type="time" name="time-end-proc-action9" class="date-time"></td>
+			<td> №9 - <input type="text" name="proc-action9" maxlength="80" onchange="setData('procActions', 'v9', this.value, '');showNextField(this);"></td>
+			<td><input type="date" name="date-start-proc-action9" class="date-time" onchange="setData('procActions', 'ds9', this.value, 'date');"><input type="time" name="time-start-proc-action9" class="date-time" onchange="setData('procActions', 'ts9', this.value, '');"></td>
+			<td><input type="date" name="date-end-proc-action9" class="date-time" onchange="setData('procActions', 'de9', this.value, 'date');"><input type="time" name="time-end-proc-action9" class="date-time" onchange="setData('procActions', 'te9', this.value, '');"></td>
 		</tr>
 		<tr class="widter">
-			<td>№10-<input type="text" name="proc-action10" maxlength="80"></td>
-			<td><input type="date" name="date-start-proc-action10" class="date-time"><input type="time" name="time-start-proc-action10" class="date-time"></td>
-			<td><input type="date" name="date-end-proc-action10" class="date-time"><input type="time" name="time-end-proc-action10" class="date-time"></td>
+			<td>№10-<input type="text" name="proc-action10" maxlength="80" onchange="setData('procActions', 'v10', this.value, '');"></td>
+			<td><input type="date" name="date-start-proc-action10" class="date-time" onchange="setData('procActions', 'ds10', this.value, 'date');"><input type="time" name="time-start-proc-action10" class="date-time" onchange="setData('procActions', 'ts10', this.value, '');"></td>
+			<td><input type="date" name="date-end-proc-action10" class="date-time" onchange="setData('procActions', 'de10', this.value, 'date');"><input type="time" name="time-end-proc-action10" class="date-time" onchange="setData('procActions', 'te10', this.value, '');"></td>
 		</tr>
 		</colgroup>
 		<tr>
@@ -336,106 +333,106 @@
 		</tr>
 		<colgroup>
 		<tr class="widter">
-			<td> №1 - <input type="text" name="proc-doc1" maxlength="80"></td>
-			<td><input type="date" name="date-proc-doc1" class="date-time"></td>
-			<td><input type="time" name="time-proc-doc1" class="date-time"></td>
+			<td> №1 - <input type="text" name="proc-doc1" maxlength="80" onchange="setData('procDocs', 'v1', this.value, '');"></td>
+			<td><input type="date" name="date-proc-doc1" class="date-time" onchange="setData('procDocs', 't1', this.value, 'date');"></td>
+			<td><input type="time" name="time-proc-doc1" class="date-time" onchange="setData('procDocs', 't1', this.value, '');"></td>
 		</tr>
 		<tr class="widter">
-			<td> №2 - <input type="text" name="proc-doc2" maxlength="80"></td>
-			<td><input type="date" name="date-proc-doc2" class="date-time"></td>
-			<td><input type="time" name="time-proc-doc2" class="date-time"></td>
+			<td> №2 - <input type="text" name="proc-doc2" maxlength="80" onchange="setData('procDocs', 'v2', this.value, '');"></td>
+			<td><input type="date" name="date-proc-doc2" class="date-time" onchange="setData('procDocs', 't2', this.value, 'date');"></td>
+			<td><input type="time" name="time-proc-doc2" class="date-time" onchange="setData('procDocs', 't2', this.value, '');"></td>
 		</tr>
 		<tr class="widter">
-			<td> №3 - <input type="text" name="proc-doc3" maxlength="80" onchange="showNextField(this);"></td>
-			<td><input type="date" name="date-proc-doc3" class="date-time"></td>
-			<td><input type="time" name="time-proc-doc3" class="date-time"></td>
+			<td> №3 - <input type="text" name="proc-doc3" maxlength="80" onchange="setData('procDocs', 'v3', this.value, '');showNextField(this);"></td>
+			<td><input type="date" name="date-proc-doc3" class="date-time" onchange="setData('procDocs', 't3', this.value, 'date');"></td>
+			<td><input type="time" name="time-proc-doc3" class="date-time" onchange="setData('procDocs', 't3', this.value, '');"></td>
 		</tr>
 		<tr class="widter">
-			<td> №4 - <input type="text" name="proc-doc4" maxlength="80" onchange="showNextField(this);"></td>
-			<td><input type="date" name="date-proc-doc4" class="date-time"></td>
-			<td><input type="time" name="time-proc-doc4" class="date-time"></td>
+			<td> №4 - <input type="text" name="proc-doc4" maxlength="80" onchange="setData('procDocs', 'v4', this.value, '');showNextField(this);"></td>
+			<td><input type="date" name="date-proc-doc4" class="date-time" onchange="setData('procDocs', 't4', this.value, 'date');"></td>
+			<td><input type="time" name="time-proc-doc4" class="date-time" onchange="setData('procDocs', 't4', this.value, '');"></td>
 		</tr>
 		<tr class="widter">
-			<td> №5 - <input type="text" name="proc-doc5" maxlength="80" onchange="showNextField(this);"></td>
-			<td><input type="date" name="date-proc-doc5" class="date-time"></td>
-			<td><input type="time" name="time-proc-doc5" class="date-time"></td>
+			<td> №5 - <input type="text" name="proc-doc5" maxlength="80" onchange="setData('procDocs', 'v5', this.value, '');showNextField(this);"></td>
+			<td><input type="date" name="date-proc-doc5" class="date-time" onchange="setData('procDocs', 't5', this.value, 'date');"></td>
+			<td><input type="time" name="time-proc-doc5" class="date-time" onchange="setData('procDocs', 't5', this.value, '');"></td>
 		</tr>
 		<tr class="widter">
-			<td> №6 - <input type="text" name="proc-doc6" maxlength="80" onchange="showNextField(this);"></td>
-			<td><input type="date" name="date-proc-doc6" class="date-time"></td>
-			<td><input type="time" name="time-proc-doc6" class="date-time"></td>
+			<td> №6 - <input type="text" name="proc-doc6" maxlength="80" onchange="setData('procDocs', 'v6', this.value, '');showNextField(this);"></td>
+			<td><input type="date" name="date-proc-doc6" class="date-time" onchange="setData('procDocs', 't6', this.value, 'date');"></td>
+			<td><input type="time" name="time-proc-doc6" class="date-time" onchange="setData('procDocs', 't6', this.value, '');"></td>
 		</tr>
 		<tr class="widter">
-			<td> №7 - <input type="text" name="proc-doc7" maxlength="80" onchange="showNextField(this);"></td>
-			<td><input type="date" name="date-proc-doc7" class="date-time"></td>
-			<td><input type="time" name="time-proc-doc7" class="date-time"></td>
+			<td> №7 - <input type="text" name="proc-doc7" maxlength="80" onchange="setData('procDocs', 'v7', this.value, '');showNextField(this);"></td>
+			<td><input type="date" name="date-proc-doc7" class="date-time" onchange="setData('procDocs', 't7', this.value, 'date');"></td>
+			<td><input type="time" name="time-proc-doc7" class="date-time" onchange="setData('procDocs', 't7', this.value, '');"></td>
 		</tr>
 		<tr class="widter">
-			<td> №8 - <input type="text" name="proc-doc8" maxlength="80" onchange="showNextField(this);"></td>
-			<td><input type="date" name="date-proc-doc8" class="date-time"></td>
-			<td><input type="time" name="time-proc-doc8" class="date-time"></td>
+			<td> №8 - <input type="text" name="proc-doc8" maxlength="80" onchange="setData('procDocs', 'v8', this.value, '');showNextField(this);"></td>
+			<td><input type="date" name="date-proc-doc8" class="date-time" onchange="setData('procDocs', 't8', this.value, 'date');"></td>
+			<td><input type="time" name="time-proc-doc8" class="date-time" onchange="setData('procDocs', 't8', this.value, '');"></td>
 		</tr>
 		<tr class="widter">
-			<td> №9 - <input type="text" name="proc-doc9" maxlength="80" onchange="showNextField(this);"></td>
-			<td><input type="date" name="date-proc-doc9" class="date-time"></td>
-			<td><input type="time" name="time-proc-doc9" class="date-time"></td>
+			<td> №9 - <input type="text" name="proc-doc9" maxlength="80" onchange="setData('procDocs', 'v9', this.value, '');showNextField(this);"></td>
+			<td><input type="date" name="date-proc-doc9" class="date-time" onchange="setData('procDocs', 't9', this.value, 'date');"></td>
+			<td><input type="time" name="time-proc-doc9" class="date-time" onchange="setData('procDocs', 't9', this.value, '');"></td>
 		</tr>
 		<tr class="widter">
-			<td>№10-<input type="text" name="proc-doc10" maxlength="80"></td>
-			<td><input type="date" name="date-proc-doc10" class="date-time"></td>
-			<td><input type="time" name="time-proc-doc10" class="date-time"></td>
+			<td>№10-<input type="text" name="proc-doc10" maxlength="80" onchange="setData('procDocs', 'v10', this.value, '');"></td>
+			<td><input type="date" name="date-proc-doc10" class="date-time" onchange="setData('procDocs', 't10', this.value, 'date');"></td>
+			<td><input type="time" name="time-proc-doc10" class="date-time" onchange="setData('procDocs', 't10', this.value, '');"></td>
 		</tr>
 		</colgroup>
-		<tr>
+			<tr>
 			<th colspan="3">Перелік завірених адвокатом копій процесуальних та інших документів, що підтверджують наведені дані</th>
 		</tr>
 		<tr>
 			<td colspan="2">заява затриманого про відмову від захисника</td>
-			<td><input type="checkbox" class="checkbox" id="document1"></td>
+			<td><input type="checkbox" class="checkbox" id="document1" onchange="setData('documents', 'v1', this.checked, '');"></td>
 		</tr>
 		<tr>
 			<td colspan="2">клопотання слідчого, прокурора про застосування запобіжного заходу</td>
-			<td><input type="checkbox" class="checkbox" id="document2" checked></td>
+			<td><input type="checkbox" class="checkbox" id="document2" checked onchange="setData('documents', 'v2', this.checked, '');"></td>
 		</tr>
 		<tr>
 			<td colspan="2">повідомлення про підозру</td>
-			<td><input type="checkbox" class="checkbox" id="document3"></td>
+			<td><input type="checkbox" class="checkbox" id="document3" onchange="setData('documents', 'v3', this.checked, '');"></td>
 		</tr>
 		<tr>
 			<td colspan="2">ухвала слідчого судді, суду про застосування запобіжного заходу</td>
-			<td><input type="checkbox" class="checkbox" id="document4"></td>
+			<td><input type="checkbox" class="checkbox" id="document4" onchange="setData('documents', 'v4', this.checked, '');"></td>
 		</tr>
 		<tr>
 			<td colspan="2">апеляційна скарга захисника на ухвалу слідчого судді, суду про застосування запобіжного заходу</td>
-			<td><input type="checkbox" class="checkbox" id="document5"></td>
+			<td><input type="checkbox" class="checkbox" id="document5" onchange="setData('documents', 'v5', this.checked, '');"></td>
 		</tr>
 		<tr>
 			<td colspan="2">заперечення на апеляційну скаргу прокурора на ухвалу слідчого судді, суду про застосування запобіжного заходу</td>
-			<td><input type="checkbox" class="checkbox" id="document6"></td>
+			<td><input type="checkbox" class="checkbox" id="document6" onchange="setData('documents', 'v6', this.checked, '');"></td>
 		</tr>
 		<tr>
 			<td colspan="2">ухвала апеляційного суду за результатами розгляду апеляційної скарги прокурора/адвоката</td>
-			<td><input type="checkbox" class="checkbox" id="document7"></td>
+			<td><input type="checkbox" class="checkbox" id="document7" onchange="setData('documents', 'v7', this.checked, '');"></td>
 		</tr>
 		<tr>
 			<td colspan="2">медична довідка, що підтверджує наявність у особи інфекційної хвороби</td>
-			<td><input type="checkbox" class="checkbox" id="document8"></td>
+			<td><input type="checkbox" class="checkbox" id="document8" onchange="setData('documents', 'v8', this.checked, '');"></td>
 		</tr>
 		<tr>
 			<td colspan="2">скарга адвоката в порядку статті 206 КПК</td>
-			<td><input type="checkbox" class="checkbox" id="document9"></td>
+			<td><input type="checkbox" class="checkbox" id="document9" onchange="setData('documents', 'v9', this.checked, '');"></td>
 		</tr>
 		<tr>
 			<td colspan="2">ухвала слідчого судді за результатами розгляду скарги адвоката в порядку статті 206 КПК</td>
-			<td><input type="checkbox" class="checkbox" id="document10"></td>
+			<td><input type="checkbox" class="checkbox" id="document10" onchange="setData('documents', 'v10', this.checked, '');"></td>
 		</tr>
 		<tr>
-			<td colspan="2" class="widter"><input type="text" name="meet3" maxlength="100" id="document11"></td>
+			<td colspan="2" class="widter"><input type="text" name="meet3" maxlength="100" id="document11" onchange="setData('documents', 'other', this.value, '');"></td>
 			<td><i>інше (зазначити)</i></td>
 		</tr>
 		<tr>
 			<td colspan="2">Загальна кількість аркушів документів</td>
-			<td><input type="number" min="0" id="document-pages" required></td>
+			<td><input type="number" value="1" min="0" id="document-pages" required  onchange="setData('documents', 'sheets', this.value, 'num');"></td>
 		</tr>
 		<tr class="no-border">
 			<td></td>
