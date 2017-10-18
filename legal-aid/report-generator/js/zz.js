@@ -134,7 +134,7 @@ var data = {
 	}},
 	//розмір прожиткового мінімуму
 	paymentPerHour: {v1: 1762, k: function() {
-		return ((this.v1 * 0.025).toFixed(3));
+		return ((this.v1 * 0.025).toFixed(2));
 	}},
 	//строк подання акту
 	termSubmission: {v1: 1, k: function() {
@@ -187,7 +187,8 @@ var data = {
         v10: false, //ухвала слідчого судді за результатами розгляду скарги адвоката в порядку статті 206 КПК
         other: '', //інше
         sheets: 0 //Загальна кількість аркушів документів
-	}
+	},
+	sum: 0
 };
 
 // IN F
@@ -205,30 +206,758 @@ function setData(attr, field, value, type) {
         default :
             data[attr][field] = value;
     }
-    makeReport()
 }
 
 function makeReport() {
 	console.log('(2 x ' + data.numTrips.k() + ' + ' + '2 x ' + data.specCategory.k() + ' x ' + data.numActs.k() + ' x ' +
         data.osk.k() + ' x ' + data.terminatePart.k() + ') x ' + data.paymentPerHour.k() + ' x ' + data.actsInNight.k() + ' x ' + data.termSubmission.k());
-
-    var sum = (2 * data.numTrips.k() + 2 * data.specCategory.k() * data.numActs.k() * data.osk.k() * data.terminatePart.k())
+// розрахунок розміру винагороди
+    data.sum = (2 * data.numTrips.k() + 2 * data.specCategory.k() * data.numActs.k() * data.osk.k() * data.terminatePart.k())
 		* data.paymentPerHour.k() * data.actsInNight.k() * data.termSubmission.k();
     // костиль щоб заокруглювало як і exel
-    sum += 0.0004;
-    sum = sum.toFixed(2);
-    alert(sum);
+    data.sum += 0.0004;
+    data.sum = data.sum.toFixed(2);
+    // alert(sum);
+    makePDF();
+    return false;
 }
 
 function makePDF() {
 		var a = 14;
 		var docDefinition = {
+            pageMargins: [ 20, 10, 10, 11 ],
 				content: [
-						// if you don't need styles, you can use a simple string to define a paragraph
-						'This is a standard paragraph, using default style',
+                    {
+                        fontSize: 9,
+                        table: {
+                            widths: [390, '*', '*', '*'],
+                            body: [
+                            	[{
+                                    border: [false, false, true, false],
+                                    fillColor: '#286e28',
+									color: 'white',
+                                    colSpan: 4,
+                                    alignment: 'center',
+                                    text: 'Розмір винагороди адвоката за надання БВПД (обрати)\n' +
+                                    '[ЗЗ] особі, яка відповідно до положень кримінального процесуального законодавства вважається затриманою\n' +
+                                    'та / або стосовно якої обрано запобіжний захід у вигляді тримання під вартою'
+								},{}, {}, {}],
+								[
+									{border: [false, false, false, false], text: '\n'},
+									{border: [false, false, false, false], text: '\n'},
+									{border: [false, false, false, false], text: '\n'},
+                                    {border: [false, false, false, false], text: '\n'}
+								],
+                                [
+                                    {
+                                        border: [false, false, false, false],
+                                        fillColor: '#dbe6c4',
+                                        alignment: 'right',
+                                        margin: [-20, 5, -4, 5],
+                                        fontSize: 8,
+                                        colSpan: 2,
+										text: 'P=(2 х Квиїздів + 2 х Кос. кат x Кдій х Коск х Кприп) х Огод х Кос. час х Кзвіт=' +
+                                        '(2 x ' + comma(data.numTrips.k()) + ' + ' + '2 x ' + comma(data.specCategory.k()) + ' x ' + comma(data.numActs.k()) + ' x ' +
+                                        comma(data.osk.k()) + ' x ' + comma(data.terminatePart.k()) + ') x ' + comma(data.paymentPerHour.k()) + ' x ' +
+                                        comma(data.actsInNight.k()) + ' x ' + comma(data.termSubmission.k()) + '='
 
-						// using a { text: '...' } object lets you set styling properties
-						{
+                                    },
+									{},
+                                    {
+                                        border: [false, false, true, false],
+                                        fontSize: 15,
+										bold: true,
+                                        alignment: 'right',
+                                        fillColor: '#286e28',
+                                        color: 'white',
+                                        colSpan: 2,
+                                        text: comma(data.sum) + ' '
+                                    },
+									{}
+                                ],
+                                [
+                                    {border: [false, false, false, false], text: '\n'},
+                                    {border: [false, false, false, false], text: '\n'},
+                                    {border: [false, false, false, false], text: '\n'},
+                                    {border: [false, false, false, false], text: '\n'}
+                                ],
+                                [
+                                    {
+                                        fillColor: '#d9d9d9',
+                                        text: [
+											{
+                                                bold: true,
+												text: '1. Кількість виїздів адвоката\n'
+											},
+                                            {
+                                                bold: false,
+                                                fontSize: 8,
+                                                text: 'для побачення з особою, якій надається БВПД, участі у процесуальних діях та / або збирання доказів'
+                                            }]
+                                    },
+                                    {
+                                        fillColor: '#dbe6c4',
+                                        alignment: 'center',
+										text: '\n' + data.numTrips.v1
+									},
+                                    {
+                                        bold: true,
+
+                                        alignment: 'center',
+                                        fillColor: '#d9d9d9',
+                                        text: '\nКвиїздів='
+                                    },
+                                    {
+                                        bold: true,
+                                        alignment: 'center',
+                                        fillColor: '#d9d9d9',
+                                        text: '\n' + comma(data.numTrips.k())
+                                    }
+                                ],
+
+//2. Припинення участі адвоката до завершення строку дії доручення
+
+                                [
+                                    {
+                                        fillColor: '#d9d9d9',
+                                        border: [true, true, true, false],
+                                        text: [
+                                            {
+                                                bold: true,
+                                                text: '2. Припинення участі адвоката до завершення строку дії доручення, '
+                                            },
+                                            {
+                                                bold: false,
+                                                text: ' якщо:'
+                                            }]
+                                    },
+                                    {
+                                        fillColor: '#d9d9d9',
+                                        border: [true, true, true, false],
+                                        text: ''
+                                    },
+                                    {
+                                        border: [true, true, true, false],
+                                        fillColor: '#d9d9d9',
+                                        text: ''
+                                    },
+                                    {
+                                        border: [true, true, true, false],
+                                        fillColor: '#d9d9d9',
+                                        text: ''
+                                    }
+                                ],
+
+
+                                [
+                                    {
+                                        fillColor: '#ffffff',
+                                        border: [true, false, false, false],
+                                        italics: true,
+                                        text: [
+                                            {
+                                                bold: true,
+                                                text: ' - під час першого конфіденційного побачення '
+                                            },
+                                            {
+                                                bold: false,
+                                                text: 'з адвокатом особа, якій надається '+
+												'БВПД, заявила про відмову від його послуг у письмовій формі, або ж адвокат внаслідок '+
+												'конфлікту інтересів чи з інших причин прийняв рішення про відмову від надання БВПД особі;'
+                                            }]
+                                    },
+                                    {
+                                        fillColor: '#dbe6c4',
+                                        border: [true, false, false, false],
+                                        alignment: 'center',
+                                        text: '\n' + (data.terminatePart.v1 || data.terminatePart.v2 ? 'так' : 'ні')
+                                    },
+                                    {
+                                        bold: true,
+                                        border: [true, false, true, false],
+                                        alignment: 'center',
+                                        fillColor: '#d9d9d9',
+                                        text: '\n \nКприп ='
+                                    },
+                                    {
+                                        bold: true,
+                                        border: [true, false, true, false],
+                                        alignment: 'center',
+                                        fillColor: '#d9d9d9',
+                                        text: '\n \n' + comma(data.terminatePart.k())
+                                    }
+                                ],
+
+
+                                [
+                                    {
+                                        fillColor: '#ffffff',
+                                        border: [true, false, true, false],
+                                        italics: true,
+                                        text: [
+                                            {
+                                                bold: false,
+                                                text: ' - адвокат припинив надання БВПД до завершення строку дії доручення '
+                                            },
+                                            {
+                                                bold: true,
+                                                text: 'в інший час після конфіденційного побачення '
+                                            },
+                                            {
+                                                bold: false,
+                                                text: 'з будь-яких інших підстав, визначених законом '
+                                            }]
+                                    },
+                                    {
+                                        fillColor: '#dbe6c4',
+                                        border: [true, false, true, false],
+                                        alignment: 'center',
+                                        text: (data.terminatePart.v3 ? 'так' : 'ні')
+                                    },
+                                    {
+                                        border: [true, false, true, false],
+                                        fillColor: '#d9d9d9',
+                                        text: ''
+                                    },
+                                    {
+                                        border: [true, false, true, false],
+                                        fillColor: '#d9d9d9',
+                                        text: ''
+                                    }
+                                ],
+
+// 3. Особлива категорія особи, якій надається БВПД
+
+                                [
+                                    {
+                                        fillColor: '#d9d9d9',
+                                        border: [true, true, true, false],
+                                       	bold: true,
+										text: '3. Особлива категорія особи, якій надається БВПД:'
+                                    },
+                                    {
+                                        fillColor: '#d9d9d9',
+                                        border: [true, true, true, false],
+                                        text: ''
+                                    },
+                                    {
+                                        border: [true, true, true, false],
+                                        fillColor: '#d9d9d9',
+                                        text: ''
+                                    },
+                                    {
+                                        border: [true, true, true, false],
+                                        fillColor: '#d9d9d9',
+                                        text: ''
+                                    }
+                                ],
+
+
+                                [
+                                    {
+                                        fillColor: '#ffffff',
+                                        border: [true, false, true, false],
+                                        italics: true,
+										text: ' - у віці до 18 років;'
+                                    },
+                                    {
+                                        fillColor: '#dbe6c4',
+                                        border: [true, false, true, false],
+                                        alignment: 'center',
+                                        text: (data.specCategory.v1 ? 'так' : 'ні')
+                                    },
+                                    {
+                                        fillColor: '#d9d9d9',
+                                        border: [true, false, true, false],
+                                        text: ''
+                                    },
+                                    {
+                                        border: [true, false, true, false],
+                                        fillColor: '#d9d9d9',
+                                        text: ''
+                                    }
+                                ],
+
+
+                                [
+                                    {
+                                        fillColor: '#ffffff',
+                                        border: [true, false, true, false],
+                                        italics: true,
+                                        text: ' - яка через свої фізичні або психічні вади (німа, глуха, сліпа тощо) не може '+
+										'сама реалізувати своє право на захист;'
+                                    },
+                                    {
+                                        fillColor: '#dbe6c4',
+                                        border: [true, false, true, false],
+                                        alignment: 'center',
+                                        text: (data.specCategory.v2 ? 'так' : 'ні')
+                                    },
+                                    {
+                                        bold: true,
+                                        border: [true, false, true, false],
+                                        alignment: 'center',
+                                        fillColor: '#d9d9d9',
+                                        text: '\nКос. кат='
+                                    },
+                                    {
+                                        bold: true,
+                                        border: [true, false, true, false],
+                                        alignment: 'center',
+                                        fillColor: '#d9d9d9',
+                                        text: '\n' + comma(data.specCategory.k())
+                                    }
+                                ],
+
+                                [
+                                    {
+                                        fillColor: '#ffffff',
+                                        border: [true, false, true, false],
+                                        italics: true,
+                                        text: ' - яка не володіє мовою, якою ведеться провадження;'
+                                    },
+                                    {
+                                        fillColor: '#dbe6c4',
+                                        border: [true, false, true, false],
+                                        alignment: 'center',
+                                        text: (data.specCategory.v3 ? 'так' : 'ні')
+                                    },
+                                    {
+                                        fillColor: '#d9d9d9',
+                                        border: [true, false, true, false],
+                                        text: ''
+                                    },
+                                    {
+                                        border: [true, false, true, false],
+                                        fillColor: '#d9d9d9',
+                                        text: ''
+                                    }
+                                ],
+
+
+                                [
+                                    {
+                                        fillColor: '#ffffff',
+                                        border: [true, false, true, false],
+                                        italics: true,
+                                        text: ' - у якої виявлено інфекційну хворобу, що підтверджується відповідною медичною довідкою'
+                                    },
+                                    {
+                                        fillColor: '#dbe6c4',
+                                        border: [true, false, true, false],
+                                        alignment: 'center',
+                                        text: (data.specCategory.v4 ? 'так' : 'ні')
+                                    },
+                                    {
+                                        fillColor: '#d9d9d9',
+                                        border: [true, false, true, false],
+                                        text: ''
+                                    },
+                                    {
+                                        border: [true, false, true, false],
+                                        fillColor: '#d9d9d9',
+                                        text: ''
+                                    }
+                                ],
+
+// 4. Сумарна кількість дій адвоката з надання БВПД
+
+                                [
+                                    {
+                                        fillColor: '#d9d9d9',
+                                        text: [
+                                            {
+                                                bold: true,
+                                                text: '4. Сумарна кількість дій адвоката з надання БВПД,\n'
+                                            },
+                                            {
+                                                bold: false,
+                                                fontSize: 8,
+                                                text: 'зазначених у реєстрі дій адвоката (побачення з особою,'+
+												'якій надається БВПД, участь у процесуальних діях, складення процесуальних документів)'
+                                            }]
+                                    },
+                                    {
+                                        fillColor: '#dbe6c4',
+                                        alignment: 'center',
+                                        text: '\n' + data.numActs.v1
+                                    },
+                                    {
+                                        bold: true,
+
+                                        alignment: 'center',
+                                        fillColor: '#d9d9d9',
+                                        text: '\nКдій ='
+                                    },
+                                    {
+                                        bold: true,
+                                        alignment: 'center',
+                                        fillColor: '#d9d9d9',
+                                        text: '\n' + comma(data.numActs.k())
+                                    }
+                                ],
+
+                                [
+                                    {
+                                        fillColor: '#d9d9d9',
+                                        text: [
+                                            {
+                                                bold: true,
+                                                text: '- у разі якщо кількість дій адвоката = 0, '
+                                            },
+                                            {
+                                                bold: false,
+                                                fontSize: 8,
+                                                text: 'вказати чи припав час виїзду повністю або частково на нічний час '+
+                                                '(з 22.00 до 6.00) або вихідні (субота, неділя), або святкові / неробочі дні'
+                                            }]
+                                    },
+                                    {
+                                        fillColor: '#dbe6c4',
+                                        alignment: 'center',
+                                        margin: [0, 5, 0, 5],
+                                        text: (data.numActs.v2 ? 'так' : 'ні')
+                                    },
+                                    {
+                                        fillColor: '#d9d9d9',
+                                        text: ''
+                                    },
+                                    {
+                                        fillColor: '#d9d9d9',
+                                        text: ''
+                                    }
+                                ],
+
+// 5. Частка дій адвоката у нічний час, вихідні, святкові та неробочі дні від загальної кількості таких дій
+
+                                [
+                                    {
+                                        fillColor: '#d9d9d9',
+                                        border: [true, true, true, false],
+                                        bold: true,
+                                      	text: '5. Частка дій адвоката у нічний час, вихідні, святкові та неробочі дні від загальної кількості таких дій'
+                                    },
+                                    {
+                                        fillColor: '#d9d9d9',
+                                        border: [true, true, true, false],
+                                        margin: [0, 5, 0, 5],
+                                        alignment: 'center',
+                                        text: (data.actsInNight.percent == 0 ? '0,00' : comma(data.actsInNight.percent)) + '%'
+                                    },
+                                    {
+                                        bold: true,
+                                        border: [true, false, true, false],
+                                        margin: [0, 5, 0, 5],
+                                        alignment: 'center',
+                                        fillColor: '#d9d9d9',
+                                        text: 'Кос. час ='
+                                    },
+                                    {
+                                        bold: true,
+                                        border: [true, false, true, false],
+                                        margin: [0, 5, 0, 5],
+                                        alignment: 'center',
+                                        fillColor: '#d9d9d9',
+                                        text: comma(data.actsInNight.k())
+                                    }
+                                ],
+
+                                [
+                                    {
+                                        fillColor: '#ffffff',
+                                        border: [true, false, true, false],
+                                        italics: true,
+                                       	text: '- кількість дій, які повністю або частково припадають на: ' +
+                                        'нічний час (з 22.00 до 6.00) або вихідні (субота, неділя), або святкові / неробочі дні'
+                                    },
+                                    {
+                                        fillColor: '#dbe6c4',
+                                        border: [true, false, true, false],
+                                        margin: [0, 5, 0, 5],
+                                        alignment: 'center',
+                                        text: data.actsInNight.v1
+                                    },
+                                    {
+                                        border: [true, false, true, false],
+                                        fillColor: '#d9d9d9',
+                                        text: ''
+                                    },
+                                    {
+                                        border: [true, false, true, false],
+                                        fillColor: '#d9d9d9',
+                                        text: ''
+                                    }
+                                ],
+
+// 6. Обрання затриманій особі запобіжного заходу (ЗЗ) у вигляді тримання під вартою:
+
+                                [
+                                    {
+                                        fillColor: '#d9d9d9',
+                                        border: [true, true, true, false],
+                                        bold: true,
+                                        text: '6. Обрання затриманій особі запобіжного заходу (ЗЗ) у вигляді тримання під вартою:'
+                                    },
+                                    {
+                                        fillColor: '#d9d9d9',
+                                        border: [true, true, true, false],
+                                        text: ''
+                                    },
+                                    {
+                                        fillColor: '#d9d9d9',
+                                        border: [true, true, true, false],
+                                        text: ''
+                                    },
+                                    {
+                                        border: [true, true, true, false],
+                                        fillColor: '#d9d9d9',
+                                        text: ''
+                                    }
+                                ],
+
+                                [
+                                    {
+                                        fillColor: '#d9d9d9',
+                                        border: [true, false, true, false],
+                                       	text: 'А. Чи подавалося слідчим / прокурором клопотання '+
+										'про обрання затриманій особі ЗЗ у вигляді тримання під вартою?'
+                                    },
+                                    {
+                                        fillColor: '#dbe6c4',
+                                        border: [true, true, true, false],
+                                        alignment: 'center',
+                                        margin: [0, 5, 0, 5],
+                                        text: (data.osk.takePetition ? 'так' : 'ні')
+                                    },
+                                    {
+                                        fillColor: '#d9d9d9',
+                                        border: [true, false, true, false],
+                                        text: ''
+                                    },
+                                    {
+                                        fillColor: '#d9d9d9',
+                                        border: [true, false, true, false],
+                                        text: ''
+                                    }
+                                ],
+
+                                [
+                                    {
+                                        fillColor: '#ffffff',
+                                        border: [true, false, true, false],
+                                        italics: true,
+                                        text: 'Яке рішення прийняв суд за підсумками розгляду такого клопотання?'
+                                    },
+                                    {
+                                        fillColor: '#d9d9d9',
+                                        border: [true, true, true, false],
+                                        text: ''
+                                    },
+                                    {
+                                        border: [true, false, true, false],
+                                        fillColor: '#d9d9d9',
+                                        text: ''
+                                    },
+                                    {
+                                        border: [true, false, true, false],
+                                        fillColor: '#d9d9d9',
+                                        text: ''
+                                    }
+                                ],
+
+                                [
+                                    {
+                                        fillColor: '#dbe6c4',
+                                        border: [true, false, true, false],
+                                        text: (data.osk.satisfiedPetition ? 'обрано ЗЗ у вигляді тримання під вартою' : 'обрано більш м’який ЗЗ або постановлено ухвалу про відмову в застосуванні ЗЗ')
+                                    },
+                                    {
+                                        fillColor: '#d9d9d9',
+                                        border: [true, false, true, false],
+                                        text: ''
+                                    },
+                                    {
+                                        border: [true, false, true, false],
+                                        fillColor: '#d9d9d9',
+                                        text: ''
+                                    },
+                                    {
+                                        border: [true, false, true, false],
+                                        fillColor: '#d9d9d9',
+                                        text: ''
+                                    }
+                                ],
+
+                                [
+                                    {
+                                        fillColor: '#d9d9d9',
+                                        border: [true, true, true, false],
+                                        text: 'Б. Чи подавали Ви апеляційну скаргу адвоката на судове рішення '+
+                                        'про обрання ЗЗ у вигляді тримання під вартою?'
+                                    },
+                                    {
+                                        fillColor: '#dbe6c4',
+                                        border: [true, true, true, false],
+                                        alignment: 'center',
+                                        margin: [0, 5, 0, 5],
+                                        text: (data.osk.appealLawer ? 'так' : 'ні')
+                                    },
+                                    {
+                                        bold: true,
+                                        border: [true, false, true, false],
+                                        margin: [0, 5, 0, 5],
+                                        alignment: 'center',
+                                        fillColor: '#d9d9d9',
+                                        text: 'Коск ='
+                                    },
+                                    {
+                                        bold: true,
+                                        border: [true, false, true, false],
+                                        margin: [0, 5, 0, 5],
+                                        alignment: 'center',
+                                        fillColor: '#d9d9d9',
+                                        text: comma(data.osk.k())
+                                    }
+                                ],
+
+                                [
+                                    {
+                                        fillColor: '#ffffff',
+                                        border: [true, false, true, false],
+                                        italics: true,
+                                        text: 'Яке рішення прийняв суд за результатами розгляду такої апеляційної скарги?'
+                                    },
+                                    {
+                                        fillColor: '#d9d9d9',
+                                        border: [true, true, true, false],
+                                        text: ''
+                                    },
+                                    {
+                                        border: [true, false, true, false],
+                                        fillColor: '#d9d9d9',
+                                        text: ''
+                                    },
+                                    {
+                                        border: [true, false, true, false],
+                                        fillColor: '#d9d9d9',
+                                        text: ''
+                                    }
+                                ],
+
+                                [
+                                    {
+                                        fillColor: '#dbe6c4',
+                                        border: [true, false, true, false],
+                                        text: (data.osk.satisfiedAppealLawer ? 'ЗЗ у вигляді тримання під вартою змінено на більш м\'який' : 'ЗЗ у вигляді тримання під вартою залишено без змін')
+                                    },
+                                    {
+                                        fillColor: '#d9d9d9',
+                                        border: [true, false, true, false],
+                                        text: ''
+                                    },
+                                    {
+                                        border: [true, false, true, false],
+                                        fillColor: '#d9d9d9',
+                                        text: ''
+                                    },
+                                    {
+                                        border: [true, false, true, false],
+                                        fillColor: '#d9d9d9',
+                                        text: ''
+                                    }
+                                ],
+
+                                [
+                                    {
+                                        fillColor: '#d9d9d9',
+                                        border: [true, true, true, false],
+                                        text: 'В. Чи подавала сторона обвинувачення апеляційну скаргу на судове рішення '+
+										'про обрання ЗЗ більш м’якого, ніж тримання під вартою, або ухвалу про відмову '+
+										'в застосуванні ЗЗ?'
+                                    },
+                                    {
+                                        fillColor: '#dbe6c4',
+                                        border: [true, true, true, false],
+                                        alignment: 'center',
+                                        margin: [0, 5, 0, 5],
+                                        text: (data.osk.appealProsecutor ? 'так' : 'ні')
+                                    },
+                                    {
+                                        fillColor: '#d9d9d9',
+                                        border: [true, false, true, false],
+                                        text: ''
+                                    },
+                                    {
+                                        fillColor: '#d9d9d9',
+                                        border: [true, false, true, false],
+                                        text: ''
+                                    }
+                                ],
+
+                                [
+                                    {
+                                        fillColor: '#ffffff',
+                                        border: [true, false, true, false],
+                                        italics: true,
+                                        text: 'Яке рішення прийняв суд за результатами розгляду такої апеляційної скарги?'
+                                    },
+                                    {
+                                        fillColor: '#d9d9d9',
+                                        border: [true, true, true, false],
+                                        text: ''
+                                    },
+                                    {
+                                        border: [true, false, true, false],
+                                        fillColor: '#d9d9d9',
+                                        text: ''
+                                    },
+                                    {
+                                        border: [true, false, true, false],
+                                        fillColor: '#d9d9d9',
+                                        text: ''
+                                    }
+                                ],
+
+                                [
+                                    {
+                                        fillColor: '#dbe6c4',
+                                        border: [true, false, true, false],
+                                        text: (data.osk.satisfiedAppealProsecutor ? 'обрано ЗЗ у вигляді тримання під вартою' : 'ЗЗ чи ухвалу про відмову в застосуванні ЗЗ залишено без змін')
+                                    },
+                                    {
+                                        fillColor: '#d9d9d9',
+                                        border: [true, false, true, false],
+                                        text: ''
+                                    },
+                                    {
+                                        border: [true, false, true, false],
+                                        fillColor: '#d9d9d9',
+                                        text: ''
+                                    },
+                                    {
+                                        border: [true, false, true, false],
+                                        fillColor: '#d9d9d9',
+                                        text: ''
+                                    }
+                                ],
+
+// потрібно прописувати
+// розмір прожиткового мінімуму
+
+
+
+
+
+
+
+
+                                ['Column 1', 'Column 2', 'Column 3', 'Column 4'],
+                                ['One value goes here', 'Another one here', 'OK?', 'or NO?']
+                            ]
+                        }
+                    },
+
+                    {
 								text: 'це код в ЮТФ-8',
 								fontSize: 15,
 								style: 'header'
@@ -280,10 +1009,10 @@ function makePDF() {
 
 
 
-function showTripInNight(value) {
+function showTripInNight(valu) {
 	var isshow = document.getElementById("trip-in-night");
 	var istrip = document.getElementById("myonoffswitch7");
-	if (value == 0) {
+	if (valu == 0) {
 		isshow.style.display = 'table-row';
 	}
 	else {
@@ -406,6 +1135,16 @@ function changeTerm(n, stan) {
             }
             break;
 	}
+}
+
+/**
+ * приймає число, перетворює на рядок і замінює крапки комами
+ * @param num
+ * @returns {string}
+ */
+function comma(num) {
+	var numstr = num.toString();
+	return (numstr.replace('.', ','));
 }
 
 
