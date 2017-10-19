@@ -1087,12 +1087,6 @@ function makePDF() {
                                          margin: [2, 2, 2, 7],
                                          text: 'ЗЗ'
                                      }]]}
-                                    // border: [false, false, true, false],
-                                    // fillColor: '#286e28',
-                                    // color: 'white',
-                                    // colSpan: 4,
-                                    // alignment: 'center',
-                                    // text: 'ЗЗ'
                                     },
                                     {
                                         border: [false, false, false, false],
@@ -1131,7 +1125,7 @@ function makePDF() {
                             body: [[{
                                 border: [false, false, false, false],
                                 margin: [-2, -2, -2, -2],
-                                fontSize: 8.5,
+                                fontSize: 9,
                                 bold: true,
                                 fillColor: '#bebebe',
                                 text: '1. ЗАГАЛЬНІ ДАНІ'
@@ -1142,7 +1136,7 @@ function makePDF() {
                         text: [
                             {
                                 bold: true,
-                                text: '\n1.1. П.І.Б. адвоката, який (яка) надав(ла) БВПД  '
+                                text: '1.1. П.І.Б. адвоката, який (яка) надав(ла) БВПД  '
                             },
                             {
                                 bold: false,
@@ -1154,7 +1148,7 @@ function makePDF() {
                         text: [
                             {
                                 bold: true,
-                                text: '\n1.2. Доручення центру з надання БВПД  '
+                                text: '1.2. Доручення центру з надання БВПД  '
                             },
                             {
                                 bold: false,
@@ -1166,7 +1160,7 @@ function makePDF() {
                         text: [
                             {
                                 bold: true,
-                                text: '\n1.3. П.І.Б., дата народження особи, якій надано БВПД\n'
+                                text: '1.3. П.І.Б., дата народження особи, якій надано БВПД\n'
                             },
                             {
                                 bold: false,
@@ -1182,7 +1176,7 @@ function makePDF() {
                             body: [[{
                                 border: [false, false, false, false],
                                 margin: [-2, -2, -2, -2],
-                                fontSize: 8.5,
+                                fontSize: 9,
                                 bold: true,
                                 fillColor: '#bebebe',
                                 text: '2. ВИХІДНІ ДАНІ ДЛЯ РОЗРАХУНКУ ЗНАЧЕНЬ КОЕФІЦІЄНТІВ, ЩО ВИЗНАЧАЮТЬ РОЗМІР ВИНАГОРОДИ АДВОКАТА'
@@ -1193,7 +1187,7 @@ function makePDF() {
                             {
                                 bold: true,
                                 fontSize: 9,
-                                text: '\n2.1. Кількість виїздів адвоката для побачення з особою, якій надається БВПД, участі у процесуальних діях та/або збирання\n'+
+                                text: '2.1. Кількість виїздів адвоката для побачення з особою, якій надається БВПД, участі у процесуальних діях та/або збирання\n'+
                                 'доказів (К'
                             },
                             {
@@ -1310,7 +1304,7 @@ function makePDF() {
                             {
                                 bold: true,
                                 fontSize: 9,
-                                text: '\n2.3. Сумарна кількість дій адвоката з надання БВПД, зазначених у реєстрі дій адвоката (К'
+                                text: '2.3. Сумарна кількість дій адвоката з надання БВПД, зазначених у реєстрі дій адвоката (К'
                             },
                             {
                                 bold: true,
@@ -1476,7 +1470,7 @@ function makePDF() {
                     {
                         fontSize: 9,
                         table: {
-                            widths: [20, '*', 150],
+                            widths: [20, '*', 130],
                             body: [[
                                 {
                                     bold: true,
@@ -1507,12 +1501,10 @@ function makePDF() {
                                     },
                                     {
                                         alignment: 'center',
-                                        text: data.procActions.ds1 + '   ' + data.procActions.ts1 + '-' +
-                                        (data.procActions.ds1 == data.procActions.de1 ? '' : data.procActions.de1 + ' ') + data.procActions.te1
+                                        text: data.procActions.ds1 + '      ' + data.procActions.ts1 + (data.procActions.ds1 != '' ? ' - ' : '') +
+                                        (data.procActions.ds1 == data.procActions.de1 ? '' : '\n' + data.procActions.de1 + '    ') + data.procActions.te1
                                     }
                                 ],
-
-                                // here  HERE
                                 [
                                     {
                                         alignment: 'center',
@@ -1520,11 +1512,12 @@ function makePDF() {
                                     },
                                     {
                                         alignment: 'center',
-                                        text: data.meetings.v2
+                                        text: data.procActions.v2
                                     },
                                     {
                                         alignment: 'center',
-                                        text: data.meetings.v7
+                                        text: data.procActions.ds2 + '      ' + data.procActions.ts2 + (data.procActions.ds2 != '' ? ' - ' : '') +
+                                        (data.procActions.ds2 == data.procActions.de2 ? '' : '\n' + data.procActions.de2 + '    ') + data.procActions.te2
                                     }
                                 ],
                                 [
@@ -1534,11 +1527,12 @@ function makePDF() {
                                     },
                                     {
                                         alignment: 'center',
-                                        text: data.meetings.v3
+                                        text: data.procActions.v3
                                     },
                                     {
                                         alignment: 'center',
-                                        text: data.meetings.v8
+                                        text: data.procActions.ds3 + '      ' + data.procActions.ts3 + (data.procActions.ds3 != '' ? ' - ' : '') +
+                                        (data.procActions.ds3 == data.procActions.de3 ? '' : '\n' + data.procActions.de3 + '    ') + data.procActions.te3
                                     }
                                 ],
                                 [
@@ -1548,11 +1542,12 @@ function makePDF() {
                                     },
                                     {
                                         alignment: 'center',
-                                        text: data.meetings.v4
+                                        text: data.procActions.v4
                                     },
                                     {
                                         alignment: 'center',
-                                        text: data.meetings.v9
+                                        text: data.procActions.ds4 + '      ' + data.procActions.ts4 + (data.procActions.ds4 != '' ? ' - ' : '') +
+                                        (data.procActions.ds4 == data.procActions.de4 ? '' : '\n' + data.procActions.de4 + '    ') + data.procActions.te4
                                     }
                                 ],
                                 [
@@ -1562,15 +1557,360 @@ function makePDF() {
                                     },
                                     {
                                         alignment: 'center',
-                                        text: data.meetings.v5
+                                        text: data.procActions.v5
                                     },
                                     {
                                         alignment: 'center',
-                                        text: data.meetings.v10
+                                        text: data.procActions.ds5 + '      ' + data.procActions.ts5 + (data.procActions.ds5 != '' ? ' - ' : '') +
+                                        (data.procActions.ds5 == data.procActions.de5 ? '' : '\n' + data.procActions.de5 + '    ') + data.procActions.te5
+                                    }
+                                ],
+                                [
+                                    {
+                                        alignment: 'center',
+                                        text: '6'
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.procActions.v6
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.procActions.ds6 + '      ' + data.procActions.ts6 + (data.procActions.ds6 != '' ? ' - ' : '') +
+                                        (data.procActions.ds6 == data.procActions.de6 ? '' : '\n' + data.procActions.de6 + '    ') + data.procActions.te6
+                                    }
+                                ],
+                                [
+                                    {
+                                        alignment: 'center',
+                                        text: '7'
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.procActions.v7
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.procActions.ds7 + '      ' + data.procActions.ts7 + (data.procActions.ds7 != '' ? ' - ' : '') +
+                                        (data.procActions.ds7 == data.procActions.de7 ? '' : '\n' + data.procActions.de7 + '    ') + data.procActions.te7
+                                    }
+                                ],
+                                [
+                                    {
+                                        alignment: 'center',
+                                        text: '8'
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.procActions.v8
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.procActions.ds8 + '      ' + data.procActions.ts8 + (data.procActions.ds8 != '' ? ' - ' : '') +
+                                        (data.procActions.ds8 == data.procActions.de8 ? '' : '\n' + data.procActions.de8 + '    ') + data.procActions.te8
+                                    }
+                                ],
+                                [
+                                    {
+                                        alignment: 'center',
+                                        text: '9'
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.procActions.v9
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.procActions.ds9 + '      ' + data.procActions.ts9 + (data.procActions.ds9 != '' ? ' - ' : '') +
+                                        (data.procActions.ds9 == data.procActions.de9 ? '' : '\n' + data.procActions.de9 + '    ') + data.procActions.te9
+                                    }
+                                ],
+                                [
+                                    {
+                                        alignment: 'center',
+                                        text: '10'
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.procActions.v10
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.procActions.ds10 + '      ' + data.procActions.ts10 + (data.procActions.ds10 != '' ? ' - ' : '') +
+                                        (data.procActions.ds10 == data.procActions.de10 ? '' : '\n' + data.procActions.de10 + '    ') + data.procActions.te10
+                                    }
+                          	    ]
+                            ]}
+                    },
+
+//           В. Складання процесуальних документів
+
+                    {
+                        bold: false,
+                        fontSize: 9,
+                        text: '\nВ. Складання процесуальних документів'
+                    },
+                    {
+                        fontSize: 9,
+                        table: {
+                            widths: [20, '*', 130],
+                            body: [[
+                                {
+                                    bold: true,
+                                    margin: [-4, 0, -4, 0],
+                                    alignment: 'center',
+                                    text: '№ з/п'
+                                },
+                                {
+                                    bold: true,
+                                    alignment: 'center',
+                                    text: 'Найменування процесуального документа'
+                                },
+                                {
+                                    bold: true,
+                                    alignment: 'center',
+                                    text: 'Дата і час реєстрації органом\n' +
+                                    '(службовою особою), якому\n'+
+                                    '(якій) адресовано документ'
+                                }
+                            ],
+                                [
+                                    {
+                                        alignment: 'center',
+                                        text: '1'
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.procDocs.v1
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.procDocs.d1 + '      ' + data.procDocs.t1
+                                    }
+                                ],
+                                [
+                                    {
+                                        alignment: 'center',
+                                        text: '2'
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.procDocs.v2
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.procDocs.d2 + '      ' + data.procDocs.t2
+                                    }
+                                ],
+                                [
+                                    {
+                                        alignment: 'center',
+                                        text: '3'
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.procDocs.v3
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.procDocs.d3 + '      ' + data.procDocs.t3
+                                    }
+                                ],
+                                [
+                                    {
+                                        alignment: 'center',
+                                        text: '4'
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.procDocs.v4
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.procDocs.d4 + '      ' + data.procDocs.t4
+                                    }
+                                ],
+                                [
+                                    {
+                                        alignment: 'center',
+                                        text: '5'
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.procDocs.v5
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.procDocs.d5 + '      ' + data.procDocs.t5
+                                    }
+                                ],
+                                [
+                                    {
+                                        alignment: 'center',
+                                        text: '6'
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.procDocs.v6
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.procDocs.d6 + '      ' + data.procDocs.t6
+                                    }
+                                ],
+                                [
+                                    {
+                                        alignment: 'center',
+                                        text: '7'
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.procDocs.v7
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.procDocs.d7 + '      ' + data.procDocs.t7
+                                    }
+                                ],
+                                [
+                                    {
+                                        alignment: 'center',
+                                        text: '8'
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.procDocs.v8
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.procDocs.d8 + '      ' + data.procDocs.t8
+                                    }
+                                ],
+                                [
+                                    {
+                                        alignment: 'center',
+                                        text: '9'
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.procDocs.v9
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.procDocs.d9 + '      ' + data.procDocs.t9
+                                    }
+                                ],
+                                [
+                                    {
+                                        alignment: 'center',
+                                        text: '10'
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.procDocs.v10
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.procDocs.d10 + '      ' + data.procDocs.t10
                                     }
                                 ]
                             ]}
+                    },
 
+//   2.4. Оскарження адвокатом рішення щодо обрання особі запобіжного заходу у вигляді тримання під вартою
+
+                    {
+                        text: [
+                            {
+                                bold: true,
+                                fontSize: 9,
+                                text: '\n2.4. Оскарження адвокатом рішення щодо обрання особі запобіжного заходу у вигляді тримання під вартою (К'
+                            },
+                            {
+                                bold: true,
+                                fontSize: 6,
+                                text: 'оск'
+                            },
+                            {
+                                bold: true,
+                                fontSize: 9,
+                                text: ') '
+                            },
+                            {
+                                bold: false,
+                                fontSize: 9,
+                                text: '(відмітити потрібне):'
+                            }]
+                    },
+
+                    {
+                        fontSize: 9,
+                        table: {
+                            widths: [200, 330],
+                            body: [[
+                                {
+                                    bold: true,
+                                    alignment: 'center',
+                                    text: 'Процесуальна дія'
+                                },
+                                {
+                                    bold: true,
+                                    alignment: 'center',
+                                    text: [
+				                            {
+				                                bold: true,
+				                                text: 'Результат '
+				                            },
+				                            {
+				                                bold: false,
+				                                italics: true
+				                                text: '(одна відмітка за результатом останньої процесуальної дії)'
+				                            }]
+                                }
+                            ],
+                            [
+                                {
+                                    alignment: 'center',
+                                    colSpan: 2,
+                                     table: {
+			                            widths: [4, 450],
+			                            body: [
+			                            [
+			                            	{
+			                                border: [true, true, true, true],
+			                                margin: [-2, -3, -2, -4],
+			                                fontSize: 14,
+			                                bold: true,
+			                                // одна відмітка за результатом останньої процесуальної дії ЗРОБИТИ ФУНКЦІЮ В data
+			                                text: (data.specCategory.v1 ? 'X' : '')
+			                            	},
+			                                {
+			                                    border: [false, false, false, false],
+			                                    fontSize: 9,
+			                                    text: 'клопотання слідчого, прокурора про обрання затриманій особі запобіжного заходу не подавалося або стосувалося більш'
+			                                }
+			                            ],
+			                            [{
+			                            	colSpan: 2,
+			                            	border: [false, false, false, false],
+			                                fontSize: 9,
+			                                text: 'м’якого запобіжного заходу, ніж тримання під вартою'
+			                            },
+			                            {}]]}
+                                },
+                                {}
+                            ],
+                            [
+                                {
+                                    alignment: 'center',
+                                    text: '1'
+                                },
+                                {
+                                    alignment: 'center',
+                                    text: data.procDocs.d1 + '      ' + data.procDocs.t1
+                                }
+                            ]
+                         ]}
                     },
 
 
@@ -1631,14 +1971,14 @@ function makePDF() {
 						}
 				}
 		};
-    pdfMake.fonts = {
-        Roboto: {
-            normal: 'Roboto-Regular.ttf',
-            bold: 'Roboto-Medium.ttf',
-            italics: 'Roboto-Italic.ttf',
-            bolditalics: 'Roboto-MediumItalic.ttf'
-        }
-    };
+    // pdfMake.fonts = {
+    //     Roboto: {
+    //         normal: 'Roboto-Regular.ttf',
+    //         bold: 'Roboto-Medium.ttf',
+    //         italics: 'Roboto-Italic.ttf',
+    //         bolditalics: 'Roboto-MediumItalic.ttf'
+    //     }
+    // };
 		pdfMake.createPdf(docDefinition).open();
 }
 
