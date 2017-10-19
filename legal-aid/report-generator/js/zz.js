@@ -1,9 +1,9 @@
 var data = {
 	commonData: {
-        lawyerName: '________________________________________________',
+        lawyerName: '___________________________________________________________________________________',
         arrandDate: '__ __ / __ __ / __ __ __ __',
         arrandNum: '_____ – ________________',
-        detaineeName: '______________________________________________________________',
+        detaineeName: '___________________________________________________________________________________________________________',
         detaineeDate: '__ __ / __ __ / __ __ __ __'
 	},
 		//кількість виїздів адвоката
@@ -138,8 +138,20 @@ var data = {
 	}},
 	//строк подання акту
 	termSubmission: {v1: 1, k: function() {
-		return (this.v1);
-	}},
+		return (this.v1);}, l: function () {
+	    switch (this.v1) {
+            case 1:
+                return ('до 45 днів');
+            case 0.75:
+                return ('від 46 до 60 днів');
+            case 0.5:
+                return ('від 61 до 90 днів');
+            case 0.25:
+                return ('від 91 до 120 днів');
+            default:
+                return ('понад 120 днів');
+        }
+    }},
 	//Побачення з особою, якій надається БВПД
 	meetings: {v1: '', v2: '', v3: '', v4: '', v5: '', v6: '', v7: '', v8: '', v9: '', v10: ''},
 	//Участь у процесуальних діях
@@ -217,7 +229,7 @@ function makeReport() {
     // костиль щоб заокруглювало як і exel
     data.sum += 0.0004;
     data.sum = data.sum.toFixed(2);
-    // alert(sum);
+    // console.log(encodeURIComponent('https://image.freepik.com/free-icon/no-translate-detected_318-76970.jpg'));
     makePDF();
     return false;
 }
@@ -225,12 +237,14 @@ function makeReport() {
 function makePDF() {
 		var a = 14;
 		var docDefinition = {
-            pageMargins: [ 20, 10, 10, 11 ],
+            pageSize: 'A4',
+            pageOrientation: 'portrait',
+            pageMargins: [ 25, 20, 20, 11 ],
 				content: [
-                    {
+                   /* {
                         fontSize: 9,
                         table: {
-                            widths: [390, '*', '*', '*'],
+                            widths: [400, 45, 45, '*'],
                             body: [
                             	[{
                                     border: [false, false, true, false],
@@ -297,21 +311,23 @@ function makePDF() {
                                     },
                                     {
                                         fillColor: '#dbe6c4',
+                                        margin: [0, 5, 0, 5],
                                         alignment: 'center',
-										text: '\n' + data.numTrips.v1
+										text: data.numTrips.v1
 									},
                                     {
                                         bold: true,
-
+                                        margin: [0, 5, 0, 5],
                                         alignment: 'center',
                                         fillColor: '#d9d9d9',
-                                        text: '\nКвиїздів='
+                                        text: 'Квиїздів='
                                     },
                                     {
                                         bold: true,
+                                        margin: [0, 5, 0, 5],
                                         alignment: 'center',
                                         fillColor: '#d9d9d9',
-                                        text: '\n' + comma(data.numTrips.k())
+                                        text: comma(data.numTrips.k())
                                     }
                                 ],
 
@@ -667,7 +683,7 @@ function makePDF() {
                                         fillColor: '#ffffff',
                                         border: [true, false, true, false],
                                         italics: true,
-                                       	text: '- кількість дій, які повністю або частково припадають на: ' +
+                                       	text: '- кількість дій, які повністю або частково припадають на:\n' +
                                         'нічний час (з 22.00 до 6.00) або вихідні (субота, неділя), або святкові / неробочі дні'
                                     },
                                     {
@@ -941,27 +957,374 @@ function makePDF() {
                                     }
                                 ],
 
-// потрібно прописувати
-// розмір прожиткового мінімуму
+// 7. Розмір прожиткового мінімуму, грн.
+
+                                [
+                                    {
+                                        fillColor: '#d9d9d9',
+                                        text: [
+                                            {
+                                                bold: true,
+                                                text: '7. Розмір прожиткового мінімуму, грн.\n'
+                                            },
+                                            {
+                                                bold: false,
+                                                fontSize: 8,
+                                                text: 'для працездатних осіб на момент подання адвокатом акта'
+                                            }]
+                                    },
+                                    {
+                                        fillColor: '#dbe6c4',
+                                        margin: [0, 5, 0, 5],
+                                        alignment: 'center',
+                                        text: comma(data.paymentPerHour.v1) + ',00'
+                                    },
+                                    {
+                                        bold: true,
+                                        margin: [0, 5, 0, 5],
+                                        alignment: 'center',
+                                        fillColor: '#d9d9d9',
+                                        text: 'Огод ='
+                                    },
+                                    {
+                                        bold: true,
+                                        margin: [0, 5, 0, 5],
+                                        alignment: 'center',
+                                        fillColor: '#d9d9d9',
+                                        text: comma(data.paymentPerHour.k()) + '0'
+                                    }
+                                ],
 
 
+// 8. Строк подання акта
 
+                                [
+                                    {
+                                        fillColor: '#d9d9d9',
+                                        text: [
+                                            {
+                                                bold: true,
+                                                text: '8. Строк подання акта\n'
+                                            },
+                                            {
+                                                bold: false,
+                                                fontSize: 7,
+                                                text: 'починаючи з дня, наступного за днем завершення надання БВПД / відповідної стадії провадження (процесу)'
+                                            }]
+                                    },
+                                    {
+                                        fillColor: '#dbe6c4',
+                                        alignment: 'center',
+                                        text: data.termSubmission.l()
+                                    },
+                                    {
+                                        bold: true,
+                                        margin: [0, 5, 0, 5],
+                                        alignment: 'center',
+                                        fillColor: '#d9d9d9',
+                                        text: 'Кзвіт ='
+                                    },
+                                    {
+                                        bold: true,
+                                        margin: [0, 5, 0, 5],
+                                        alignment: 'center',
+                                        fillColor: '#d9d9d9',
+                                        text: comma(data.termSubmission.k())
+                                    }
+                                ],
 
+                                [
+                                    {border: [false, false, false, false], text: '\n'},
+                                    {border: [false, false, false, false], text: '\n'},
+                                    {border: [false, false, false, false], text: '\n'},
+                                    {border: [false, false, false, false], text: '\n'}
+                                ],
+                                [
+                                    {
+                                        border: [false, false, false, false],
+                                        fillColor: '#dbe6c4',
+                                        alignment: 'right',
+                                        margin: [-20, 5, -4, 5],
+                                        fontSize: 8,
+                                        colSpan: 2,
+                                        text: 'P=(2 х Квиїздів + 2 х Кос. кат x Кдій х Коск х Кприп) х Огод х Кос. час х Кзвіт=' +
+                                        '(2 x ' + comma(data.numTrips.k()) + ' + ' + '2 x ' + comma(data.specCategory.k()) + ' x ' + comma(data.numActs.k()) + ' x ' +
+                                        comma(data.osk.k()) + ' x ' + comma(data.terminatePart.k()) + ') x ' + comma(data.paymentPerHour.k()) + ' x ' +
+                                        comma(data.actsInNight.k()) + ' x ' + comma(data.termSubmission.k()) + '='
 
+                                    },
+                                    {},
+                                    {
+                                        border: [false, false, true, false],
+                                        fontSize: 15,
+                                        bold: true,
+                                        alignment: 'right',
+                                        fillColor: '#286e28',
+                                        color: 'white',
+                                        colSpan: 2,
+                                        text: comma(data.sum) + ' '
+                                    },
+                                    {}
+                                ],
 
-
-
-                                ['Column 1', 'Column 2', 'Column 3', 'Column 4'],
-                                ['One value goes here', 'Another one here', 'OK?', 'or NO?']
                             ]
                         }
-                    },
+                    },*/
+
+                    // Розрахунок розміру винагороди адвоката за надання безоплатної вторинної правової допомоги
 
                     {
-								text: 'це код в ЮТФ-8',
-								fontSize: 15,
-								style: 'header'
-						},
+                        // pageBreak: 'before',
+                        table: {
+                             widths: ['*', 170, 250,],
+                            body: [
+                                [{
+                                 fontSize: 15,
+                                    border: [false, false, false, false],
+                                 table: {
+                                     body: [[{
+                                         bold: true,
+                                         margin: [2, 2, 2, 7],
+                                         text: 'ЗЗ'
+                                     }]]}
+                                    // border: [false, false, true, false],
+                                    // fillColor: '#286e28',
+                                    // color: 'white',
+                                    // colSpan: 4,
+                                    // alignment: 'center',
+                                    // text: 'ЗЗ'
+                                    },
+                                    {
+                                        border: [false, false, false, false],
+                                        text: ''
+                                    },
+                                    {
+                                        border: [false, false, false, false],
+                                        fontSize: 8,
+                                        text: 'Додаток 2\n'+
+                                            'до акта надання безоплатної вторинної правової допомоги\n \n'+
+                                            'від «_____» ____________________ 20 ___ року  № _________\n \n'
+                                    }]]
+                        }
+                    },
+                    // Заголовок
+                    {
+                        alignment: 'center',
+                        fontSize: 9,
+                        text: [
+                            {
+                                bold: true,
+                                text: 'Розрахунок розміру винагороди адвоката за надання безоплатної вторинної правової допомоги\n'
+                            },
+                            {
+                                bold: false,
+                                text: 'особі, яка відповідно до положень кримінального процесуального законодавства вважається затриманою та/або стосовно якої\n'+
+                                    'обрано запобіжний захід у вигляді тримання під вартою (ЗЗ)\n \n'
+                            }]
+                    },
+
+//  1. ЗАГАЛЬНІ ДАНІ
+
+                    {
+                        table: {
+                            widths: [545],
+                            body: [[{
+                                border: [false, false, false, false],
+                                margin: [-2, -2, -2, -2],
+                                fontSize: 8.5,
+                                bold: true,
+                                fillColor: '#bebebe',
+                                text: '1. ЗАГАЛЬНІ ДАНІ'
+                        }]]}
+                    },
+                    {
+                        fontSize: 9,
+                        text: [
+                            {
+                                bold: true,
+                                text: '\n1.1. П.І.Б. адвоката, який (яка) надав(ла) БВПД  '
+                            },
+                            {
+                                bold: false,
+                                text: data.commonData.lawyerName
+                            }]
+                    },
+                    {
+                        fontSize: 9,
+                        text: [
+                            {
+                                bold: true,
+                                text: '\n1.2. Доручення центру з надання БВПД  '
+                            },
+                            {
+                                bold: false,
+                                text: 'від ' + data.commonData.arrandDate + ' № ' + data.commonData.arrandNum
+                            }]
+                    },
+                    {
+                        fontSize: 9,
+                        text: [
+                            {
+                                bold: true,
+                                text: '\n1.3. П.І.Б., дата народження особи, якій надано БВПД\n'
+                            },
+                            {
+                                bold: false,
+                                text: data.commonData.detaineeName + '       ' + data.commonData.detaineeDate
+                            }]
+                    },
+
+// 2. ВИХІДНІ ДАНІ ДЛЯ РОЗРАХУНКУ ЗНАЧЕНЬ КОЕФІЦІЄНТІВ, ЩО ВИЗНАЧАЮТЬ РОЗМІР ВИНАГОРОДИ АДВОКАТА
+
+                    {
+                        table: {
+                            widths: [545],
+                            body: [[{
+                                border: [false, false, false, false],
+                                margin: [-2, -2, -2, -2],
+                                fontSize: 8.5,
+                                bold: true,
+                                fillColor: '#bebebe',
+                                text: '2. ВИХІДНІ ДАНІ ДЛЯ РОЗРАХУНКУ ЗНАЧЕНЬ КОЕФІЦІЄНТІВ, ЩО ВИЗНАЧАЮТЬ РОЗМІР ВИНАГОРОДИ АДВОКАТА'
+                            }]]}
+                    },
+                    {
+                        text: [
+                            {
+                                bold: true,
+                                fontSize: 9,
+                                text: '\n2.1. Кількість виїздів адвоката для побачення з особою, якій надається БВПД, участі у процесуальних діях та/або збирання\n'+
+                                'доказів (К'
+                            },
+                            {
+                                bold: true,
+                                fontSize: 6,
+                                text: 'виїздів'
+                            },
+                            {
+                                bold: true,
+                                fontSize: 9,
+                                text: ')   _' + data.numTrips.v1 + '_.'
+                            }]
+                    },
+                    {
+                        text: [
+                            {
+                                bold: true,
+                                fontSize: 9,
+                                text: '2.2. Особлива категорія особи, якій надається БВПД (К'
+                            },
+                            {
+                                bold: true,
+                                fontSize: 6,
+                                text: 'ос. кат'
+                            },
+                            {
+                                bold: true,
+                                fontSize: 9,
+                                text: ') '
+                            },
+                            {
+                                bold: false,
+                                fontSize: 9,
+                                text: '(відмітити потрібне):'
+                            }]
+                    },
+                    {
+                        table: {
+                            widths: [4, 520],
+                            body: [[{
+                                border: [true, true, true, true],
+                                margin: [-2, -3, -2, -4],
+                                fontSize: 14,
+                                bold: true,
+                                text: (data.specCategory.v1 ? 'X' : '')
+                            },
+                                {
+                                    border: [false, false, false, false],
+                                    fontSize: 9,
+                                    text: 'у віці до 18 років;'
+                                }
+                            ]]}
+
+                    },
+                    {
+                        table: {
+                            widths: [4, 520],
+                            body: [[{
+                                border: [true, true, true, true],
+                                margin: [-2, -3, -2, -4],
+                                fontSize: 14,
+                                bold: true,
+                                text: (data.specCategory.v2 ? 'X' : '')
+                            },
+                                {
+                                    border: [false, false, false, false],
+                                    fontSize: 9,
+                                    text: 'через свої фізичні або психічні вади (німа, глуха, сліпа тощо) не може сама реалізувати своє право на захист;'
+                                }
+                            ]]}
+
+                    },
+                    {
+                        table: {
+                            widths: [4, 520],
+                            body: [[{
+                                border: [true, true, true, true],
+                                margin: [-2, -3, -2, -4],
+                                fontSize: 14,
+                                bold: true,
+                                text: (data.specCategory.v3 ? 'X' : '')
+                            },
+                                {
+                                    border: [false, false, false, false],
+                                    fontSize: 9,
+                                    text: 'не володіє мовою, якою ведеться провадження;'
+                                }
+                            ]]}
+
+                    },
+                    {
+                        table: {
+                            widths: [4, 520],
+                            body: [[{
+                                border: [true, true, true, true],
+                                margin: [-2, -3, -2, -4],
+                                fontSize: 14,
+                                bold: true,
+                                text: (data.specCategory.v4 ? 'X' : '')
+                            },
+                                {
+                                    border: [false, false, false, false],
+                                    fontSize: 9,
+                                    text: 'виявлено інфекційну хворобу, що підтверджується відповідною медичною довідкою.'
+                                }
+                            ]]}
+
+                    },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    {
+                        pageBreak: 'before',
+                        text: 'це код в ЮТФ-8',
+                        fontSize: 15,
+                        style: 'header'
+                    },
 						{
 								text: 'це код в ЮТФ-8',
 								fontSize: a,
@@ -1002,6 +1365,14 @@ function makePDF() {
 						}
 				}
 		};
+    pdfMake.fonts = {
+        Roboto: {
+            normal: 'Roboto-Regular.ttf',
+            bold: 'Roboto-Medium.ttf',
+            italics: 'Roboto-Italic.ttf',
+            bolditalics: 'Roboto-MediumItalic.ttf'
+        }
+    };
 		pdfMake.createPdf(docDefinition).open();
 }
 
@@ -1144,7 +1515,11 @@ function changeTerm(n, stan) {
  */
 function comma(num) {
 	var numstr = num.toString();
-	return (numstr.replace('.', ','));
+	// замінюємо крапки в числах комами
+    numstr = numstr.replace('.', ',')
+    // ділимо на розряди
+    numstr = numstr.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ');
+	return (numstr);
 }
 
 
@@ -1176,100 +1551,6 @@ function comma(num) {
 
 
 
-
-
-
-
-
-
-
-function button3() {
-		var part = document.getElementById('part');
-		var article = document.getElementById('article');
-
-		if (part.value == '') {
-				part.value = '3';
-		} else if (article.value.length < 5) {
-				article.value += '3';
-		}
-}
-
-function button4() {
-		var part = document.getElementById('part');
-		var article = document.getElementById('article');
-
-		if (part.value == '') {
-				part.value = '4';
-		} else if (article.value.length < 5) {
-				article.value += '4';
-		}
-}
-
-function button5() {
-		var part = document.getElementById('part');
-		var article = document.getElementById('article');
-
-		if (part.value == '') {
-				part.value = '5';
-		} else if (article.value.length < 5) {
-				article.value += '5';
-		}
-}
-
-function button6() {
-		var part = document.getElementById('part');
-		var article = document.getElementById('article');
-
-		if (part.value == '') {
-				alert('частини 6 не існує в жодній статті ККУ');
-		} else if (article.value.length < 5) {
-				article.value += '6';
-		}
-}
-
-function button7() {
-		var part = document.getElementById('part');
-		var article = document.getElementById('article');
-
-		if (part.value == '') {
-				alert('частини 7 не існує в жодній статті ККУ');
-		} else if (article.value.length < 5) {
-				article.value += '7';
-		}
-}
-
-function button8() {
-		var part = document.getElementById('part');
-		var article = document.getElementById('article');
-
-		if (part.value == '') {
-				alert('частини 8 не існує в жодній статті ККУ');
-		} else if (article.value.length < 5) {
-				article.value += '8';
-		}
-}
-
-function button9() {
-		var part = document.getElementById('part');
-		var article = document.getElementById('article');
-
-		if (part.value == '') {
-				alert('частини 9 не існує в жодній статті ККУ');
-		} else if (article.value.length < 5) {
-				article.value += '9';
-		}
-}
-
-function button0() {
-		var part = document.getElementById('part');
-		var article = document.getElementById('article');
-
-		if (part.value == '') {
-				alert('частини 0 не існує в жодній статті ККУ');
-		} else if (article.value != '' && article.value.length < 5) {
-				article.value += '0';
-		}
-}
 
 function buttonX() {
 		var part = document.getElementById('part');
