@@ -210,7 +210,7 @@ function setData(attr, field, value, type) {
             data[attr][field] = (parseInt(value) || 0);
             break;
         case 'date' :
-            data[attr][field] = value.replace('/-/g', '/');
+            data[attr][field] = value.replace(/-/g, '/');
             break;
         case 'flo' :
             data[attr][field] = (parseFloat(value) || 0);
@@ -1303,9 +1303,275 @@ function makePDF() {
 
                     },
 
+//  2.3. Сумарна кількість дій адвоката з надання БВПД, зазначених у реєстрі дій адвоката
 
+                    {
+                        text: [
+                            {
+                                bold: true,
+                                fontSize: 9,
+                                text: '\n2.3. Сумарна кількість дій адвоката з надання БВПД, зазначених у реєстрі дій адвоката (К'
+                            },
+                            {
+                                bold: true,
+                                fontSize: 6,
+                                text: 'дій'
+                            },
+                            {
+                                bold: true,
+                                fontSize: 9,
+                                text: ')*   _' + data.numActs.v1 + '_.\n'
+                            },
+                            {
+                                bold: false,
+                                fontSize: 6,
+                                text: '* У разі якщо затриману особу звільнено до моменту прибуття адвоката, вказується 0.'
+                            }]
+                    },
 
+//           Реєстр дій адвоката
 
+                    {
+                        bold: true,
+                        fontSize: 9,
+                        text: '\nРеєстр дій адвоката\n'
+                    },
+
+//           Побачення з особою, якій надається БВПД
+
+                    {
+                        bold: false,
+                        fontSize: 9,
+                        text: '\nА. Побачення з особою, якій надається БВПД'
+                    },
+                    {
+                        fontSize: 9,
+                        table: {
+                            widths: [20, '*', 20, '*'],
+                            body: [[
+                                {
+                                    bold: true,
+                                    margin: [-4, 0, -4, 0],
+                                    alignment: 'center',
+                                    text: '№ з/п'
+                                },
+                                {
+                                    bold: true,
+                                    alignment: 'center',
+                                    text: 'Дата і час початку та закінчення'
+                                },
+                                {
+                                    bold: true,
+                                    margin: [-4, 0, -4, 0],
+                                    alignment: 'center',
+                                    text: '№ з/п'
+                                },
+                                {
+                                    bold: true,
+                                    alignment: 'center',
+                                    text: 'Дата і час початку та закінчення'
+                                }
+                                ],
+                                [
+                                    {
+                                        alignment: 'center',
+                                        text: '1'
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.meetings.v1
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: '6'
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.meetings.v6
+                                    }
+                                ],
+                                [
+                                    {
+                                        alignment: 'center',
+                                        text: '2'
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.meetings.v2
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: '7'
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.meetings.v7
+                                    }
+                                ],
+                                [
+                                    {
+                                        alignment: 'center',
+                                        text: '3'
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.meetings.v3
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: '8'
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.meetings.v8
+                                    }
+                                ],
+                                [
+                                    {
+                                        alignment: 'center',
+                                        text: '4'
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.meetings.v4
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: '9'
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.meetings.v9
+                                    }
+                                ],
+                                [
+                                    {
+                                        alignment: 'center',
+                                        text: '5'
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.meetings.v5
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: '10'
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.meetings.v10
+                                    }
+                                ]
+                            ]}
+
+                    },
+
+//           Б. Участь у процесуальних діях
+
+                    {
+                        bold: false,
+                        fontSize: 9,
+                        text: '\nБ. Участь у процесуальних діях'
+                    },
+                    {
+                        fontSize: 9,
+                        table: {
+                            widths: [20, '*', 150],
+                            body: [[
+                                {
+                                    bold: true,
+                                    margin: [-4, 0, -4, 0],
+                                    alignment: 'center',
+                                    text: '№ з/п'
+                                },
+                                {
+                                    bold: true,
+                                    alignment: 'center',
+                                    text: 'Найменування процесуальної дії'
+                                },
+                                {
+                                    bold: true,
+                                    alignment: 'center',
+                                    text: 'Дата і час початку\n' +
+                                    'та закінчення'
+                                }
+                            ],
+                                [
+                                    {
+                                        alignment: 'center',
+                                        text: '1'
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.procActions.v1
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.procActions.ds1 + '   ' + data.procActions.ts1 + '-' +
+                                        (data.procActions.ds1 == data.procActions.de1 ? '' : data.procActions.de1 + ' ') + data.procActions.te1
+                                    }
+                                ],
+
+                                // here  HERE
+                                [
+                                    {
+                                        alignment: 'center',
+                                        text: '2'
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.meetings.v2
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.meetings.v7
+                                    }
+                                ],
+                                [
+                                    {
+                                        alignment: 'center',
+                                        text: '3'
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.meetings.v3
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.meetings.v8
+                                    }
+                                ],
+                                [
+                                    {
+                                        alignment: 'center',
+                                        text: '4'
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.meetings.v4
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.meetings.v9
+                                    }
+                                ],
+                                [
+                                    {
+                                        alignment: 'center',
+                                        text: '5'
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.meetings.v5
+                                    },
+                                    {
+                                        alignment: 'center',
+                                        text: data.meetings.v10
+                                    }
+                                ]
+                            ]}
+
+                    },
 
 
 
