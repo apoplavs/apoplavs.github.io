@@ -131,7 +131,20 @@ var data = {
 			return (5);
 		}
 		return (1);
-	}},
+	    },
+        l: function() {
+		    if (this.appealProsecutor) {
+		        return (this.satisfiedAppealProsecutor ? 6 : 5);
+            }
+            if (this.appealLawer) {
+                return (this.satisfiedAppealLawer ? 4 : 3);
+            }
+            if (this.takePetition) {
+                return (this.satisfiedPetition ? 1 : 2);
+            }
+            return (0);
+
+        }},
 	//розмір прожиткового мінімуму
 	paymentPerHour: {v1: 1762, k: function() {
 		return ((this.v1 * 0.025).toFixed(2));
@@ -197,7 +210,7 @@ var data = {
         v8: false, //медична довідка, що підтверджує наявність у особи інфекційної хвороби
         v9: false, //скарга адвоката в порядку статті 206 КПК
         v10: false, //ухвала слідчого судді за результатами розгляду скарги адвоката в порядку статті 206 КПК
-        other: '', //інше
+        other: '_______________________________________________________________________________________________________________', //інше
         sheets: 0 //Загальна кількість аркушів документів
 	},
 	sum: 0
@@ -239,9 +252,9 @@ function makePDF() {
 		var docDefinition = {
             pageSize: 'A4',
             pageOrientation: 'portrait',
-            pageMargins: [ 25, 20, 20, 11 ],
+            pageMargins: [ 25, 15, 15, 10 ],
 				content: [
-                   /* {
+                    {
                         fontSize: 9,
                         table: {
                             widths: [400, 45, 45, '*'],
@@ -1065,21 +1078,21 @@ function makePDF() {
                                         text: comma(data.sum) + ' '
                                     },
                                     {}
-                                ],
+                                ]
 
                             ]
                         }
-                    },*/
+                    },
 
                     // Розрахунок розміру винагороди адвоката за надання безоплатної вторинної правової допомоги
 
                     {
-                        // pageBreak: 'before',
+                        pageBreak: 'before',
                         table: {
-                             widths: ['*', 170, 250,],
+                             widths: ['*', 170, 250],
                             body: [
                                 [{
-                                 fontSize: 15,
+                                 fontSize: 14,
                                     border: [false, false, false, false],
                                  table: {
                                      body: [[{
@@ -1132,6 +1145,11 @@ function makePDF() {
                         }]]}
                     },
                     {
+                        fontSize: 3,
+                        text: '\n'
+
+                    },
+                    {
                         fontSize: 9,
                         text: [
                             {
@@ -1144,6 +1162,11 @@ function makePDF() {
                             }]
                     },
                     {
+                        fontSize: 3,
+                        text: '\n'
+
+                    },
+                    {
                         fontSize: 9,
                         text: [
                             {
@@ -1152,8 +1175,13 @@ function makePDF() {
                             },
                             {
                                 bold: false,
-                                text: 'від ' + data.commonData.arrandDate + ' № ' + data.commonData.arrandNum
+                                text: 'від ' + data.commonData.arrandDate + '   № ' + data.commonData.arrandNum
                             }]
+                    },
+                    {
+                        fontSize: 3,
+                        text: '\n'
+
                     },
                     {
                         fontSize: 9,
@@ -1164,7 +1192,7 @@ function makePDF() {
                             },
                             {
                                 bold: false,
-                                text: data.commonData.detaineeName + '       ' + data.commonData.detaineeDate
+                                text: data.commonData.detaineeName + '          ' + data.commonData.detaineeDate
                             }]
                     },
 
@@ -1198,8 +1226,14 @@ function makePDF() {
                             {
                                 bold: true,
                                 fontSize: 9,
+                                italics: true,
                                 text: ')   _' + data.numTrips.v1 + '_.'
                             }]
+                    },
+                    {
+                        fontSize: 2,
+                        text: '\n'
+
                     },
                     {
                         text: [
@@ -1229,17 +1263,22 @@ function makePDF() {
                             widths: [4, 520],
                             body: [[{
                                 border: [true, true, true, true],
-                                margin: [-2, -3, -2, -4],
+                                margin: [-2, -5, -2, -5],
                                 fontSize: 14,
                                 bold: true,
                                 text: (data.specCategory.v1 ? 'X' : '')
                             },
                                 {
                                     border: [false, false, false, false],
+                                    margin: [0, -2, 0, -2],
                                     fontSize: 9,
                                     text: 'у віці до 18 років;'
                                 }
                             ]]}
+                    },
+                    {
+                        fontSize: 2,
+                        text: '\n'
 
                     },
                     {
@@ -1247,17 +1286,22 @@ function makePDF() {
                             widths: [4, 520],
                             body: [[{
                                 border: [true, true, true, true],
-                                margin: [-2, -3, -2, -4],
+                                margin: [-2, -5, -2, -5],
                                 fontSize: 14,
                                 bold: true,
                                 text: (data.specCategory.v2 ? 'X' : '')
                             },
                                 {
                                     border: [false, false, false, false],
+                                    margin: [0, -2, 0, -2],
                                     fontSize: 9,
                                     text: 'через свої фізичні або психічні вади (німа, глуха, сліпа тощо) не може сама реалізувати своє право на захист;'
                                 }
                             ]]}
+                    },
+                    {
+                        fontSize: 2,
+                        text: '\n'
 
                     },
                     {
@@ -1265,17 +1309,22 @@ function makePDF() {
                             widths: [4, 520],
                             body: [[{
                                 border: [true, true, true, true],
-                                margin: [-2, -3, -2, -4],
+                                margin: [-2, -5, -2, -5],
                                 fontSize: 14,
                                 bold: true,
                                 text: (data.specCategory.v3 ? 'X' : '')
                             },
                                 {
                                     border: [false, false, false, false],
+                                    margin: [0, -2, 0, -2],
                                     fontSize: 9,
                                     text: 'не володіє мовою, якою ведеться провадження;'
                                 }
                             ]]}
+                    },
+                    {
+                        fontSize: 2,
+                        text: '\n'
 
                     },
                     {
@@ -1283,17 +1332,23 @@ function makePDF() {
                             widths: [4, 520],
                             body: [[{
                                 border: [true, true, true, true],
-                                margin: [-2, -3, -2, -4],
+                                margin: [-2, -5, -2, -5],
                                 fontSize: 14,
                                 bold: true,
                                 text: (data.specCategory.v4 ? 'X' : '')
                             },
                                 {
                                     border: [false, false, false, false],
+                                    margin: [0, -2, 0, -2],
                                     fontSize: 9,
                                     text: 'виявлено інфекційну хворобу, що підтверджується відповідною медичною довідкою.'
                                 }
                             ]]}
+
+                    },
+                    {
+                        fontSize: 4,
+                        text: '\n'
 
                     },
 
@@ -1314,6 +1369,7 @@ function makePDF() {
                             {
                                 bold: true,
                                 fontSize: 9,
+                                italics: true,
                                 text: ')*   _' + data.numActs.v1 + '_.\n'
                             },
                             {
@@ -1322,13 +1378,23 @@ function makePDF() {
                                 text: '* У разі якщо затриману особу звільнено до моменту прибуття адвоката, вказується 0.'
                             }]
                     },
+                    {
+                        fontSize: 3,
+                        text: '\n'
+
+                    },
 
 //           Реєстр дій адвоката
 
                     {
                         bold: true,
                         fontSize: 9,
-                        text: '\nРеєстр дій адвоката\n'
+                        text: 'Реєстр дій адвоката'
+                    },
+                    {
+                        fontSize: 3,
+                        text: '\n'
+
                     },
 
 //           Побачення з особою, якій надається БВПД
@@ -1336,7 +1402,7 @@ function makePDF() {
                     {
                         bold: false,
                         fontSize: 9,
-                        text: '\nА. Побачення з особою, якій надається БВПД'
+                        text: 'А. Побачення з особою, якій надається БВПД'
                     },
                     {
                         fontSize: 9,
@@ -1844,12 +1910,13 @@ function makePDF() {
                     },
 
                     {
-                        fontSize: 9,
+                        fontSize: 8.5,
                         table: {
-                            widths: [200, 330],
+                            widths: [230, 305],
                             body: [[
                                 {
                                     bold: true,
+                                    fontSize: 9,
                                     alignment: 'center',
                                     text: 'Процесуальна дія'
                                 },
@@ -1859,41 +1926,43 @@ function makePDF() {
                                     text: [
 				                            {
 				                                bold: true,
+                                                fontSize: 9,
 				                                text: 'Результат '
 				                            },
 				                            {
 				                                bold: false,
-				                                italics: true
+                                                fontSize: 8,
+				                                italics: true,
 				                                text: '(одна відмітка за результатом останньої процесуальної дії)'
 				                            }]
                                 }
                             ],
                             [
                                 {
-                                    alignment: 'center',
+                                    margin: [10, 0, 0, 0],
                                     colSpan: 2,
                                      table: {
-			                            widths: [4, 450],
+			                            widths: [4, 515],
 			                            body: [
 			                            [
 			                            	{
 			                                border: [true, true, true, true],
-			                                margin: [-2, -3, -2, -4],
+			                                margin: [-2, -5, -2, -6],
 			                                fontSize: 14,
 			                                bold: true,
-			                                // одна відмітка за результатом останньої процесуальної дії ЗРОБИТИ ФУНКЦІЮ В data
-			                                text: (data.specCategory.v1 ? 'X' : '')
+			                                // одна відмітка за результатом останньої процесуальної дії
+			                                text: (data.osk.l() == 0 ? 'X' : '')
 			                            	},
 			                                {
 			                                    border: [false, false, false, false],
-			                                    fontSize: 9,
+                                                margin: [0, -2, 0, -2],
 			                                    text: 'клопотання слідчого, прокурора про обрання затриманій особі запобіжного заходу не подавалося або стосувалося більш'
 			                                }
 			                            ],
 			                            [{
 			                            	colSpan: 2,
 			                            	border: [false, false, false, false],
-			                                fontSize: 9,
+                                            alignment: 'left',
 			                                text: 'м’якого запобіжного заходу, ніж тримання під вартою'
 			                            },
 			                            {}]]}
@@ -1902,74 +1971,1254 @@ function makePDF() {
                             ],
                             [
                                 {
-                                    alignment: 'center',
-                                    text: '1'
+                                    text: 'Розгляд клопотання слідчого, прокурора про обрання затриманій особі запобіжного заходу у вигляді тримання під вартою'
                                 },
                                 {
-                                    alignment: 'center',
-                                    text: data.procDocs.d1 + '      ' + data.procDocs.t1
+                                    table: {
+                                        widths: [3, 280],
+                                        body: [
+                                            [
+                                                {
+                                                    border: [true, true, true, true],
+                                                    margin: [-3, -5, -3, -6],
+                                                    fontSize: 14,
+                                                    bold: true,
+                                                    // одна відмітка за результатом останньої процесуальної дії ЗРОБИТИ ФУНКЦІЮ В data
+                                                    text: (data.osk.l() == 1 ? 'X' : '')
+                                                },
+                                                {
+                                                    border: [false, false, false, false],
+                                                    margin: [0, -2, -5, -2],
+                                                    text: 'обрано запобіжний захід у вигляді тримання під вартою'
+                                                }
+                                            ],
+                                            [
+                                                {
+                                                    colSpan: 2,
+                                                    border: [false, false, false, false],
+                                                    text: ''
+                                                },
+                                                {}
+                                            ],
+                                            [
+                                                {
+                                                    border: [true, true, true, true],
+                                                    margin: [-3, -5, -3, -6],
+                                                    fontSize: 14,
+                                                    bold: true,
+                                                    // одна відмітка за результатом останньої процесуальної дії ЗРОБИТИ ФУНКЦІЮ В data
+                                                    text: (data.osk.l() == 2 ? 'X' : '')
+                                                },
+                                                {
+                                                    border: [false, false, false, false],
+                                                    margin: [0, -2, -5, -2],
+                                                    text: 'обрано більш м’який запобіжний захід або постановлено ухвалу про'
+                                                }
+                                            ],
+                                            [{
+                                                colSpan: 2,
+                                                border: [false, false, false, false],
+                                                margin: [0, -1, -5, -1],
+                                                alignment: 'left',
+                                                text: 'відмову в застосуванні запобіжного заходу'
+                                            },
+                                                {}]]
+                                    }
                                 }
-                            ]
+                            ],
+                                [
+                                    {
+                                        text: 'Розгляд апеляційної скарги адвоката на судове рішення про обрання запобіжного заходу у вигляді тримання під вартою'
+                                    },
+                                    {
+                                        table: {
+                                            widths: [4, 280],
+                                            body: [
+                                                [
+                                                    {
+                                                        border: [true, true, true, true],
+                                                        margin: [-3, -5, -3, -6],
+                                                        fontSize: 14,
+                                                        bold: true,
+                                                        // одна відмітка за результатом останньої процесуальної дії ЗРОБИТИ ФУНКЦІЮ В data
+                                                        text: (data.osk.l() == 3 ? 'X' : '')
+                                                    },
+                                                    {
+                                                        border: [false, false, false, false],
+                                                        margin: [0, -2, -5, -2],
+                                                        text: 'запобіжний захід у вигляді тримання під вартою залишено без змін'
+                                                    }
+                                                ],
+                                                [
+                                                    {
+                                                        colSpan: 2,
+                                                        border: [false, false, false, false],
+                                                        text: ''
+                                                    },
+                                                    {}
+                                                ],
+                                                [
+                                                    {
+                                                        border: [true, true, true, true],
+                                                        margin: [-3, -5, -3, -6],
+                                                        fontSize: 14,
+                                                        bold: true,
+                                                        // одна відмітка за результатом останньої процесуальної дії ЗРОБИТИ ФУНКЦІЮ В data
+                                                        text: (data.osk.l() == 4 ? 'X' : '')
+                                                    },
+                                                    {
+                                                        border: [false, false, false, false],
+                                                        margin: [0, -2, -5, -2],
+                                                        text: 'запобіжний захід у вигляді тримання під вартою змінено на більш '
+                                                    }
+                                                ],
+                                                [{
+                                                    colSpan: 2,
+                                                    border: [false, false, false, false],
+                                                    alignment: 'left',
+                                                    text: 'м’який'
+                                                },
+                                                    {}]]
+                                        }
+                                    }
+                                ],
+                                [
+                                    {
+                                        fontSize: 8.5,
+                                        text: 'Розгляд апеляційної скарги сторони обвинувачення на судове рішення про обрання запобіжного заходу більш м’якого, ніж тримання під вартою, або ухвалу про відмову в застосуванні запобіжного заходу'
+                                    },
+                                    {
+                                        table: {
+                                            widths: [4, 280],
+                                            body: [
+                                                [
+                                                    {
+                                                        border: [true, true, true, true],
+                                                        margin: [-3, -5, -3, -6],
+                                                        fontSize: 14,
+                                                        bold: true,
+                                                        // одна відмітка за результатом останньої процесуальної дії ЗРОБИТИ ФУНКЦІЮ В data
+                                                        text: (data.osk.l() == 5 ? 'X' : '')
+                                                    },
+                                                    {
+                                                        border: [false, false, false, false],
+                                                        margin: [0, -2, -5, -2],
+                                                        text: 'запобіжний захід чи ухвалу про відмову в застосуванні запобіжного'
+                                                    }
+                                                ],
+                                                [{
+                                                    colSpan: 2,
+                                                    border: [false, false, false, false],
+                                                    alignment: 'left',
+                                                    text: 'заходу залишено без змін'
+                                                },{}],
+                                                [
+                                                    {
+                                                        border: [true, true, true, true],
+                                                        margin: [-3, -5, -3, -6],
+                                                        fontSize: 14,
+                                                        bold: true,
+                                                        // одна відмітка за результатом останньої процесуальної дії ЗРОБИТИ ФУНКЦІЮ В data
+                                                        text: (data.osk.l() == 6 ? 'X' : '')
+                                                    },
+                                                    {
+                                                        border: [false, false, false, false],
+                                                        margin: [0, -2, -5, -2],
+                                                        text: 'обрано запобіжний захід у вигляді тримання під вартою'
+                                                    }
+                                                ]]
+                                        }
+                                    }
+                                ]
                          ]}
                     },
+                    {
+                        text: [
+                            {
+                                bold: true,
+                                fontSize: 9,
+                                text: '\n2.5. Припинення участі адвоката до завершення строку дії доручення для надання БВПД (К'
+                            },
+                            {
+                                bold: true,
+                                fontSize: 6,
+                                text: 'прип'
+                            },
+                            {
+                                bold: true,
+                                fontSize: 9,
+                                text: ') '
+                            },
+                            {
+                                bold: false,
+                                fontSize: 9,
+                                text: '(відмітити потрібне):'
+                            }]
+                    },
+                    {
+                        fontSize: 9,
+                        table: {
+                            widths: [4, 525],
+                            body: [
+                                [
+                                    {
+                                        border: [true, true, true, true],
+                                        margin: [-2, -5, -2, -6],
+                                        fontSize: 14,
+                                        bold: true,
+                                        text: (data.terminatePart.v1 ? 'X' : '')
+                                    },
+                                    {
+                                        border: [false, false, false, false],
+                                        margin: [0, -2, 0, -2],
+                                        text: 'під час першого конфіденційного побачення з адвокатом особа, якій надається БВПД, заявила про відмову від його послуг'
+                                    }
+                                ],
+                                [{
+                                    colSpan: 2,
+                                    border: [false, false, false, false],
+                                    margin: [0, -2, 0, -2],
+                                    alignment: 'left',
+                                    text: 'у письмовій формі;'
+                                },
+                                    {}]]}
+                    },
+                    {
+                        fontSize: 9,
+                        table: {
+                            widths: [4, 525],
+                            body: [
+                                [
+                                    {
+                                        border: [true, true, true, true],
+                                        margin: [-2, -5, -2, -6],
+                                        fontSize: 14,
+                                        bold: true,
+                                        text: (data.terminatePart.v2 ? 'X' : '')
+                                    },
+                                    {
+                                        border: [false, false, false, false],
+                                        margin: [0, -2, 0, -2],
+                                        text: 'адвокат під час першого конфіденційного побачення внаслідок конфлікту інтересів чи з інших причин прийняв'
+                                    }
+                                ],
+                                [{
+                                    colSpan: 2,
+                                    border: [false, false, false, false],
+                                    margin: [0, -2, 0, -2],
+                                    alignment: 'left',
+                                    text: 'рішення про відмову від надання БВПД особі;'
+                                },
+                                    {}]]}
+                    },
+                    {
+                        fontSize: 9,
+                        table: {
+                            widths: [4, 525],
+                            body: [
+                                [
+                                    {
+                                        border: [true, true, true, true],
+                                        margin: [-2, -5, -2, -6],
+                                        fontSize: 14,
+                                        bold: true,
+                                        text: (data.terminatePart.v3 ? 'X' : '')
+                                    },
+                                    {
+                                        border: [false, false, false, false],
+                                        margin: [0, -2, 0, -2],
+                                        text: 'адвокат припинив надання БВПД до завершення строку дії доручення в інший час після конфіденційного побачення'
+                                    }
+                                ],
+                                [{
+                                    colSpan: 2,
+                                    border: [false, false, false, false],
+                                    margin: [0, -2, 0, -2],
+                                    alignment: 'left',
+                                    text: 'з будь-яких інших підстав, визначених законом.'
+                                },
+                                    {}]]}
+                    },
+                    {
+                        fontSize: 4,
+                        text: '\n'
 
+                    },
 
-
-
-
-
-
-
-
-
-
-
+  //   2.6. Частка дій адвоката з надання БВПД, що повністю або частково припадали на нічний час, вихідні, святкові та неробочі дні
 
                     {
-                        pageBreak: 'before',
-                        text: 'це код в ЮТФ-8',
-                        fontSize: 15,
-                        style: 'header'
+                        text: [
+                            {
+                                bold: true,
+                                fontSize: 9,
+                                text: '2.6. Частка дій адвоката з надання БВПД, що повністю або частково припадали на нічний час, вихідні, святкові та неробочі\n'+
+                                    'дні, від загальної кількості таких дій '
+                            },
+                            {
+                                bold: false,
+                                fontSize: 9,
+                                text: 'згідно з даними, наведеними у реєстрі дій адвоката '
+                            },
+                            {
+                                bold: true,
+                                fontSize: 9,
+                                text: '(К'
+                            },
+                            {
+                                bold: true,
+                                fontSize: 6,
+                                text: 'ос. час'
+                            },
+                            {
+                                bold: true,
+                                fontSize: 9,
+                                text: ') '
+                            },
+                            {
+                                bold: false,
+                                fontSize: 9,
+                                text: '(відмітити потрібне):'
+                            }]
                     },
-						{
-								text: 'це код в ЮТФ-8',
-								fontSize: a,
-								style: 'header'
-						},
-						{
-								text: 'це код знову в ЮТФ-8',
-								fontSize: 15,
-								alignment: 'right'
-						},
+                    {
+                        table: {
+                            widths: [4, 50, 4, 80, 4, 80, 4, 80, 4, 80],
+                            body: [
+                                [{
+                                border: [true, true, true, true],
+                                margin: [-2, -5, -2, -5],
+                                fontSize: 14,
+                                bold: true,
+                                text: (data.actsInNight.percent < 10 ? 'X' : '')
+                            },
+                                {
+                                    border: [false, false, false, false],
+                                    margin: [0, -2, 0, -2],
+                                    fontSize: 9,
+                                    text: 'до 10 %;'
+                                },
+                                {
+                                    border: [true, true, true, true],
+                                    margin: [-2, -5, -2, -5],
+                                    fontSize: 14,
+                                    bold: true,
+                                    text: (data.actsInNight.percent >= 10 && data.actsInNight.percent < 20 ? 'X' : '')
+                                },
+                                    {
+                                        border: [false, false, false, false],
+                                        margin: [0, -2, 0, -2],
+                                        fontSize: 9,
+                                        text: 'від 10 % до 20 %;'
+                                    },
+                                {
+                                    border: [true, true, true, true],
+                                    margin: [-2, -5, -2, -5],
+                                    fontSize: 14,
+                                    bold: true,
+                                    text: (data.actsInNight.percent >= 20 && data.actsInNight.percent < 30 ? 'X' : '')
+                                },
+                                    {
+                                        border: [false, false, false, false],
+                                        margin: [0, -2, 0, -2],
+                                        fontSize: 9,
+                                        text: 'від 20 % до 30 %;'
+                                    },
+                                {
+                                    border: [true, true, true, true],
+                                    margin: [-2, -5, -2, -5],
+                                    fontSize: 14,
+                                    bold: true,
+                                    text: (data.actsInNight.percent >= 30 && data.actsInNight.percent < 50 ? 'X' : '')
+                                },
+                                    {
+                                        border: [false, false, false, false],
+                                        margin: [0, -2, 0, -2],
+                                        fontSize: 9,
+                                        text: 'від 30 % до 50 %;'
+                                    },
+                                {
+                                    border: [true, true, true, true],
+                                    margin: [-2, -5, -2, -5],
+                                    fontSize: 14,
+                                    bold: true,
+                                    text: (data.actsInNight.percent >= 50 ? 'X' : '')
+                                },
+                                    {
+                                        border: [false, false, false, false],
+                                        margin: [0, -2, 0, -2],
+                                        fontSize: 9,
+                                        text: 'понад 50 %.'
+                                    }
+                                ]
+                            ]}
+                    },
+                    {
+                        fontSize: 4,
+                        text: '\n'
 
-						// if you set pass an array instead of a string, you'll be able
-						// to style any fragment individually
-						{
-								text: [
-										'This paragraph is defined as an array of elements to make it possible to ', {
-												text: 'restyle part of it and make it bigger ',
-												fontSize: 15
-										},
-										'than the rest.'
-								]
-						}
-				],
-				styles: {
-						header: {
-								fontSize: 15,
-								bold: true
-						},
-						subheader: {
-								fontSize: 15,
-								bold: true
-						},
-						quote: {
-								italics: true
-						},
-						small: {
-								fontSize: 8
-						}
-				}
+                    },
+
+ //   2.7. Строк подання акта надання БВПД до центру з надання БВПД
+
+                    {
+                        text: [
+                            {
+                                bold: true,
+                                fontSize: 9,
+                                text: '2.7. Строк подання акта надання БВПД до центру з надання БВПД, '
+                            },
+                            {
+                                bold: false,
+                                fontSize: 9,
+                                text: 'починаючи з дня, наступного за днем завершення надання\nБВПД/стадії провадження чи процесу'
+                            },
+                            {
+                                bold: true,
+                                fontSize: 9,
+                                text: '(К'
+                            },
+                            {
+                                bold: true,
+                                fontSize: 6,
+                                text: 'звіт'
+                            },
+                            {
+                                bold: true,
+                                fontSize: 9,
+                                text: ') '
+                            },
+                            {
+                                bold: false,
+                                fontSize: 9,
+                                text: '(відмітити потрібне):'
+                            }]
+                    },
+                    {
+                        table: {
+                            widths: [4, 70, 4, 85, 4, 85, 4, 85, 4, 85],
+                            body: [
+                                [{
+                                    border: [true, true, true, true],
+                                    margin: [-2, -5, -2, -5],
+                                    fontSize: 14,
+                                    bold: true,
+                                    text: (data.termSubmission.v1 == 1 ? 'X' : '')
+                                },
+                                    {
+                                        border: [false, false, false, false],
+                                        margin: [0, -2, 0, -2],
+                                        fontSize: 9,
+                                        text: 'до 45 днів;'
+                                    },
+                                    {
+                                        border: [true, true, true, true],
+                                        margin: [-2, -5, -2, -5],
+                                        fontSize: 14,
+                                        bold: true,
+                                        text: (data.termSubmission.v1 == 0.75 ? 'X' : '')
+                                    },
+                                    {
+                                        border: [false, false, false, false],
+                                        margin: [0, -2, 0, -2],
+                                        fontSize: 9,
+                                        text: 'від 46 до 60 днів;'
+                                    },
+                                    {
+                                        border: [true, true, true, true],
+                                        margin: [-2, -5, -2, -5],
+                                        fontSize: 14,
+                                        bold: true,
+                                        text: (data.termSubmission.v1 == 0.5 ? 'X' : '')
+                                    },
+                                    {
+                                        border: [false, false, false, false],
+                                        margin: [0, -2, 0, -2],
+                                        fontSize: 9,
+                                        text: 'від 61 до 90 днів;'
+                                    },
+                                    {
+                                        border: [true, true, true, true],
+                                        margin: [-2, -5, -2, -5],
+                                        fontSize: 14,
+                                        bold: true,
+                                        text: (data.termSubmission.v1 == 0.25 ? 'X' : '')
+                                    },
+                                    {
+                                        border: [false, false, false, false],
+                                        margin: [0, -2, 0, -2],
+                                        fontSize: 9,
+                                        text: 'від 91 до 120 днів;'
+                                    },
+                                    {
+                                        border: [true, true, true, true],
+                                        margin: [-2, -5, -2, -5],
+                                        fontSize: 14,
+                                        bold: true,
+                                        text: (data.termSubmission.v1 == 0 ? 'X' : '')
+                                    },
+                                    {
+                                        border: [false, false, false, false],
+                                        margin: [0, -2, 0, -2],
+                                        fontSize: 9,
+                                        text: 'понад 120 днів.'
+                                    }
+                                ]
+                            ]}
+                    },
+                    {
+                        fontSize: 4,
+                        text: '\n'
+
+                    },
+
+ // 3. ПЕРЕЛІК ЗАВІРЕНИХ АДВОКАТОМ КОПІЙ ПРОЦЕСУАЛЬНИХ ТА ІНШИХ ДОКУМЕНТІВ
+
+                    {
+                        table: {
+                            widths: [545],
+                            body: [[{
+                                border: [false, false, false, false],
+                                margin: [-2, -2, -2, -2],
+                                fontSize: 9,
+                                bold: true,
+                                fillColor: '#bebebe',
+                                text: [
+                                    {
+                                        bold: true,
+                                        fontSize: 9,
+                                        text: '3.  ПЕРЕЛІК ЗАВІРЕНИХ АДВОКАТОМ КОПІЙ ПРОЦЕСУАЛЬНИХ ТА ІНШИХ ДОКУМЕНТІВ,  ЩО  ПІДТВЕРДЖУЮТЬ  НАВЕДЕНІ\nДАНІ '
+                                    },
+                                    {
+                                        bold: false,
+                                        fontSize: 9,
+                                        text: '(відмітити потрібне) (додаються на '
+                                    },
+                                    {
+                                        bold: false,
+                                        fontSize: 9,
+                                        italics: true,
+                                        text: '_' + data.documents.sheets + '_ арк.):'
+                                    }]
+                            }]]}
+                    },
+                    {
+                        fontSize: 3,
+                        text: '\n'
+
+                    },
+                    {
+                        fontSize: 9,
+                        table: {
+                            widths: [4, 200, 4, 310],
+                            body: [
+                                [{
+                                    border: [true, true, true, true],
+                                    margin: [-2, -5, -2, -5],
+                                    fontSize: 14,
+                                    bold: true,
+                                    text: (data.documents.v1 ? 'X' : '')
+                                },
+                                    {
+                                        border: [false, false, false, false],
+                                        margin: [0, -2, 0, -2],
+                                        text: 'заява затриманого про відмову від захисника;'
+                                    },
+                                    {
+                                        border: [true, true, true, true],
+                                        margin: [-2, -5, -2, -5],
+                                        fontSize: 14,
+                                        bold: true,
+                                        text: (data.documents.v2 ? 'X' : '')
+                                    },
+                                    {
+                                        border: [false, false, false, false],
+                                        margin: [0, -2, 0, -2],
+                                        text: 'клопотання слідчого, прокурора про застосування запобіжного заходу;'
+                                    }
+                                    ]
+                            ]}
+                        },
+                    {
+                        fontSize: 2,
+                        text: '\n'
+
+                    },
+                    {
+                        fontSize: 9,
+                        table: {
+                            widths: [4, 120, 4, 300],
+                            body: [
+                                [{
+                                    border: [true, true, true, true],
+                                    margin: [-2, -5, -2, -5],
+                                    fontSize: 14,
+                                    bold: true,
+                                    text: (data.documents.v3 ? 'X' : '')
+                                },
+                                    {
+                                        border: [false, false, false, false],
+                                        margin: [0, -2, 0, -2],
+                                        text: 'повідомлення про підозру;'
+                                    },
+                                    {
+                                        border: [true, true, true, true],
+                                        margin: [-2, -5, -2, -5],
+                                        fontSize: 14,
+                                        bold: true,
+                                        text: (data.documents.v4 ? 'X' : '')
+                                    },
+                                    {
+                                        border: [false, false, false, false],
+                                        margin: [0, -2, 0, -2],
+                                        text: 'ухвала слідчого судді, суду про застосування запобіжного заходу;'
+                                    }
+                                ]
+                            ]}
+                    },
+                    {
+                        fontSize: 2,
+                        text: '\n'
+
+                    },
+                    {
+                        fontSize: 9,
+                        table: {
+                            widths: [4, 500],
+                            body: [
+                                [{
+                                    border: [true, true, true, true],
+                                    margin: [-2, -5, -2, -5],
+                                    fontSize: 14,
+                                    bold: true,
+                                    text: (data.documents.v5 ? 'X' : '')
+                                },
+                                    {
+                                        border: [false, false, false, false],
+                                        margin: [0, -2, 0, -2],
+                                        text: 'апеляційна скарга захисника на ухвалу слідчого судді, суду про застосування запобіжного заходу;'
+                                    }
+                                ]
+                            ]}
+                    },
+                    {
+                        fontSize: 2,
+                        text: '\n'
+
+                    },
+                    {
+                        fontSize: 9,
+                        table: {
+                            widths: [4, 500],
+                            body: [
+                                [{
+                                    border: [true, true, true, true],
+                                    margin: [-2, -5, -2, -5],
+                                    fontSize: 14,
+                                    bold: true,
+                                    text: (data.documents.v6 ? 'X' : '')
+                                },
+                                    {
+                                        border: [false, false, false, false],
+                                        margin: [0, -2, 0, -2],
+                                        text: 'заперечення на апеляційну скаргу прокурора на ухвалу слідчого судді, суду про застосування запобіжного заходу;'
+                                    }
+                                ]
+                            ]}
+                    },
+                    {
+                        fontSize: 2,
+                        text: '\n'
+
+                    },
+                    {
+                        fontSize: 9,
+                        table: {
+                            widths: [4, 500],
+                            body: [
+                                [{
+                                    border: [true, true, true, true],
+                                    margin: [-2, -5, -2, -5],
+                                    fontSize: 14,
+                                    bold: true,
+                                    text: (data.documents.v7 ? 'X' : '')
+                                },
+                                    {
+                                        border: [false, false, false, false],
+                                        margin: [0, -2, 0, -2],
+                                        text: 'ухвала апеляційного суду за результатами розгляду апеляційної скарги прокурора/адвоката;'
+                                    }
+                                ]
+                            ]}
+                    },
+                    {
+                        fontSize: 2,
+                        text: '\n'
+
+                    },
+                    {
+                        fontSize: 9,
+                        table: {
+                            widths: [4, 315, 4, 190],
+                            body: [
+                                [{
+                                    border: [true, true, true, true],
+                                    margin: [-2, -5, -2, -5],
+                                    fontSize: 14,
+                                    bold: true,
+                                    text: (data.documents.v8 ? 'X' : '')
+                                },
+                                    {
+                                        border: [false, false, false, false],
+                                        margin: [0, -2, 0, -2],
+                                        text: 'медична довідка, що підтверджує наявність у особи інфекційної хвороби;'
+                                    },
+                                    {
+                                        border: [true, true, true, true],
+                                        margin: [-2, -5, -2, -5],
+                                        fontSize: 14,
+                                        bold: true,
+                                        text: (data.documents.v9 ? 'X' : '')
+                                    },
+                                    {
+                                        border: [false, false, false, false],
+                                        margin: [0, -2, 0, -2],
+                                        text: 'скарга адвоката в порядку статті 206 КПК;'
+                                    }
+                                ]
+                            ]}
+                    },
+                    {
+                        fontSize: 2,
+                        text: '\n'
+
+                    },
+                    {
+                        fontSize: 9,
+                        table: {
+                            widths: [4, 500],
+                            body: [
+                                [{
+                                    border: [true, true, true, true],
+                                    margin: [-2, -5, -2, -5],
+                                    fontSize: 14,
+                                    bold: true,
+                                    text: (data.documents.v10 ? 'X' : '')
+                                },
+                                    {
+                                        border: [false, false, false, false],
+                                        margin: [0, -2, 0, -2],
+                                        text: 'ухвала слідчого судді за результатами розгляду скарги адвоката в порядку статті 206 КПК'
+                                    }
+                                ]
+                            ]}
+                    },
+                    {
+                        fontSize: 2,
+                        text: '\n'
+
+                    },
+                    {
+                        fontSize: 9,
+                        table: {
+                            widths: [4, 530],
+                            body: [
+                                [{
+                                    border: [true, true, true, true],
+                                    margin: [-2, -5, -2, -5],
+                                    fontSize: 14,
+                                    bold: true,
+                                    text: (data.documents.other.indexOf('____') == -1 ? 'X' : '')
+                                },
+                                    {
+                                        border: [false, false, false, false],
+                                        margin: [0, -2, 0, -2],
+                                        text: [
+                                            {
+                                                text: 'інше (зазначити)  '
+                                            },
+                                            {
+                                                italics: true,
+                                                text: data.documents.other
+                                            }]
+                                    }
+                                ]
+                            ]}
+                    },
+                    {
+                        fontSize: 9,
+                        text: '____________________________________________________________________________________________________________________________________.'
+
+                    },
+                    {
+                        fontSize: 4,
+                        text: '\n'
+
+                    },
+
+   //  4. РОЗМІР ВИНАГОРОДИ АДВОКАТА ЗА НАДАННЯ БВПД:
+
+                    {
+                        table: {
+                            widths: [545],
+                            body: [[{
+                                border: [false, false, false, false],
+                                margin: [-2, -2, -2, -2],
+                                fontSize: 9,
+                                bold: true,
+                                fillColor: '#bebebe',
+                                text: '4. РОЗМІР ВИНАГОРОДИ АДВОКАТА ЗА НАДАННЯ БВПД:'
+                            }]]}
+                    },
+                    {
+                        fontSize: 6,
+                        text: '\n'
+
+                    },
+
+                    {
+                        fontSize: 10,
+                        table: {
+                            body: [[{
+                                border: [false, false, false, false],
+                                text: [
+                                    {
+                                        text: 'P'
+                                    },
+                                    {
+                                        fontSize: 7,
+                                        text: 'затр./ОПД/екс'
+                                    },
+                                    {
+                                        text: ' = (2  x '
+                                    }]
+                                },
+                                {
+                                    border: [false, false, false, false],
+                                    alignment: 'center',
+                                    margin: [-4, -1, -4, 0],
+                                    italics: true,
+                                    fontSize: 11,
+                                    text: '_' + comma(data.numTrips.k()) + '_'
+
+                                },
+                                {
+                                    border: [false, false, false, false],
+                                    text: ' +  2  x '
+                                },
+                                {
+                                    border: [false, false, false, false],
+                                    alignment: 'center',
+                                    margin: [-4, -1, -4, 0],
+                                    italics: true,
+                                    fontSize: 11,
+                                    text: '_' + comma(data.specCategory.k()) + '_'
+
+                                },
+                                {
+                                    border: [false, false, false, false],
+                                    text: ' x '
+                                },
+                                {
+                                    border: [false, false, false, false],
+                                    alignment: 'center',
+                                    margin: [-4, -1, -4, 0],
+                                    italics: true,
+                                    fontSize: 11,
+                                    text: '_' + comma(data.numActs.k()) + '_'
+
+                                },
+                                {
+                                    border: [false, false, false, false],
+                                    text: ' x '
+                                },
+                                {
+                                    border: [false, false, false, false],
+                                    alignment: 'center',
+                                    margin: [-4, -1, -4, 0],
+                                    italics: true,
+                                    fontSize: 11,
+                                    text: '_' + comma(data.osk.k()) + '_'
+
+                                },
+                                {
+                                    border: [false, false, false, false],
+                                    text: ' x '
+                                },
+                                {
+                                    border: [false, false, false, false],
+                                    alignment: 'center',
+                                    margin: [-4, -1, -4, 0],
+                                    italics: true,
+                                    fontSize: 11,
+                                    text: '_' + comma(data.terminatePart.k()) + '_)'
+
+                                },
+                                {
+                                    border: [false, false, false, false],
+                                    text: ' x '
+                                },
+                                {
+                                    border: [false, false, false, false],
+                                    alignment: 'center',
+                                    margin: [-4, -1, -4, 0],
+                                    italics: true,
+                                    fontSize: 11,
+                                    text: '_' + comma(data.paymentPerHour.k()) + '_ грн'
+
+                                },
+                                {
+                                    border: [false, false, false, false],
+                                    text: ' x '
+                                },
+                                {
+                                    border: [false, false, false, false],
+                                    alignment: 'center',
+                                    margin: [-4, -1, -4, 0],
+                                    italics: true,
+                                    fontSize: 11,
+                                    text: '_' + comma(data.actsInNight.k()) + '_'
+
+                                },
+                                {
+                                    border: [false, false, false, false],
+                                    text: ' x '
+                                },
+                                {
+                                    border: [false, false, false, false],
+                                    alignment: 'center',
+                                    margin: [-4, -1, -4, 0],
+                                    italics: true,
+                                    fontSize: 11,
+                                    text: '_' + comma(data.termSubmission.k()) + '_'
+
+                                },
+                                {
+                                    border: [false, false, false, false],
+                                    text: ' = '
+                                },
+                                {
+                                    border: [false, false, false, false],
+                                    margin: [-4, -1, -4, 0],
+                                    italics: true,
+                                    fontSize: 11,
+                                    text: comma(data.sum)
+
+                                },
+                                {
+                                    border: [false, false, false, false],
+                                    text: ' грн.'
+                                }],
+                                [
+                                    {
+                                        border: [false, false, false, false],
+                                        text: ''
+                                    },
+                                    {
+                                        border: [false, false, false, false],
+                                        margin: [-7, -4, -7, 0],
+                                        alignment: 'center',
+                                        text: [
+                                            {
+                                                fontSize: 8,
+                                                text: 'К'
+                                            },
+                                            {
+                                                fontSize: 6,
+                                                text: 'виїздів'
+                                            }]
+                                    },
+                                    {
+                                        border: [false, false, false, false],
+                                        text: ''
+                                    },
+                                    {
+                                        border: [false, false, false, false],
+                                        margin: [-7, -4, -7, 0],
+                                        alignment: 'center',
+                                        text: [
+                                            {
+                                                fontSize: 8,
+                                                text: 'К'
+                                            },
+                                            {
+                                                fontSize: 6,
+                                                text: 'ос. кат'
+                                            }]
+                                    },
+                                    {
+                                        border: [false, false, false, false],
+                                        text: ''
+                                    },
+                                    {
+                                        border: [false, false, false, false],
+                                        margin: [-7, -4, -7, 0],
+                                        alignment: 'center',
+                                        text: [
+                                            {
+                                                fontSize: 8,
+                                                text: 'К'
+                                            },
+                                            {
+                                                fontSize: 6,
+                                                text: 'дій'
+                                            }]
+                                    },
+                                    {
+                                        border: [false, false, false, false],
+                                        text: ''
+                                    },
+                                    {
+                                        border: [false, false, false, false],
+                                        margin: [-7, -4, -7, 0],
+                                        alignment: 'center',
+                                        text: [
+                                            {
+                                                fontSize: 8,
+                                                text: 'К'
+                                            },
+                                            {
+                                                fontSize: 6,
+                                                text: 'оск'
+                                            }]
+                                    },
+                                    {
+                                        border: [false, false, false, false],
+                                        text: ''
+                                    },
+                                    {
+                                        border: [false, false, false, false],
+                                        margin: [-7, -4, -7, 0],
+                                        alignment: 'center',
+                                        text: [
+                                            {
+                                                fontSize: 8,
+                                                text: 'К'
+                                            },
+                                            {
+                                                fontSize: 6,
+                                                text: 'прип'
+                                            }]
+                                    },
+                                    {
+                                        border: [false, false, false, false],
+                                        text: ''
+                                    },
+                                    {
+                                        border: [false, false, false, false],
+                                        margin: [-7, -4, -7, 0],
+                                        alignment: 'center',
+                                        text: [
+                                            {
+                                                fontSize: 8,
+                                                text: 'О'
+                                            },
+                                            {
+                                                fontSize: 6,
+                                                text: 'год'
+                                            }]
+                                    },
+                                    {
+                                        border: [false, false, false, false],
+                                        text: ''
+                                    },
+                                    {
+                                        border: [false, false, false, false],
+                                        margin: [-7, -4, -7, 0],
+                                        alignment: 'center',
+                                        text: [
+                                            {
+                                                fontSize: 8,
+                                                text: 'К'
+                                            },
+                                            {
+                                                fontSize: 6,
+                                                text: 'ос. час'
+                                            }]
+                                    },
+                                    {
+                                        border: [false, false, false, false],
+                                        text: ''
+                                    },
+                                    {
+                                        border: [false, false, false, false],
+                                        margin: [-7, -4, -7, 0],
+                                        alignment: 'center',
+                                        text: [
+                                            {
+                                                fontSize: 8,
+                                                text: 'К'
+                                            },
+                                            {
+                                                fontSize: 6,
+                                                text: 'звіт'
+                                            }]
+                                    },
+                                    {
+                                        border: [false, false, false, false],
+                                        text: ''
+                                    },
+                                    {
+                                        border: [false, false, false, false],
+                                        text: ''
+                                    },
+                                    {
+                                        border: [false, false, false, false],
+                                        text: ''
+                                    }
+
+                                ]
+                            ]}
+                    },
+                    {
+                        fontSize: 4,
+                        text: '\n'
+
+                    },
+                    {
+                        fontSize: 9,
+                        text: 'Достовірність інформації, зазначеної у цьому додатку, підтверджую.'
+
+                    },
+                    {
+                        fontSize: 9,
+                        text: '\n'
+
+                    },
+                    {
+                        fontSize: 9,
+                        table: {
+                            widths: [160, 50, 90],
+                            body: [[{
+                                border: [false, false, false, false],
+                                bold: true,
+                                text: 'Складено __ __ / __ __ / __ __ __ __'
+                                },
+                                {
+                                    border: [false, false, false, false],
+                                    text: ''
+                                },
+                                {
+                                    border: [false, false, false, false],
+                                    text: '_____________________'
+                                }
+                            ],
+                            [
+                                {
+                                    fontSize: 7,
+                                    border: [false, false, false, false],
+                                    margin: [0, -4, 0, 0],
+                                    alignment: 'center',
+                                    text: '(дата)'
+                                },
+                                {
+                                    border: [false, false, false, false],
+                                    text: ''
+                                },
+                                {
+                                    fontSize: 7,
+                                    border: [false, false, false, false],
+                                    margin: [0, -4, 0, 0],
+                                    alignment: 'center',
+                                    text: '(підпис адвоката)'
+                                }
+                            ]]
+                        }
+                    },
+                    {
+                        fontSize: 9,
+                        text: '\n'
+
+                    },
+                    {
+                        fontSize: 9,
+                        table: {
+                            widths: [250, 5, 90],
+                            body: [[{
+                                border: [false, false, false, false],
+                                bold: true,
+                                text: 'Подано до центру з надання БВПД __ __ / __ __ / __ __ __ __'
+                            },
+                                {
+                                    border: [false, false, false, false],
+                                    text: ''
+                                },
+                                {
+                                    border: [false, false, false, false],
+                                    text: '_____________________'
+                                }
+                            ],
+                                [
+                                    {
+                                        fontSize: 7,
+                                        border: [false, false, false, false],
+                                        margin: [120, -4, 0, 0],
+                                        alignment: 'center',
+                                        text: '(дата)'
+                                    },
+                                    {
+                                        border: [false, false, false, false],
+                                        text: ''
+                                    },
+                                    {
+                                        fontSize: 7,
+                                        border: [false, false, false, false],
+                                        margin: [0, -4, 0, 0],
+                                        alignment: 'center',
+                                        text: '(підпис адвоката)'
+                                    }
+                                ]]
+                        }
+                    },
+                    {
+                        fontSize: 9,
+                        text: '\n'
+
+                    },
+                    {
+                        fontSize: 9,
+                        table: {
+                            widths: [170, 250, 90],
+                            body: [[{
+                                border: [false, false, false, false],
+                                bold: true,
+                                text: 'Прийнято __ __ / __ __ / __ __ __ __'
+                            },
+                                {
+                                    border: [false, false, false, false],
+                                    bold: true,
+                                    text: 'Центр з надання БВПД __________________________________'
+                                },
+                                {
+                                    border: [false, false, false, false],
+                                    text: '____________________'
+                                }
+                            ],
+                                [
+                                    {
+                                        fontSize: 7,
+                                        border: [false, false, false, false],
+                                        margin: [0, -4, 0, 0],
+                                        alignment: 'center',
+                                        text: '(дата)'
+                                    },
+                                    {
+                                        border: [false, false, false, false],
+                                        margin: [100, -4, 0, 0],
+                                        fontSize: 7,
+                                        text: ' (прізвище, ініціали уповноваженої особи)'
+                                    },
+                                    {
+                                        fontSize: 7,
+                                        border: [false, false, false, false],
+                                        margin: [0, -4, 0, 0],
+                                        alignment: 'center',
+                                        text: '(підпис адвоката)'
+                                    }
+                                ]]
+                        }
+                    }
+				]
 		};
     // pdfMake.fonts = {
     //     Roboto: {
