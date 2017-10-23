@@ -23,7 +23,7 @@
 	<body>
 <script>
 	if (navigator.userAgent.search(/Chrome/) < 0) {
-		alert('для коректної роботи сайту необхідно відкрити його в Google Chrome');
+		alert('для коректної роботи сайту необхідно відкрити його в Google Chrome на десктопному пристрої');
 		window.stop();
 	}
 </script>
@@ -38,12 +38,12 @@
 		</tr>
 		<tr class="no-border">
 			<td>Доручення центру з надання БВПД від</td>
-			<td><input type="date" class="date-time" name="arrandDate" onchange="setData('commonData', 'arrandDate', this.value, 'date');"></td>
+			<td><input type="date" class="date-time" max="2020-01-01" min="2017-01-01" name="arrandDate" onchange="setData('commonData', 'arrandDate', this.value, 'date');"></td>
 			<td>№&nbsp;<input style="width: 80%;" type="text" name="arrandNum" maxlength="15" onchange="setData('commonData', 'arrandNum', this.value, '');"></td>
 		</tr>
 		<tr class="no-border">
 			<td colspan="2">П.І.Б., дата народження особи, якій надано БВПД <input style="float: right;" type="text" name="detaineeName" maxlength="50" onchange="setData('commonData', 'detaineeName', this.value, '');"></td>
-			<td><input type="date" class="date-time" name="detaineeDate" onchange="setData('commonData', 'detaineeDate', this.value, 'date');"></td>
+			<td><input type="date" class="date-time" max="2007-01-01" min="1917-01-01" name="detaineeDate" onchange="setData('commonData', 'detaineeDate', this.value, 'date');"></td>
 		</tr>
 		<tr>
 			<th colspan="3">Кількість виїздів адвоката</th>
@@ -228,7 +228,7 @@
 			<td colspan="2"></td>
 		</tr>
 		<tr class="no-border widter">
-			<td> №2 - <input type="text" name="meet2" maxlength="80" onchange="setData('meetings', 'v2', this.value, '');"></td>
+			<td> №2 - <input type="text" name="meet2" maxlength="80" onchange="setData('meetings', 'v2', this.value, '');showNextField(this);"></td>
 			<td colspan="2"></td>
 		</tr>
 		<tr class="no-border widter">
@@ -256,7 +256,7 @@
 			<td colspan="2"></td>
 		</tr>
 		<tr class="no-border widter">
-			<td> №9 - <input type="text" name="meet9" maxlength="80" onchange="setData('meetings', 'v9', this.value, '');showNextField(this);"></td>
+			<td> №9 - <input type="text" name="meet9" maxlength="80" onchange="setData('meetings', 'v9', this.value, '');"></td>
 			<td colspan="2"></td>
 		</tr>
 		<tr class="no-border widter">
@@ -279,7 +279,7 @@
 			<td><input type="date" name="date-end-proc-action1" class="date-time" onchange="setData('procActions', 'de1', this.value, 'date');"><input type="time" name="time-end-proc-action1" class="date-time" onchange="setData('procActions', 'te1', this.value, '');"></td>
 		</tr>
 		<tr class="widter">
-			<td> №2 - <input type="text" name="proc-action2" maxlength="80" onchange="setData('procActions', 'v2', this.value, '');"></td>
+			<td> №2 - <input type="text" name="proc-action2" maxlength="80" onchange="setData('procActions', 'v2', this.value, '');showNextField(this);"></td>
 			<td><input type="date" name="date-start-proc-action2" class="date-time" onchange="setData('procActions', 'ds2', this.value, 'date');"><input type="time" name="time-start-proc-action2" class="date-time" onchange="setData('procActions', 'ts2', this.value, '');"></td>
 			<td><input type="date" name="date-end-proc-action2" class="date-time" onchange="setData('procActions', 'de2', this.value, 'date');"><input type="time" name="time-end-proc-action2" class="date-time" onchange="setData('procActions', 'te2', this.value, '');"></td>
 		</tr>
@@ -314,7 +314,7 @@
 			<td><input type="date" name="date-end-proc-action8" class="date-time" onchange="setData('procActions', 'de8', this.value, 'date');"><input type="time" name="time-end-proc-action8" class="date-time" onchange="setData('procActions', 'te8', this.value, '');"></td>
 		</tr>
 		<tr class="widter">
-			<td> №9 - <input type="text" name="proc-action9" maxlength="80" onchange="setData('procActions', 'v9', this.value, '');showNextField(this);"></td>
+			<td> №9 - <input type="text" name="proc-action9" maxlength="80" onchange="setData('procActions', 'v9', this.value, '');"></td>
 			<td><input type="date" name="date-start-proc-action9" class="date-time" onchange="setData('procActions', 'ds9', this.value, 'date');"><input type="time" name="time-start-proc-action9" class="date-time" onchange="setData('procActions', 'ts9', this.value, '');"></td>
 			<td><input type="date" name="date-end-proc-action9" class="date-time" onchange="setData('procActions', 'de9', this.value, 'date');"><input type="time" name="time-end-proc-action9" class="date-time" onchange="setData('procActions', 'te9', this.value, '');"></td>
 		</tr>
@@ -338,7 +338,7 @@
 			<td><input type="time" name="time-proc-doc1" class="date-time" onchange="setData('procDocs', 't1', this.value, '');"></td>
 		</tr>
 		<tr class="widter">
-			<td> №2 - <input type="text" name="proc-doc2" maxlength="80" onchange="setData('procDocs', 'v2', this.value, '');"></td>
+			<td> №2 - <input type="text" name="proc-doc2" maxlength="80" onchange="setData('procDocs', 'v2', this.value, '');showNextField(this);"></td>
 			<td><input type="date" name="date-proc-doc2" class="date-time" onchange="setData('procDocs', 'd2', this.value, 'date');"></td>
 			<td><input type="time" name="time-proc-doc2" class="date-time" onchange="setData('procDocs', 't2', this.value, '');"></td>
 		</tr>
@@ -373,7 +373,7 @@
 			<td><input type="time" name="time-proc-doc8" class="date-time" onchange="setData('procDocs', 't8', this.value, '');"></td>
 		</tr>
 		<tr class="widter">
-			<td> №9 - <input type="text" name="proc-doc9" maxlength="80" onchange="setData('procDocs', 'v9', this.value, '');showNextField(this);"></td>
+			<td> №9 - <input type="text" name="proc-doc9" maxlength="80" onchange="setData('procDocs', 'v9', this.value, '');"></td>
 			<td><input type="date" name="date-proc-doc9" class="date-time" onchange="setData('procDocs', 'd9', this.value, 'date');"></td>
 			<td><input type="time" name="time-proc-doc9" class="date-time" onchange="setData('procDocs', 't9', this.value, '');"></td>
 		</tr>
@@ -432,7 +432,7 @@
 		</tr>
 		<tr>
 			<td colspan="2">Загальна кількість аркушів документів</td>
-			<td><input type="number" value="1" min="0" id="document-pages" required  onchange="setData('documents', 'sheets', this.value, 'num');"></td>
+			<td><input type="number" min="0" id="document-pages" required  onchange="setData('documents', 'sheets', this.value, 'num');"></td>
 		</tr>
 		<tr class="no-border">
 			<td></td>
