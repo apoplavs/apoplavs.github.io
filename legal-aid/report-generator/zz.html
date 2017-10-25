@@ -1,32 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
-	<meta name="description" content="Створити звіт онлайн про розрахунок розміру винагороди адвоката за надання безоплатної вторинної правової допомоги"> 
-	<title>Створити звіт БВПД онлайн</title>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<!-- <link rel="stylesheet" media="screen and (min-device-width: 300px) and (max-device-width: 450px), (min-device-width: 540px) and (max-device-width: 800px) and (orientation: landscape)" href="css/mobiles.css" />
-	<link rel="stylesheet" media="screen and (device-width: 768px), (device-width:1024px)" href="css/tablets.css" /> -->
-	
-</head>
-<noscript>
-	<style type="text/css">
-		.main-table {
-			display: none;
-		}
-	</style>
-	<div align="center">
-		<br/><br/><br/>
-	<h2>для роботи сайтом необхідно увімкнути JavaScript у веб-переглядачі</h2>
-		<a target="_blank" class="outer" href="https://support.google.com/adsense/answer/12654?hl=uk">ок Google як увімкнути JavaScript?</a></div>
-</noscript>
-	<body>
-<script>
-	if (navigator.userAgent.search(/Chrome/) < 0) {
-		alert('для коректної роботи сайту необхідно відкрити його в Google Chrome на десктопному пристрої');
-		window.stop();
-	}
-</script>
+		<link rel="stylesheet" type="text/css" href="report-generator/css/style.css">
 		</br>
 		<form onsubmit="makeReport();return(false);">
 		<table class="main-table" align="center">
@@ -446,14 +418,6 @@
 			<td></td>
 			<td colspan="2"><button type="submit" class="submit-button">Створити звіт</button></td>
 		</tr>
-
 		</table>
 		</form>
-		<br/>
-		<br/>
-			<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
-			 <script src='js/pdfmake/build/pdfmake.min.js'></script>
-				 <script src='js/pdfmake/build/vfs_fonts.js'></script>
-			<script type="text/javascript" src="js/zz.js"></script>
-	</body>
-</html>
+			<script type="text/javascript" src="report-generator/js/zz.js"></script>

@@ -2,13 +2,6 @@ body{
 	background : white;
 	margin: 0;
 }
-iframe {
-	width: 90vw;
-	align-content: center;
-	text-align: center;
-	align-items: center;
-	height: 99vh;
-}
 
 .tab-container{
 	background : forestgreen;

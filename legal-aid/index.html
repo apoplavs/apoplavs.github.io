@@ -1,14 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<title>автозвіт</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="description" content="Створити звіт онлайн про розрахунок розміру винагороди адвоката за надання безоплатної вторинної правової допомоги">
+	<title>Створити звіт БВПД онлайн</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	<script src='report-generator/js/pdfmake/build/pdfmake.min.js'></script>
+	<script src='report-generator/js/pdfmake/build/vfs_fonts.js'></script>
 	<!--<link rel="import" href="calculator/calculator.html">-->
 </head>
+<noscript>
+	<style type="text/css">
+		#content,  .tab-container{
+			display: none;
+		}
+	</style>
+	<div align="center">
+		<br/><br/><br/>
+		<h2>для роботи сайтом необхідно увімкнути JavaScript у веб-переглядачі</h2>
+		<a target="_blank" class="outer" href="https://support.google.com/adsense/answer/12654?hl=uk">ок Google як увімкнути JavaScript?</a></div>
+</noscript>
 	<body>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	<script>
+        if (navigator.userAgent.search(/Chrome/) < 0) {
+            alert('для коректної роботи сайту необхідно відкрити його в Google Chrome на десктопному пристрої');
+            window.stop();
+        }
+	</script>
 
 	<div class=tab-container>
 		<ul class="tabs clearfix" >
@@ -19,7 +38,7 @@
 				<a href=# f-link="calculator/calculator.html">Pending Lots</a>
 			</li>
 			<li>
-				<a href=# f-link="report-generator/develop.zz.html">звіт БВПД [ЗЗ]</a>
+				<a href=# f-link="report-generator/zz.html">звіт БВПД [ЗЗ]</a>
 			</li>
 			<li>
 				<a href=# f-link="calculator/calculator.html">калькулятор тяжкості злочинів</a>
@@ -39,15 +58,8 @@
             $.get($(this).find('a').attr('f-link'), function(data) {
 				$('#content').html(data);
             })
-            //$('iframe').attr('src', $(this).find('a').attr('f-link'));
         });
 
 	</script>
-		<!--<a href="calculator/calculator.html"><button>калькулятор тяжкості злочинів</button></a>-->
-		<!--</br>-->
-		<!--<a href="report-generator/zz.html">-->
-			<!--<button>створити звіт БВПД [ЗЗ]</button>-->
-		<!--</a>-->
-
 	</body>
 </html>
