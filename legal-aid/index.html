@@ -41,23 +41,37 @@
 				<a href=# f-link="report-generator/zz.html">звіт БВПД [ЗЗ]</a>
 			</li>
 			<li>
-				<a href=# f-link="calculator/calculator.html">калькулятор тяжкості злочинів</a>
+				<a href=# f-link="calculator/d.calculator.html">калькулятор тяжкості злочинів</a>
 			</li>
 		</ul>
 	</div>
 	<div class=outer-circle></div>
 	</br>
+	<div id="floatingCirclesG">
+		<div class="f_circleG" id="frotateG_01"></div>
+		<div class="f_circleG" id="frotateG_02"></div>
+		<div class="f_circleG" id="frotateG_03"></div>
+		<div class="f_circleG" id="frotateG_04"></div>
+		<div class="f_circleG" id="frotateG_05"></div>
+		<div class="f_circleG" id="frotateG_06"></div>
+		<div class="f_circleG" id="frotateG_07"></div>
+		<div class="f_circleG" id="frotateG_08"></div>
+	</div>
 	<div id="content"></div>
+	</br>
+	</br>
 	<script>
         var tabs = $('.tabs > li');
 
         tabs.on("click", function(){
+            $('#floatingCirclesG').show();
             tabs.removeClass('active');
             $(this).addClass('active');
             console.log($(this).find('a').attr('f-link'));
             $.get($(this).find('a').attr('f-link'), function(data) {
 				$('#content').html(data);
             })
+            //$('#floatingCirclesG').hide();
         });
 
 	</script>
