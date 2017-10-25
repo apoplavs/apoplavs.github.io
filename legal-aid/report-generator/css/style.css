@@ -7,19 +7,15 @@ background-color: white;
 	max-width: 1100px;
 	border-collapse: collapse;
 	box-shadow: 0 -2px 10px #006400;
-	/*border-radius: 10px;*/
 }
 tr:hover td:nth-child(1) {
-	box-shadow: inset 0 0 1em rgba(10, 150, 10, 0.4), 0 0 1em rgba(10, 150, 10, 0.4);
-	border-radius: 3px;
-	
+	box-shadow: inset 10px 0 5em rgba(30, 200, 30, .2), -5px 0 1em rgba(10, 140, 10, .3);
 }
 .main-table tr th {
 	box-shadow: inset 0 0 1em rgba(0, 100, 0, 0.5);
 }
 .main-table tr td {
 	padding: 15px 5px;
-	/*border: 1px solid #006400;*/
 }
 .main-table tr td input {
 	width: 50%;
@@ -61,7 +57,6 @@ tr:hover td:nth-child(1) {
 	display: none;
 }
 
-
 .main-table tr td .radiobox {
 	appearance:none;
 	margin:7px 20px;
@@ -102,13 +97,12 @@ tr:hover td:nth-child(1) {
 			0 0 0 .2em #45ad7d;
 	}
 
-
 .onoffswitch-checkbox {
 		display: none;
 }
 .onoffswitch-label {
 		display: block; overflow: hidden; cursor: pointer;
-		border: 2px solid #999999; border-radius: 2px;
+		border: 2px solid #999999;
 		width: 50%;
 }
 .onoffswitch-inner {
@@ -123,20 +117,24 @@ tr:hover td:nth-child(1) {
 .onoffswitch-inner:before {
 		content: "ТАК";
 		padding-left: 22px;
-		background-color: #6D8F76; color: #FFFFFF;
+		background-color: #5c8e6a; color: #FFFFFF;
 }
 .onoffswitch-inner:after {
 		content: "НІ";
 		padding-right: 27px;
-		background-color: #F5F5FF; color: #827878;
+		background-color: #F7F7FF; color: #616767;
 		text-align: right;
+}
+.onoffswitch-label:hover .onoffswitch-inner {
+    margin-left: -90%;
+    transition: margin 0.3s ease-in 0s;
 }
 
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
 		margin-left: 0;
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label {
-		right: 0px; 
+		right: 0;
 }
 
 .submit-button {
@@ -150,93 +148,14 @@ tr:hover td:nth-child(1) {
   color: #fff;
   background-color: #3e8e41;
   border: none;
-  border-radius: 15px;
-  box-shadow: 0 5px #ccc;
+  box-shadow: 0 2px 5px 3px #ccc;
 }
 
 .submit-button:active {
   background-color: #4CAF50;
-  box-shadow: 0 3px #777;
+  box-shadow: 0 2px #777;
   transform: translateY(4px);
 }
 #lawerApeal, #lawerApeal1 {
 	display: none;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*.main-table select {
-	width: 100%;
-	border-radius: 1px;
-	border-color: #376346;
-}*/
-
-
-/*
-.border-top>td:first-child, .border-top>td:last-child{
-	border-top: 7px solid #006400;
-	border-spacing: 5px;
-}
-.border-bottom>td:first-child, .border-bottom>td:last-child{
-	border-bottom: 7px solid #006400;
-}
-
-
-#calculator {
-	margin-top: 80px;
-	border: 5px ridge #55552b;
-	border-radius: 5px;
-	width: 600px;
-	height: 300px;
-	background: radial-gradient(#aaaa55, #77773c, #888844);
-}
-#area {
-	width: 100%;
-	height: 100%;
-	resize: none;
-}
-#area, #part, #article {
-	background: #e0ebeb;
-	border-radius: 1px;
-	font-size: 12px;
-}
-#part, #article {
-	width: 60%;
-	font-size: 17px;
-}
-
-#calculator td {
-	width: 50px;
-}
-button {
-	width: 80px;
-	height: 35px;
-	border-radius: 1px;
-	margin-left: 30%;
-	background: radial-gradient(#ecf9f2, #d9f2e6, #ecf9f2);
-}
-#label-names {
-	height: 30px;
-	font-size: 9pt;
-	text-align: center;
-}
-
-#crimes-count {
-	text-align: center;
-	font-size: 18pt;
-}
-*/
