@@ -14,21 +14,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="632">
-              <caret line="52" column="54" lean-forward="true" selection-start-line="52" selection-start-column="54" selection-end-line="52" selection-end-column="54" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="zz.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/report-generator/zz.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="10" column="17" lean-forward="true" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+            <state relative-caret-position="198">
+              <caret line="11" column="16" lean-forward="true" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -37,28 +27,28 @@
       <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="93" column="8" lean-forward="true" selection-start-line="93" selection-start-column="8" selection-end-line="93" selection-end-column="8" />
+            <state relative-caret-position="911">
+              <caret line="249" column="0" lean-forward="true" selection-start-line="249" selection-start-column="0" selection-end-line="249" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="d.calculator.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/calculator/d.calculator.html">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="14" column="17" lean-forward="true" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
+            <state relative-caret-position="303">
+              <caret line="52" column="28" lean-forward="true" selection-start-line="52" selection-start-column="28" selection-end-line="52" selection-end-column="28" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="d.style.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/calculator/css/d.style.css">
+      <file leaf-file-name="in-develop.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/report-generator/in-develop.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="144">
+              <caret line="8" column="73" lean-forward="true" selection-start-line="8" selection-start-column="73" selection-end-line="8" selection-end-column="73" />
               <folding />
             </state>
           </provider>
@@ -81,6 +71,8 @@
       <find>font</find>
       <find>mobi</find>
       <find>mobil</find>
+      <find>circ</find>
+      <find>oute</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -95,12 +87,15 @@
         <option value="$PROJECT_DIR$/report-generator/index.html" />
         <option value="$PROJECT_DIR$/report-generator/js/zz.js" />
         <option value="$PROJECT_DIR$/report-generator/css/style.css" />
-        <option value="$PROJECT_DIR$/report-generator/zz.html" />
-        <option value="$PROJECT_DIR$/calculator/calculator.html" />
         <option value="$PROJECT_DIR$/calculator/css/style.css" />
         <option value="$PROJECT_DIR$/calculator/css/d.style.css" />
         <option value="$PROJECT_DIR$/calculator/d.calculator.html" />
+        <option value="$PROJECT_DIR$/report-generator/zaz.html" />
         <option value="$PROJECT_DIR$/css/style.css" />
+        <option value="$PROJECT_DIR$/calculator/calculator.html" />
+        <option value="$PROJECT_DIR$/report-generator/zz.html" />
+        <option value="$PROJECT_DIR$/calculator/m.calculator.html" />
+        <option value="$PROJECT_DIR$/report-generator/in-develop.html" />
         <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
@@ -111,9 +106,10 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="471" />
-    <option name="width" value="1434" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="647" />
+    <option name="y" value="4" />
+    <option name="width" value="1210" />
     <option name="height" value="1177" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -174,8 +170,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -208,6 +202,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -266,16 +262,20 @@
       <workItem from="1508926006107" duration="2419000" />
       <workItem from="1508928723552" duration="449000" />
       <workItem from="1508930308649" duration="2728000" />
+      <workItem from="1508942679014" duration="890000" />
+      <workItem from="1509005068771" duration="5452000" />
+      <workItem from="1509012518123" duration="1139000" />
+      <workItem from="1509024247490" duration="4639000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="123530000" />
+    <option name="totallyTimeSpent" value="135650000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1186" extended-state="6" />
+    <frame x="647" y="4" width="1210" height="1177" extended-state="0" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.035416666" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0016750419" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291536" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -320,13 +320,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/report-generator/zz.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4986">
-          <caret line="277" column="140" lean-forward="false" selection-start-line="277" selection-start-column="137" selection-end-line="277" selection-end-column="140" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/report-generator/zz.html" />
     <entry file="file://$PROJECT_DIR$/report-generator/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="972">
@@ -341,13 +335,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/report-generator/zz.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4986">
-          <caret line="277" column="140" lean-forward="true" selection-start-line="277" selection-start-column="137" selection-end-line="277" selection-end-column="140" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/report-generator/zz.html" />
     <entry file="file://$PROJECT_DIR$/report-generator/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="972">
@@ -362,13 +350,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/report-generator/zz.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7938">
-          <caret line="441" column="16" lean-forward="true" selection-start-line="441" selection-start-column="16" selection-end-line="441" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/report-generator/zz.html" />
     <entry file="file://$PROJECT_DIR$/report-generator/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="972">
@@ -383,13 +365,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/report-generator/zz.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8100">
-          <caret line="450" column="7" lean-forward="true" selection-start-line="450" selection-start-column="7" selection-end-line="450" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/report-generator/zz.html" />
     <entry file="file://$PROJECT_DIR$/report-generator/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="972">
@@ -404,13 +380,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/report-generator/zz.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1026">
-          <caret line="57" column="12" lean-forward="true" selection-start-line="57" selection-start-column="12" selection-end-line="57" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/report-generator/zz.html" />
     <entry file="file://$PROJECT_DIR$/report-generator/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="972">
@@ -425,13 +395,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/report-generator/zz.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1044">
-          <caret line="58" column="74" lean-forward="false" selection-start-line="58" selection-start-column="31" selection-end-line="58" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/report-generator/zz.html" />
     <entry file="file://$PROJECT_DIR$/report-generator/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="972">
@@ -446,13 +410,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/report-generator/zz.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="30" column="27" lean-forward="false" selection-start-line="30" selection-start-column="27" selection-end-line="30" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/report-generator/zz.html" />
     <entry file="file://$PROJECT_DIR$/report-generator/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="972">
@@ -467,13 +425,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/report-generator/zz.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7002">
-          <caret line="389" column="0" lean-forward="false" selection-start-line="389" selection-start-column="0" selection-end-line="389" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/report-generator/zz.html" />
     <entry file="file://$PROJECT_DIR$/report-generator/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="972">
@@ -488,13 +440,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/report-generator/zz.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2934">
-          <caret line="163" column="63" lean-forward="true" selection-start-line="163" selection-start-column="63" selection-end-line="163" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/report-generator/zz.html" />
     <entry file="file://$PROJECT_DIR$/report-generator/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="972">
@@ -509,13 +455,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/report-generator/zz.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2754">
-          <caret line="153" column="0" lean-forward="false" selection-start-line="153" selection-start-column="0" selection-end-line="153" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/report-generator/zz.html" />
     <entry file="file://$PROJECT_DIR$/report-generator/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="972">
@@ -530,13 +470,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/report-generator/zz.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2664">
-          <caret line="148" column="49" lean-forward="false" selection-start-line="148" selection-start-column="49" selection-end-line="148" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/report-generator/zz.html" />
     <entry file="file://$PROJECT_DIR$/report-generator/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="972">
@@ -551,34 +485,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/report-generator/zz.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2664">
-          <caret line="148" column="49" lean-forward="false" selection-start-line="148" selection-start-column="49" selection-end-line="148" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/report-generator/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="972">
-          <caret line="54" column="26" lean-forward="false" selection-start-line="54" selection-start-column="26" selection-end-line="54" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/report-generator/js/zz.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/report-generator/zz.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" column="9" lean-forward="true" selection-start-line="28" selection-start-column="9" selection-end-line="28" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/report-generator/zz.html" />
     <entry file="file://$PROJECT_DIR$/report-generator/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="918">
@@ -590,13 +497,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/report-generator/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="27" lean-forward="true" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
         </state>
       </provider>
     </entry>
@@ -614,58 +514,62 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/calculator/css/style.css" />
+    <entry file="file://$PROJECT_DIR$/report-generator/zaz.html" />
+    <entry file="file://$PROJECT_DIR$/calculator/d.calculator.html" />
+    <entry file="file://$PROJECT_DIR$/calculator/css/d.style.css" />
+    <entry file="file://$PROJECT_DIR$/calculator/m.calculator.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="25" column="47" lean-forward="false" selection-start-line="25" selection-start-column="47" selection-end-line="25" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/calculator/calculator.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="900">
-          <caret line="50" column="20" lean-forward="true" selection-start-line="50" selection-start-column="20" selection-end-line="50" selection-end-column="20" />
+        <state relative-caret-position="108">
+          <caret line="6" column="35" lean-forward="false" selection-start-line="6" selection-start-column="35" selection-end-line="6" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/calculator/css/style.css">
+    <entry file="file://$PROJECT_DIR$/report-generator/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="17" lean-forward="true" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/calculator/d.calculator.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="17" lean-forward="true" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/calculator/css/d.style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="108">
+          <caret line="6" column="10" lean-forward="true" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/report-generator/zz.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="17" lean-forward="true" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+        <state relative-caret-position="198">
+          <caret line="11" column="16" lean-forward="true" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/report-generator/in-develop.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="73" lean-forward="true" selection-start-line="8" selection-start-column="73" selection-end-line="8" selection-end-column="73" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="93" column="8" lean-forward="true" selection-start-line="93" selection-start-column="8" selection-end-line="93" selection-end-column="8" />
+        <state relative-caret-position="911">
+          <caret line="249" column="0" lean-forward="true" selection-start-line="249" selection-start-column="0" selection-end-line="249" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="632">
-          <caret line="52" column="54" lean-forward="true" selection-start-line="52" selection-start-column="54" selection-end-line="52" selection-end-column="54" />
+        <state relative-caret-position="303">
+          <caret line="52" column="28" lean-forward="true" selection-start-line="52" selection-start-column="28" selection-end-line="52" selection-end-column="28" />
           <folding />
         </state>
       </provider>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>калькулятор</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" media="screen and (min-device-width: 300px) and (max-device-width: 450px), (min-device-width: 540px) and (max-device-width: 800px) and (orientation: landscape)" href="css/mobiles.css" />
+	<link rel="stylesheet" media="screen and (device-width: 768px), (device-width:1024px)" href="css/tablets.css" />
+</head>
+<noscript>
+	<style type="text/css">
+		#calculator{
+			display: none;
+		}
+	</style>
+	<div align="center">
+		<br/><br/><br/>
+		<h2>для роботи сайтом необхідно увімкнути JavaScript у веб-переглядачі</h2>
+		<a target="_blank" class="outer" href="https://support.google.com/adsense/answer/12654?hl=uk">ок Google як увімкнути JavaScript?</a></div>
+</noscript>
+<body>
+</br>
+<table id="calculator" align="center">
+	<tr>
+		<td colspan="2">
+			ч.<input type="text" id="part" disabled>
+		</td>
+		<td colspan="2">
+			ст.<input type="text" id="article" disabled>
+		</td>
+		<td colspan="5" rowspan="5">
+			<textarea readonly id="area"></textarea>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<button id="button-7" onclick="button7()">7</button>
+		</td>
+		<td>
+			<button id="button-8" onclick="button8()">8</button>
+		</td>
+		<td>
+			<button id="button-9" onclick="button9()">9</button>
+		</td>
+		<td>
+			<button id="button-del" onclick="buttonDel()">&#8592;</button>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<button id="button-4" onclick="button4()">4</button>
+		</td>
+		<td>
+			<button id="button-5" onclick="button5()">5</button>
+		</td>
+		<td>
+			<button id="button-6" onclick="button6()">6</button>
+		</td>
+		<td>
+			<button id="button-C" onclick="buttonC()">С</button>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<button id="button-1" onclick="button1()">1</button>
+		</td>
+		<td>
+			<button id="button-2" onclick="button2()">2</button>
+		</td>
+		<td>
+			<button id="button-3" onclick="button3()">3</button>
+		</td>
+		<td rowspan="2">
+			<button  id="button-enter" onclick="buttonEnter()">=</button>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<button id="button-X" onclick="buttonX()">-x</button>
+		</td>
+		<td colspan="2">
+			<button id="button-0" onclick="button0()">0</button>
+		</td>
+	</tr>
+	<tr id="label-names">
+		<td colspan="2">
+			невеликої<br>
+			тяжкості
+		</td>
+		<td colspan="2">
+			середньої<br>
+			тяжкості
+		</td>
+		<td colspan="2">
+			тяжкий
+		</td>
+		<td colspan="2">
+			особливо<br>
+			тяжкиий
+		</td>
+		<td colspan="2">
+			посягання<br>
+			на життя
+		</td>
+	</tr>
+	<tr id="crimes-count">
+		<td colspan="2" id="count-1">0</td>
+		<td colspan="2" id="count-2">0</td>
+		<td colspan="2" id="count-3">0</td>
+		<td colspan="2" id="count-4">0</td>
+		<td colspan="2" id="count-5">0</td>
+	</tr>
+</table>
+<script type="text/javascript" src="js/calculator.js"></script>
+</body>
+</html>

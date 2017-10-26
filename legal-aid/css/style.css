@@ -92,13 +92,16 @@ ul.tabs > li:after{
 
 
 #floatingCirclesG{
-	position:relative;
-	width:144px;
-	height:144px;
+	position:absolute;
+	width:130px;
+	height:130px;
+	top: 20%;
+	left: 45%;
 	margin:auto;
 	transform:scale(0.6);
 	-o-transform:scale(0.6);
 	-webkit-transform:scale(0.6);
+	z-index: 20;
 	display: none;
 }
 
@@ -192,7 +195,7 @@ ul.tabs > li:after{
 
 @keyframes f_fadeG{
 	0%{
-		background-color:rgba(40,125,50,0.99);
+		background-color:rgba(40,125,50,0.39);
 	}
 
 	100%{
@@ -202,7 +205,7 @@ ul.tabs > li:after{
 
 @-o-keyframes f_fadeG{
 	0%{
-		background-color:rgba(40,125,50,0.99);
+		background-color:rgba(40,125,50,0.39);
 	}
 
 	100%{
@@ -212,7 +215,7 @@ ul.tabs > li:after{
 
 @-webkit-keyframes f_fadeG{
 	0%{
-		background-color:rgba(40,125,50,0.99);
+		background-color:rgba(40,125,50,0.39);
 	}
 
 	100%{

@@ -23,6 +23,9 @@
 </noscript>
 	<body>
 	<script>
+        if (screen.width < 800) {
+            window.location.replace(document.location.href + 'calculator/m.calculator.html');
+        }
         if (navigator.userAgent.search(/Chrome/) < 0) {
             alert('для коректної роботи сайту необхідно відкрити його в Google Chrome на десктопному пристрої');
             window.stop();
@@ -32,21 +35,22 @@
 	<div class=tab-container>
 		<ul class="tabs clearfix" >
 			<li>
-				<a href=# f-link="calculator/calculator.html">Users</a>
-			</li>
-			<li class=active >
-				<a href=# f-link="calculator/calculator.html">Pending Lots</a>
+				<a href=# f-link="report-generator/in-develop.html">звіт БВПД [ЕКС]</a>
 			</li>
 			<li>
 				<a href=# f-link="report-generator/zz.html">звіт БВПД [ЗЗ]</a>
 			</li>
+			<li class=active >
+				<a href=# f-link="report-generator/in-develop.html">звіт БВПД [АЗ] або [ОПД]</a>
+			</li>
 			<li>
-				<a href=# f-link="calculator/d.calculator.html">калькулятор тяжкості злочинів</a>
+				<a href=# f-link="calculator/calculator.html">калькулятор тяжкості злочинів</a>
 			</li>
 		</ul>
 	</div>
-	<div class=outer-circle></div>
+	<!--<div class=outer-circle></div>-->
 	</br>
+	<div id="content"></div>
 	<div id="floatingCirclesG">
 		<div class="f_circleG" id="frotateG_01"></div>
 		<div class="f_circleG" id="frotateG_02"></div>
@@ -57,7 +61,6 @@
 		<div class="f_circleG" id="frotateG_07"></div>
 		<div class="f_circleG" id="frotateG_08"></div>
 	</div>
-	<div id="content"></div>
 	</br>
 	</br>
 	<script>
@@ -65,15 +68,19 @@
 
         tabs.on("click", function(){
             $('#floatingCirclesG').show();
+            $('#content').hide();
             tabs.removeClass('active');
             $(this).addClass('active');
-            console.log($(this).find('a').attr('f-link'));
             $.get($(this).find('a').attr('f-link'), function(data) {
 				$('#content').html(data);
-            })
-            //$('#floatingCirclesG').hide();
+            });
         });
-
+        $(document).ajaxComplete(function() {
+            setTimeout(function () {
+                $('#floatingCirclesG').hide();
+                $('#content').show();
+            }, 200);
+        });
 	</script>
 	</body>
 </html>
