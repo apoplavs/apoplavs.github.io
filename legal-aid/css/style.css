@@ -102,7 +102,7 @@ ul.tabs > li:after{
 	-o-transform:scale(0.6);
 	-webkit-transform:scale(0.6);
 	z-index: 20;
-	display: none;
+	/*display: none;*/
 }
 
 .f_circleG{

@@ -1,5 +1,5 @@
 # shared files
-/legal-aid/.idea/*
+.idea/
 CMake*
 .nfs*
 .DS*
