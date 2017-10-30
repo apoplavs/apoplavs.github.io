@@ -25,8 +25,7 @@
 	<script>
 		if (screen.width < 800) {
 			window.location.replace(document.location.href + 'calculator/m.calculator.html');
-		}
-		if (navigator.userAgent.search(/Chrome/) < 0) {
+		} else if (navigator.userAgent.search(/Chrome/) < 0) {
 			alert('для коректної роботи сайту необхідно відкрити його в Google Chrome на десктопному пристрої');
 			window.stop();
 		}
@@ -37,11 +36,14 @@
 			<li>
 				<a href=# f-link="in-develop.html">звіт БВПД [ЕКС]</a>
 			</li>
+			<li>
+				<a href=# f-link="in-develop.html">звіт БВПД [ОПД]</a>
+			</li>
 			<li class=active >
 				<a href=# f-link="report-generator/zz.html">звіт БВПД [ЗЗ]</a>
 			</li>
 			<li>
-				<a href=# f-link="in-develop.html">звіт БВПД [АЗ] або [ОПД]</a>
+				<a href=# f-link="report-generator/az.html">звіт БВПД [АЗ]</a>
 			</li>
 			<li>
 				<a href=# f-link="calculator/calculator.html">калькулятор тяжкості злочинів</a>
