@@ -100,51 +100,9 @@ var data = {
 
 	//обрання затриманій особі запобіжного заходу у вигляді тримання під вартою
 	osk: {
-		//чи подавалося слідчим/прокурором клопотання про обрання затриманій особі ЗЗ
-		takePetition: true,
-		//чи обрано ЗЗ у вигляді тримання під вартою
-		satisfiedPetition: false,
-		//чи подавав адвокат апеляційну скаргу на судове рішення
-		appealLawer: false,
-		//чи задовольнили апеляцію адвоката
-		satisfiedAppealLawer: false,
-		//чи подавала сторона обвинувачення апеляційну скаргу на судове рішення
-		appealProsecutor: false,
-		//чи задовольнили апеляцію сторони обвинувачення
-		satisfiedAppealProsecutor: false,
 		k: function() {
-		if (data.terminatePart.v1 || data.terminatePart.v2 || !this.takePetition
-			|| (this.takePetition && this.satisfiedPetition && !this.appealLawer)
-			|| (!this.satisfiedPetition && this.appealProsecutor && this.satisfiedAppealProsecutor)) {
 			return (1);
-		}
-		// якщо подавалось клопотання про ЗЗ, воно було задоволено і адвокат подав апеляцію
-		if (this.satisfiedPetition && this.appealLawer) {
-			// якщо апеляція скасувала ЗЗ (3.5) якщо ні (2)
-			return (this.satisfiedAppealLawer ? 3.5 : 2);
-		}
-		/* якщо подавалось клопотання про ЗЗ, воно НЕ було задоволено (обрано більш мякий ЗЗ)
-		* i сторона обвинувачення не подавала апеляцію, або вона не була задоволена
-		*/
-		if (!this.satisfiedPetition && (!this.appealProsecutor
-			|| (this.appealProsecutor && !this.satisfiedAppealProsecutor))) {
-			return (5);
-		}
-		return (1);
-	    },
-        l: function() {
-		    if (this.appealProsecutor) {
-		        return (this.satisfiedAppealProsecutor ? 6 : 5);
-            }
-            if (this.appealLawer) {
-                return (this.satisfiedAppealLawer ? 4 : 3);
-            }
-            if (this.takePetition) {
-                return (this.satisfiedPetition ? 1 : 2);
-            }
-            return (0);
-
-        }},
+		}},
 	//розмір прожиткового мінімуму
 	paymentPerHour: {v1: 1762, k: function() {
 		return ((this.v1 * 0.025).toFixed(2));
@@ -166,7 +124,7 @@ var data = {
         }
     }},
 	//Побачення з особою, якій надається БВПД
-	meetings: {v1: '', v2: '', v3: '', v4: '', v5: '', v6: '', v7: '', v8: '', v9: '', v10: ''},
+	meetings: {v1: '', v2: '', v3: '', v4: '', v5: '', v6: ''},
 	//Участь у процесуальних діях
 	/* vN - назва процесуальної дії;
 	* dsN (date Start)N - дата початку процесульної дії;
@@ -178,12 +136,7 @@ var data = {
         v2: '', ds2: '', ts2: '', de2: '', te2: '',
         v3: '', ds3: '', ts3: '', de3: '', te3: '',
         v4: '', ds4: '', ts4: '', de4: '', te4: '',
-        v5: '', ds5: '', ts5: '', de5: '', te5: '',
-        v6: '', ds6: '', ts6: '', de6: '', te6: '',
-        v7: '', ds7: '', ts7: '', de7: '', te7: '',
-        v8: '', ds8: '', ts8: '', de8: '', te8: '',
-        v9: '', ds9: '', ts9: '', de9: '', te9: '',
-		v10: '', ds10: '', ts10: '', de10: '', te10: ''},
+        v5: '', ds5: '', ts5: '', de5: '', te5: ''},
     //Складення процесуальних документів
     /* vN - Найменування процесуального документа;
     * dN  - дата реєстрації документа органом якому адресований документ;
@@ -193,18 +146,13 @@ var data = {
         v2: '', d2: '', t2: '',
         v3: '', d3: '', t3: '',
         v4: '', d4: '', t4: '',
-        v5: '', d5: '', t5: '',
-        v6: '', d6: '', t6: '',
-        v7: '', d7: '', t7: '',
-        v8: '', d8: '', t8: '',
-        v9: '', d9: '', t9: '',
-        v10: '', d10: '', t10: ''},
+        v5: '', d5: '', t5: ''},
     //Перелік завірених адвокатом копій процесуальних та інших документів, що підтверджують наведені дані
     documents: {v1: false, //заява затриманого про відмову від захисника
-		v2: true, //клопотання слідчого, прокурора про застосування запобіжного заходу
-		v3: false, //повідомлення про підозру
-		v4: false, //ухвала слідчого судді, суду про застосування запобіжного заходу
-        v5: false, //апеляційна скарга захисника на ухвалу слідчого судді, суду про застосування запобіжного заходу
+		v2: true, //протокол про адміністративне затримання/правопорушення;
+		v3: false, //постанова суду (судді) про застосування адміністративного арешту;
+		v4: false, //апеляційна скарга;
+        v5: false, //ухвала суду апеляційної інстанції;
         v6: false, //заперечення на апеляційну скаргу прокурора на ухвалу слідчого судді, суду про застосування запобіжного заходу
         v7: false, //ухвала апеляційного суду за результатами розгляду апеляційної скарги прокурора/адвоката
         v8: false, //медична довідка, що підтверджує наявність у особи інфекційної хвороби
@@ -1096,7 +1044,7 @@ function makePDF() {
                                      body: [[{
                                          bold: true,
                                          margin: [2, 2, 2, 7],
-                                         text: 'ЗЗ'
+                                         text: 'АЗ'
                                      }]]}
                                     },
                                     {
@@ -1106,7 +1054,7 @@ function makePDF() {
                                     {
                                         border: [false, false, false, false],
                                         fontSize: 8,
-                                        text: 'Додаток 2\n'+
+                                        text: 'Додаток 1\n'+
                                             'до акта надання безоплатної вторинної правової допомоги\n \n'+
                                             'від «_____» ____________________ 20 ___ року  № _________\n \n'
                                     }]]
@@ -1123,8 +1071,7 @@ function makePDF() {
                             },
                             {
                                 bold: false,
-                                text: 'особі, яка відповідно до положень кримінального процесуального законодавства вважається затриманою та/або стосовно якої\n'+
-                                    'обрано запобіжний захід у вигляді тримання під вартою (ЗЗ)\n \n'
+                                text: 'особі, до якої застосовано адміністративне затримання та/або адміністративний арешт (АЗ)\n \n'
                             }]
                     },
 
@@ -1441,11 +1388,11 @@ function makePDF() {
                                     },
                                     {
                                         alignment: 'center',
-                                        text: '6'
+                                        text: '4'
                                     },
                                     {
                                         alignment: 'center',
-                                        text: data.meetings.v6
+                                        text: data.meetings.v4
                                     }
                                 ],
                                 [
@@ -1459,11 +1406,11 @@ function makePDF() {
                                     },
                                     {
                                         alignment: 'center',
-                                        text: '7'
+                                        text: '5'
                                     },
                                     {
                                         alignment: 'center',
-                                        text: data.meetings.v7
+                                        text: data.meetings.v5
                                     }
                                 ],
                                 [
@@ -1477,47 +1424,11 @@ function makePDF() {
                                     },
                                     {
                                         alignment: 'center',
-                                        text: '8'
+                                        text: '6'
                                     },
                                     {
                                         alignment: 'center',
-                                        text: data.meetings.v8
-                                    }
-                                ],
-                                [
-                                    {
-                                        alignment: 'center',
-                                        text: '4'
-                                    },
-                                    {
-                                        alignment: 'center',
-                                        text: data.meetings.v4
-                                    },
-                                    {
-                                        alignment: 'center',
-                                        text: '9'
-                                    },
-                                    {
-                                        alignment: 'center',
-                                        text: data.meetings.v9
-                                    }
-                                ],
-                                [
-                                    {
-                                        alignment: 'center',
-                                        text: '5'
-                                    },
-                                    {
-                                        alignment: 'center',
-                                        text: data.meetings.v5
-                                    },
-                                    {
-                                        alignment: 'center',
-                                        text: '10'
-                                    },
-                                    {
-                                        alignment: 'center',
-                                        text: data.meetings.v10
+                                        text: data.meetings.v6
                                     }
                                 ]
                             ]}
@@ -1628,82 +1539,7 @@ function makePDF() {
                                         text: data.procActions.ds5 + '      ' + data.procActions.ts5 + (data.procActions.ds5 != '' ? ' - ' : '') +
                                         (data.procActions.ds5 == data.procActions.de5 ? '' : '\n' + data.procActions.de5 + '    ') + data.procActions.te5
                                     }
-                                ],
-                                [
-                                    {
-                                        alignment: 'center',
-                                        text: '6'
-                                    },
-                                    {
-                                        alignment: 'center',
-                                        text: data.procActions.v6
-                                    },
-                                    {
-                                        alignment: 'center',
-                                        text: data.procActions.ds6 + '      ' + data.procActions.ts6 + (data.procActions.ds6 != '' ? ' - ' : '') +
-                                        (data.procActions.ds6 == data.procActions.de6 ? '' : '\n' + data.procActions.de6 + '    ') + data.procActions.te6
-                                    }
-                                ],
-                                [
-                                    {
-                                        alignment: 'center',
-                                        text: '7'
-                                    },
-                                    {
-                                        alignment: 'center',
-                                        text: data.procActions.v7
-                                    },
-                                    {
-                                        alignment: 'center',
-                                        text: data.procActions.ds7 + '      ' + data.procActions.ts7 + (data.procActions.ds7 != '' ? ' - ' : '') +
-                                        (data.procActions.ds7 == data.procActions.de7 ? '' : '\n' + data.procActions.de7 + '    ') + data.procActions.te7
-                                    }
-                                ],
-                                [
-                                    {
-                                        alignment: 'center',
-                                        text: '8'
-                                    },
-                                    {
-                                        alignment: 'center',
-                                        text: data.procActions.v8
-                                    },
-                                    {
-                                        alignment: 'center',
-                                        text: data.procActions.ds8 + '      ' + data.procActions.ts8 + (data.procActions.ds8 != '' ? ' - ' : '') +
-                                        (data.procActions.ds8 == data.procActions.de8 ? '' : '\n' + data.procActions.de8 + '    ') + data.procActions.te8
-                                    }
-                                ],
-                                [
-                                    {
-                                        alignment: 'center',
-                                        text: '9'
-                                    },
-                                    {
-                                        alignment: 'center',
-                                        text: data.procActions.v9
-                                    },
-                                    {
-                                        alignment: 'center',
-                                        text: data.procActions.ds9 + '      ' + data.procActions.ts9 + (data.procActions.ds9 != '' ? ' - ' : '') +
-                                        (data.procActions.ds9 == data.procActions.de9 ? '' : '\n' + data.procActions.de9 + '    ') + data.procActions.te9
-                                    }
-                                ],
-                                [
-                                    {
-                                        alignment: 'center',
-                                        text: '10'
-                                    },
-                                    {
-                                        alignment: 'center',
-                                        text: data.procActions.v10
-                                    },
-                                    {
-                                        alignment: 'center',
-                                        text: data.procActions.ds10 + '      ' + data.procActions.ts10 + (data.procActions.ds10 != '' ? ' - ' : '') +
-                                        (data.procActions.ds10 == data.procActions.de10 ? '' : '\n' + data.procActions.de10 + '    ') + data.procActions.te10
-                                    }
-                          	    ]
+                                ]
                             ]}
                     },
 
@@ -1807,76 +1643,6 @@ function makePDF() {
                                         alignment: 'center',
                                         text: data.procDocs.d5 + '      ' + data.procDocs.t5
                                     }
-                                ],
-                                [
-                                    {
-                                        alignment: 'center',
-                                        text: '6'
-                                    },
-                                    {
-                                        alignment: 'center',
-                                        text: data.procDocs.v6
-                                    },
-                                    {
-                                        alignment: 'center',
-                                        text: data.procDocs.d6 + '      ' + data.procDocs.t6
-                                    }
-                                ],
-                                [
-                                    {
-                                        alignment: 'center',
-                                        text: '7'
-                                    },
-                                    {
-                                        alignment: 'center',
-                                        text: data.procDocs.v7
-                                    },
-                                    {
-                                        alignment: 'center',
-                                        text: data.procDocs.d7 + '      ' + data.procDocs.t7
-                                    }
-                                ],
-                                [
-                                    {
-                                        alignment: 'center',
-                                        text: '8'
-                                    },
-                                    {
-                                        alignment: 'center',
-                                        text: data.procDocs.v8
-                                    },
-                                    {
-                                        alignment: 'center',
-                                        text: data.procDocs.d8 + '      ' + data.procDocs.t8
-                                    }
-                                ],
-                                [
-                                    {
-                                        alignment: 'center',
-                                        text: '9'
-                                    },
-                                    {
-                                        alignment: 'center',
-                                        text: data.procDocs.v9
-                                    },
-                                    {
-                                        alignment: 'center',
-                                        text: data.procDocs.d9 + '      ' + data.procDocs.t9
-                                    }
-                                ],
-                                [
-                                    {
-                                        alignment: 'center',
-                                        text: '10'
-                                    },
-                                    {
-                                        alignment: 'center',
-                                        text: data.procDocs.v10
-                                    },
-                                    {
-                                        alignment: 'center',
-                                        text: data.procDocs.d10 + '      ' + data.procDocs.t10
-                                    }
                                 ]
                             ]}
                     },
@@ -1888,7 +1654,7 @@ function makePDF() {
                             {
                                 bold: true,
                                 fontSize: 9,
-                                text: '\n2.4. Оскарження адвокатом рішення щодо обрання особі запобіжного заходу у вигляді тримання під вартою (К'
+                                text: '2.4. К'
                             },
                             {
                                 bold: true,
@@ -1898,244 +1664,15 @@ function makePDF() {
                             {
                                 bold: true,
                                 fontSize: 9,
-                                text: ') '
-                            },
-                            {
-                                bold: false,
-                                fontSize: 9,
-                                text: '(відмітити потрібне):'
+                                text: '=1.'
                             }]
-                    },
-
-                    {
-                        fontSize: 8.5,
-                        table: {
-                            widths: [230, 305],
-                            body: [[
-                                {
-                                    bold: true,
-                                    fontSize: 9,
-                                    alignment: 'center',
-                                    text: 'Процесуальна дія'
-                                },
-                                {
-                                    bold: true,
-                                    alignment: 'center',
-                                    text: [
-				                            {
-				                                bold: true,
-                                                fontSize: 9,
-				                                text: 'Результат '
-				                            },
-				                            {
-				                                bold: false,
-                                                fontSize: 8,
-				                                italics: true,
-				                                text: '(одна відмітка за результатом останньої процесуальної дії)'
-				                            }]
-                                }
-                            ],
-                            [
-                                {
-                                    margin: [10, 0, 0, 0],
-                                    colSpan: 2,
-                                     table: {
-			                            widths: [4, 515],
-			                            body: [
-			                            [
-			                            	{
-			                                border: [true, true, true, true],
-			                                margin: [-2, -5, -2, -6],
-			                                fontSize: 14,
-			                                bold: true,
-			                                // одна відмітка за результатом останньої процесуальної дії
-			                                text: (data.osk.l() == 0 ? 'X' : '')
-			                            	},
-			                                {
-			                                    border: [false, false, false, false],
-                                                margin: [0, -2, 0, -2],
-			                                    text: 'клопотання слідчого, прокурора про обрання затриманій особі запобіжного заходу не подавалося або стосувалося більш'
-			                                }
-			                            ],
-			                            [{
-			                            	colSpan: 2,
-			                            	border: [false, false, false, false],
-                                            alignment: 'left',
-			                                text: 'м’якого запобіжного заходу, ніж тримання під вартою'
-			                            },
-			                            {}]]}
-                                },
-                                {}
-                            ],
-                            [
-                                {
-                                    text: 'Розгляд клопотання слідчого, прокурора про обрання затриманій особі запобіжного заходу у вигляді тримання під вартою'
-                                },
-                                {
-                                    table: {
-                                        widths: [3, 280],
-                                        body: [
-                                            [
-                                                {
-                                                    border: [true, true, true, true],
-                                                    margin: [-3, -5, -3, -6],
-                                                    fontSize: 14,
-                                                    bold: true,
-                                                    // одна відмітка за результатом останньої процесуальної дії ЗРОБИТИ ФУНКЦІЮ В data
-                                                    text: (data.osk.l() == 1 ? 'X' : '')
-                                                },
-                                                {
-                                                    border: [false, false, false, false],
-                                                    margin: [0, -2, -5, -2],
-                                                    text: 'обрано запобіжний захід у вигляді тримання під вартою'
-                                                }
-                                            ],
-                                            [
-                                                {
-                                                    colSpan: 2,
-                                                    border: [false, false, false, false],
-                                                    text: ''
-                                                },
-                                                {}
-                                            ],
-                                            [
-                                                {
-                                                    border: [true, true, true, true],
-                                                    margin: [-3, -5, -3, -6],
-                                                    fontSize: 14,
-                                                    bold: true,
-                                                    // одна відмітка за результатом останньої процесуальної дії ЗРОБИТИ ФУНКЦІЮ В data
-                                                    text: (data.osk.l() == 2 ? 'X' : '')
-                                                },
-                                                {
-                                                    border: [false, false, false, false],
-                                                    margin: [0, -2, -5, -2],
-                                                    text: 'обрано більш м’який запобіжний захід або постановлено ухвалу про'
-                                                }
-                                            ],
-                                            [{
-                                                colSpan: 2,
-                                                border: [false, false, false, false],
-                                                margin: [0, -1, -5, -1],
-                                                alignment: 'left',
-                                                text: 'відмову в застосуванні запобіжного заходу'
-                                            },
-                                                {}]]
-                                    }
-                                }
-                            ],
-                                [
-                                    {
-                                        text: 'Розгляд апеляційної скарги адвоката на судове рішення про обрання запобіжного заходу у вигляді тримання під вартою'
-                                    },
-                                    {
-                                        table: {
-                                            widths: [4, 280],
-                                            body: [
-                                                [
-                                                    {
-                                                        border: [true, true, true, true],
-                                                        margin: [-3, -5, -3, -6],
-                                                        fontSize: 14,
-                                                        bold: true,
-                                                        // одна відмітка за результатом останньої процесуальної дії ЗРОБИТИ ФУНКЦІЮ В data
-                                                        text: (data.osk.l() == 3 ? 'X' : '')
-                                                    },
-                                                    {
-                                                        border: [false, false, false, false],
-                                                        margin: [0, -2, -5, -2],
-                                                        text: 'запобіжний захід у вигляді тримання під вартою залишено без змін'
-                                                    }
-                                                ],
-                                                [
-                                                    {
-                                                        colSpan: 2,
-                                                        border: [false, false, false, false],
-                                                        text: ''
-                                                    },
-                                                    {}
-                                                ],
-                                                [
-                                                    {
-                                                        border: [true, true, true, true],
-                                                        margin: [-3, -5, -3, -6],
-                                                        fontSize: 14,
-                                                        bold: true,
-                                                        // одна відмітка за результатом останньої процесуальної дії ЗРОБИТИ ФУНКЦІЮ В data
-                                                        text: (data.osk.l() == 4 ? 'X' : '')
-                                                    },
-                                                    {
-                                                        border: [false, false, false, false],
-                                                        margin: [0, -2, -5, -2],
-                                                        text: 'запобіжний захід у вигляді тримання під вартою змінено на більш '
-                                                    }
-                                                ],
-                                                [{
-                                                    colSpan: 2,
-                                                    border: [false, false, false, false],
-                                                    alignment: 'left',
-                                                    text: 'м’який'
-                                                },
-                                                    {}]]
-                                        }
-                                    }
-                                ],
-                                [
-                                    {
-                                        fontSize: 8.5,
-                                        text: 'Розгляд апеляційної скарги сторони обвинувачення на судове рішення про обрання запобіжного заходу більш м’якого, ніж тримання під вартою, або ухвалу про відмову в застосуванні запобіжного заходу'
-                                    },
-                                    {
-                                        table: {
-                                            widths: [4, 280],
-                                            body: [
-                                                [
-                                                    {
-                                                        border: [true, true, true, true],
-                                                        margin: [-3, -5, -3, -6],
-                                                        fontSize: 14,
-                                                        bold: true,
-                                                        // одна відмітка за результатом останньої процесуальної дії ЗРОБИТИ ФУНКЦІЮ В data
-                                                        text: (data.osk.l() == 5 ? 'X' : '')
-                                                    },
-                                                    {
-                                                        border: [false, false, false, false],
-                                                        margin: [0, -2, -5, -2],
-                                                        text: 'запобіжний захід чи ухвалу про відмову в застосуванні запобіжного'
-                                                    }
-                                                ],
-                                                [{
-                                                    colSpan: 2,
-                                                    border: [false, false, false, false],
-                                                    alignment: 'left',
-                                                    text: 'заходу залишено без змін'
-                                                },{}],
-                                                [
-                                                    {
-                                                        border: [true, true, true, true],
-                                                        margin: [-3, -5, -3, -6],
-                                                        fontSize: 14,
-                                                        bold: true,
-                                                        // одна відмітка за результатом останньої процесуальної дії ЗРОБИТИ ФУНКЦІЮ В data
-                                                        text: (data.osk.l() == 6 ? 'X' : '')
-                                                    },
-                                                    {
-                                                        border: [false, false, false, false],
-                                                        margin: [0, -2, -5, -2],
-                                                        text: 'обрано запобіжний захід у вигляді тримання під вартою'
-                                                    }
-                                                ]]
-                                        }
-                                    }
-                                ]
-                         ]}
                     },
                     {
                         text: [
                             {
                                 bold: true,
                                 fontSize: 9,
-                                text: '\n2.5. Припинення участі адвоката до завершення строку дії доручення для надання БВПД (К'
+                                text: '2.5. Припинення участі адвоката до завершення строку дії доручення для надання БВПД (К'
                             },
                             {
                                 bold: true,
@@ -2351,14 +1888,30 @@ function makePDF() {
                                 ]
                             ]}
                     },
+
+
+ //   2.7. Строк подання акта надання БВПД до центру з надання БВПД
                     {
-                        fontSize: 4,
+                        pageBreak: 'before',
+                        fontSize: 12,
                         text: '\n'
 
                     },
+                    {
+                        text: [
+                            {
+                                alignment: 'right',
+                                color: 'gray',
+                                fontSize: 9,
+                                text: '2                                        '
+                            },
+                            {
+                                color: 'gray',
+                                fontSize: 9,
+                                text: '                                          Продовження додатка 1'
+                            }]
 
- //   2.7. Строк подання акта надання БВПД до центру з надання БВПД
-
+                    },
                     {
                         text: [
                             {
@@ -2506,7 +2059,7 @@ function makePDF() {
 
                     },
                     {
-                        fontSize: 9,
+                        fontSize: 8.8,
                         table: {
                             widths: [4, 200, 4, 310],
                             body: [
@@ -2532,7 +2085,7 @@ function makePDF() {
                                     {
                                         border: [false, false, false, false],
                                         margin: [0, -2, 0, -2],
-                                        text: 'клопотання слідчого, прокурора про застосування запобіжного заходу;'
+                                        text: 'протокол про адміністративне затримання/правопорушення;'
                                     }
                                     ]
                             ]}
@@ -2543,21 +2096,21 @@ function makePDF() {
 
                     },
                     {
-                        fontSize: 9,
+                        fontSize: 8.7,
                         table: {
-                            widths: [4, 120, 4, 300],
+                            widths: [4, 280, 4, 75, 4, 142],
                             body: [
                                 [{
-                                    border: [true, true, true, true],
-                                    margin: [-2, -5, -2, -5],
-                                    fontSize: 14,
-                                    bold: true,
-                                    text: (data.documents.v3 ? 'X' : '')
-                                },
+                                        border: [true, true, true, true],
+                                        margin: [-2, -5, -2, -5],
+                                        fontSize: 14,
+                                        bold: true,
+                                        text: (data.documents.v3 ? 'X' : '')
+                                    },
                                     {
                                         border: [false, false, false, false],
-                                        margin: [0, -2, 0, -2],
-                                        text: 'повідомлення про підозру;'
+                                        margin: [-2, -2, -2, -2],
+                                        text: 'постанова суду (судді) про застосування адміністративного арешту;'
                                     },
                                     {
                                         border: [true, true, true, true],
@@ -2568,33 +2121,20 @@ function makePDF() {
                                     },
                                     {
                                         border: [false, false, false, false],
-                                        margin: [0, -2, 0, -2],
-                                        text: 'ухвала слідчого судді, суду про застосування запобіжного заходу;'
-                                    }
-                                ]
-                            ]}
-                    },
-                    {
-                        fontSize: 2,
-                        text: '\n'
-
-                    },
-                    {
-                        fontSize: 9,
-                        table: {
-                            widths: [4, 500],
-                            body: [
-                                [{
-                                    border: [true, true, true, true],
-                                    margin: [-2, -5, -2, -5],
-                                    fontSize: 14,
-                                    bold: true,
-                                    text: (data.documents.v5 ? 'X' : '')
-                                },
+                                        margin: [-2, -2, -2, -2],
+                                        text: 'апеляційна скарга;'
+                                    },
+                                    {
+                                        border: [true, true, true, true],
+                                        margin: [-2, -5, -2, -5],
+                                        fontSize: 14,
+                                        bold: true,
+                                        text: (data.documents.v5 ? 'X' : '')
+                                    },
                                     {
                                         border: [false, false, false, false],
                                         margin: [0, -2, 0, -2],
-                                        text: 'апеляційна скарга захисника на ухвалу слідчого судді, суду про застосування запобіжного заходу;'
+                                        text: 'ухвала суду апеляційної інстанції;'
                                     }
                                 ]
                             ]}
@@ -2605,9 +2145,9 @@ function makePDF() {
 
                     },
                     {
-                        fontSize: 9,
+                        fontSize: 8.8,
                         table: {
-                            widths: [4, 500],
+                            widths: [4, 315, 4, 190],
                             body: [
                                 [{
                                     border: [true, true, true, true],
@@ -2619,56 +2159,6 @@ function makePDF() {
                                     {
                                         border: [false, false, false, false],
                                         margin: [0, -2, 0, -2],
-                                        text: 'заперечення на апеляційну скаргу прокурора на ухвалу слідчого судді, суду про застосування запобіжного заходу;'
-                                    }
-                                ]
-                            ]}
-                    },
-                    {
-                        fontSize: 2,
-                        text: '\n'
-
-                    },
-                    {
-                        fontSize: 9,
-                        table: {
-                            widths: [4, 500],
-                            body: [
-                                [{
-                                    border: [true, true, true, true],
-                                    margin: [-2, -5, -2, -5],
-                                    fontSize: 14,
-                                    bold: true,
-                                    text: (data.documents.v7 ? 'X' : '')
-                                },
-                                    {
-                                        border: [false, false, false, false],
-                                        margin: [0, -2, 0, -2],
-                                        text: 'ухвала апеляційного суду за результатами розгляду апеляційної скарги прокурора/адвоката;'
-                                    }
-                                ]
-                            ]}
-                    },
-                    {
-                        fontSize: 2,
-                        text: '\n'
-
-                    },
-                    {
-                        fontSize: 9,
-                        table: {
-                            widths: [4, 315, 4, 190],
-                            body: [
-                                [{
-                                    border: [true, true, true, true],
-                                    margin: [-2, -5, -2, -5],
-                                    fontSize: 14,
-                                    bold: true,
-                                    text: (data.documents.v8 ? 'X' : '')
-                                },
-                                    {
-                                        border: [false, false, false, false],
-                                        margin: [0, -2, 0, -2],
                                         text: 'медична довідка, що підтверджує наявність у особи інфекційної хвороби;'
                                     },
                                     {
@@ -2676,58 +2166,8 @@ function makePDF() {
                                         margin: [-2, -5, -2, -5],
                                         fontSize: 14,
                                         bold: true,
-                                        text: (data.documents.v9 ? 'X' : '')
+                                        text: (data.documents.other.indexOf('____') == -1 ? 'X' : '')
                                     },
-                                    {
-                                        border: [false, false, false, false],
-                                        margin: [0, -2, 0, -2],
-                                        text: 'скарга адвоката в порядку статті 206 КПК;'
-                                    }
-                                ]
-                            ]}
-                    },
-                    {
-                        fontSize: 2,
-                        text: '\n'
-
-                    },
-                    {
-                        fontSize: 9,
-                        table: {
-                            widths: [4, 500],
-                            body: [
-                                [{
-                                    border: [true, true, true, true],
-                                    margin: [-2, -5, -2, -5],
-                                    fontSize: 14,
-                                    bold: true,
-                                    text: (data.documents.v10 ? 'X' : '')
-                                },
-                                    {
-                                        border: [false, false, false, false],
-                                        margin: [0, -2, 0, -2],
-                                        text: 'ухвала слідчого судді за результатами розгляду скарги адвоката в порядку статті 206 КПК'
-                                    }
-                                ]
-                            ]}
-                    },
-                    {
-                        fontSize: 2,
-                        text: '\n'
-
-                    },
-                    {
-                        fontSize: 9,
-                        table: {
-                            widths: [4, 530],
-                            body: [
-                                [{
-                                    border: [true, true, true, true],
-                                    margin: [-2, -5, -2, -5],
-                                    fontSize: 14,
-                                    bold: true,
-                                    text: (data.documents.other.indexOf('____') == -1 ? 'X' : '')
-                                },
                                     {
                                         border: [false, false, false, false],
                                         margin: [0, -2, 0, -2],
@@ -2742,6 +2182,10 @@ function makePDF() {
                                     }
                                 ]
                             ]}
+                    },
+                    {
+                        fontSize: 2,
+                        text: '\n'
                     },
                     {
                         fontSize: 9,
@@ -3369,7 +2813,7 @@ function changeTerm(n, stan) {
 function comma(num) {
 	var numstr = num.toString();
 	// замінюємо крапки в числах комами
-    numstr = numstr.replace('.', ',')
+    numstr = numstr.replace('.', ',');
     // ділимо на розряди
     numstr = numstr.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ');
 	return (numstr);

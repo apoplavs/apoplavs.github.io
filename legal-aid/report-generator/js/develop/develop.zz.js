@@ -3369,7 +3369,7 @@ function changeTerm(n, stan) {
 function comma(num) {
 	var numstr = num.toString();
 	// замінюємо крапки в числах комами
-    numstr = numstr.replace('.', ',')
+    numstr = numstr.replace('.', ',');
     // ділимо на розряди
     numstr = numstr.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ');
 	return (numstr);
