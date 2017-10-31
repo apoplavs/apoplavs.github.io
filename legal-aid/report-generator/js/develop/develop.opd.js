@@ -124,7 +124,7 @@ var data = {
         }
     }},
 	//Побачення з особою, якій надається БВПД
-	meetings: {v1: '', v2: '', v3: '', v4: '', v5: '', v6: ''},
+	meetings: {v1: '', v2: '', v3: '', v4: ''},
 	//Участь у процесуальних діях
 	/* vN - назва процесуальної дії;
 	* dsN (date Start)N - дата початку процесульної дії;
@@ -135,8 +135,7 @@ var data = {
 	procActions: {v1: '', ds1: '', ts1: '', de1: '', te1: '',
         v2: '', ds2: '', ts2: '', de2: '', te2: '',
         v3: '', ds3: '', ts3: '', de3: '', te3: '',
-        v4: '', ds4: '', ts4: '', de4: '', te4: '',
-        v5: '', ds5: '', ts5: '', de5: '', te5: ''},
+        v4: '', ds4: '', ts4: '', de4: '', te4: ''},
     //Складення процесуальних документів
     /* vN - Найменування процесуального документа;
     * dN  - дата реєстрації документа органом якому адресований документ;
@@ -145,16 +144,13 @@ var data = {
     procDocs: {v1: '', d1: '', t1: '',
         v2: '', d2: '', t2: '',
         v3: '', d3: '', t3: '',
-        v4: '', d4: '', t4: '',
-        v5: '', d5: '', t5: ''},
+        v4: '', d4: '', t4: ''},
     //Перелік завірених адвокатом копій процесуальних та інших документів, що підтверджують наведені дані
-    documents: {v1: false, //заява затриманого про відмову від захисника
-		v2: true, //протокол про адміністративне затримання/правопорушення;
-		v3: false, //постанова суду (судді) про застосування адміністративного арешту;
-		v4: false, //апеляційна скарга;
-        v5: false, //ухвала суду апеляційної інстанції;
-        v6: false, //медична довідка, що підтверджує наявність у особи інфекційної хвороби
-        other: '_______________________________________________________________________________________________________________________________________', //інше
+    documents: {v1: false, //клопотання адвоката;
+		v2: false, //скарга(и) адвоката;
+		v3: false, //протокол(и) процесуальної(их) дії(й);
+        v4: false, //медична довідка, що підтверджує наявність у особи інфекційної хвороби
+        other: '_______________________________________________________________________________________________________________', //інше
         sheets: 0 //Загальна кількість аркушів документів
 	},
 	sum: 0
@@ -189,9 +185,7 @@ function setData(attr, field, value, type) {
  * @returns {boolean}
  */
 function makeReport() {
-	console.log('(2 x ' + data.numTrips.k() + ' + ' + '2 x ' + data.specCategory.k() + ' x ' + data.numActs.k() + ' x ' +
-        data.osk.k() + ' x ' + data.terminatePart.k() + ') x ' + data.paymentPerHour.k() + ' x ' + data.actsInNight.k() + ' x ' + data.termSubmission.k());
-// розрахунок розміру винагороди
+	// розрахунок розміру винагороди
     data.sum = (2 * data.numTrips.k() + 2 * data.specCategory.k() * data.numActs.k() * data.osk.k() * data.terminatePart.k())
 		* data.paymentPerHour.k() * data.actsInNight.k() * data.termSubmission.k();
     // костиль щоб заокруглювало як і exel
@@ -806,7 +800,15 @@ function makePDF() {
                         }
                     },
 
-                    // Розрахунок розміру винагороди адвоката за надання безоплатної вторинної правової допомоги
+
+
+
+
+
+
+
+
+          // Розрахунок розміру винагороди адвоката за надання безоплатної вторинної правової допомоги
 
                     {
                         pageBreak: 'before',
@@ -819,8 +821,8 @@ function makePDF() {
                                  table: {
                                      body: [[{
                                          bold: true,
-                                         margin: [2, 2, 2, 7],
-                                         text: 'АЗ'
+                                         margin: [-3, 2, -3, 9],
+                                         text: 'ОПД'
                                      }]]}
                                     },
                                     {
@@ -830,7 +832,7 @@ function makePDF() {
                                     {
                                         border: [false, false, false, false],
                                         fontSize: 8,
-                                        text: 'Додаток 1\n'+
+                                        text: 'Додаток 3\n'+
                                             'до акта надання безоплатної вторинної правової допомоги\n \n'+
                                             'від «_____» ____________________ 20 ___ року  № _________\n \n'
                                     }]]
@@ -846,7 +848,7 @@ function makePDF() {
                                 text: 'Розрахунок розміру винагороди адвоката за надання безоплатної вторинної правової допомоги\n'
                             },
                             {
-                                text: 'особі, до якої застосовано адміністративне затримання та/або адміністративний арешт (АЗ)\n \n'
+                                text: 'у разі залучення до окремої процесуальної дії (ОПД)\n \n'
                             }]
                     },
 
@@ -1158,11 +1160,11 @@ function makePDF() {
                                     },
                                     {
                                         alignment: 'center',
-                                        text: '4'
+                                        text: '3'
                                     },
                                     {
                                         alignment: 'center',
-                                        text: data.meetings.v4
+                                        text: data.meetings.v3
                                     }
                                 ],
                                 [
@@ -1176,29 +1178,11 @@ function makePDF() {
                                     },
                                     {
                                         alignment: 'center',
-                                        text: '5'
+                                        text: '4'
                                     },
                                     {
                                         alignment: 'center',
-                                        text: data.meetings.v5
-                                    }
-                                ],
-                                [
-                                    {
-                                        alignment: 'center',
-                                        text: '3'
-                                    },
-                                    {
-                                        alignment: 'center',
-                                        text: data.meetings.v3
-                                    },
-                                    {
-                                        alignment: 'center',
-                                        text: '6'
-                                    },
-                                    {
-                                        alignment: 'center',
-                                        text: data.meetings.v6
+                                        text: data.meetings.v4
                                     }
                                 ]
                             ]}
@@ -1293,21 +1277,6 @@ function makePDF() {
                                         text: data.procActions.ds4 + '      ' + data.procActions.ts4 + (data.procActions.ds4 != '' ? ' - ' : '') +
                                         (data.procActions.ds4 == data.procActions.de4 ? '' : '\n' + data.procActions.de4 + '    ') + data.procActions.te4
                                     }
-                                ],
-                                [
-                                    {
-                                        alignment: 'center',
-                                        text: '5'
-                                    },
-                                    {
-                                        alignment: 'center',
-                                        text: data.procActions.v5
-                                    },
-                                    {
-                                        alignment: 'center',
-                                        text: data.procActions.ds5 + '      ' + data.procActions.ts5 + (data.procActions.ds5 != '' ? ' - ' : '') +
-                                        (data.procActions.ds5 == data.procActions.de5 ? '' : '\n' + data.procActions.de5 + '    ') + data.procActions.te5
-                                    }
                                 ]
                             ]}
                     },
@@ -1396,20 +1365,6 @@ function makePDF() {
                                     {
                                         alignment: 'center',
                                         text: data.procDocs.d4 + '      ' + data.procDocs.t4
-                                    }
-                                ],
-                                [
-                                    {
-                                        alignment: 'center',
-                                        text: '5'
-                                    },
-                                    {
-                                        alignment: 'center',
-                                        text: data.procDocs.v5
-                                    },
-                                    {
-                                        alignment: 'center',
-                                        text: data.procDocs.d5 + '      ' + data.procDocs.t5
                                     }
                                 ]
                             ]}
@@ -1642,30 +1597,13 @@ function makePDF() {
                                 ]
                             ]}
                     },
-
-
- //   2.7. Строк подання акта надання БВПД до центру з надання БВПД
                     {
-                        pageBreak: 'before',
-                        fontSize: 12,
+                        fontSize: 4,
                         text: '\n'
 
                     },
-                    {
-                        text: [
-                            {
-                                alignment: 'right',
-                                color: 'gray',
-                                fontSize: 9,
-                                text: '2                                        '
-                            },
-                            {
-                                color: 'gray',
-                                fontSize: 9,
-                                text: '                                          Продовження додатка 1'
-                            }]
 
-                    },
+ //   2.7. Строк подання акта надання БВПД до центру з надання БВПД
                     {
                         text: [
                             {
@@ -1764,14 +1702,30 @@ function makePDF() {
                                 ]
                             ]}
                     },
-                    {
-                        fontSize: 4,
-                        text: '\n'
-
-                    },
 
  // 3. ПЕРЕЛІК ЗАВІРЕНИХ АДВОКАТОМ КОПІЙ ПРОЦЕСУАЛЬНИХ ТА ІНШИХ ДОКУМЕНТІВ
 
+                    {
+                        pageBreak: 'before',
+                        fontSize: 12,
+                        text: '\n'
+
+                    },
+                    {
+                        text: [
+                            {
+                                alignment: 'right',
+                                color: 'gray',
+                                fontSize: 9,
+                                text: '2                                        '
+                            },
+                            {
+                                color: 'gray',
+                                fontSize: 9,
+                                text: '                                          Продовження додатка 3'
+                            }]
+
+                    },
                     {
                         table: {
                             widths: [545],
@@ -1804,9 +1758,9 @@ function makePDF() {
 
                     },
                     {
-                        fontSize: 8.8,
+                        fontSize: 9,
                         table: {
-                            widths: [4, 200, 4, 310],
+                            widths: [4, 95, 4, 85, 4, 160],
                             body: [
                                 [{
                                     margin: [-2, -5, -2, -5],
@@ -1817,7 +1771,7 @@ function makePDF() {
                                     {
                                         border: [false, false, false, false],
                                         margin: [0, -2, 0, -2],
-                                        text: 'заява затриманого про відмову від захисника;'
+                                        text: 'клопотання адвоката;'
                                     },
                                     {
                                         margin: [-2, -5, -2, -5],
@@ -1828,22 +1782,9 @@ function makePDF() {
                                     {
                                         border: [false, false, false, false],
                                         margin: [0, -2, 0, -2],
-                                        text: 'протокол про адміністративне затримання/правопорушення;'
-                                    }
-                                    ]
-                            ]}
-                        },
-                    {
-                        fontSize: 2,
-                        text: '\n'
-
-                    },
-                    {
-                        fontSize: 8.7,
-                        table: {
-                            widths: [4, 278, 4, 75, 4, 142],
-                            body: [
-                                [{
+                                        text: 'скарга(и) адвоката;'
+                                    },
+                                    {
                                         margin: [-2, -5, -2, -5],
                                         fontSize: 14,
                                         bold: true,
@@ -1851,77 +1792,71 @@ function makePDF() {
                                     },
                                     {
                                         border: [false, false, false, false],
-                                        margin: [-1, -2, -2, -2],
-                                        text: 'постанова суду (судді) про застосування адміністративного арешту;'
-                                    },
-                                    {
-                                        margin: [-2, -5, -2, -5],
-                                        fontSize: 14,
-                                        bold: true,
-                                        text: (data.documents.v4 ? 'X' : '')
-                                    },
-                                    {
-                                        border: [false, false, false, false],
-                                        margin: [-2, -2, -2, -2],
-                                        text: 'апеляційна скарга;'
-                                    },
-                                    {
-                                        margin: [-2, -5, -2, -5],
-                                        fontSize: 14,
-                                        bold: true,
-                                        text: (data.documents.v5 ? 'X' : '')
-                                    },
-                                    {
-                                        border: [false, false, false, false],
-                                        margin: [-2, -2, 0, -2],
-                                        text: 'ухвала суду апеляційної інстанції;'
+                                        margin: [0, -2, 0, -2],
+                                        text: 'протокол(и) процесуальної(их) дії(й);'
                                     }
                                 ]
                             ]}
                     },
                     {
-                        fontSize: 2,
+                        fontSize: 3,
                         text: '\n'
 
                     },
                     {
-                        fontSize: 8.8,
+                        fontSize: 9,
                         table: {
-                            widths: [4, 315, 4, 190],
+                            widths: [4, 315],
                             body: [
                                 [{
                                     margin: [-2, -5, -2, -5],
                                     fontSize: 14,
                                     bold: true,
-                                    text: (data.documents.v6 ? 'X' : '')
+                                    text: (data.documents.v4 ? 'X' : '')
                                 },
                                     {
                                         border: [false, false, false, false],
                                         margin: [0, -2, 0, -2],
                                         text: 'медична довідка, що підтверджує наявність у особи інфекційної хвороби;'
-                                    },
-                                    {
-                                        margin: [-2, -5, -2, -5],
-                                        fontSize: 14,
-                                        bold: true,
-                                        text: (data.documents.other.indexOf('____') == -1 ? 'X' : '')
-                                    },
-                                    {
-                                        border: [false, false, false, false],
-                                        margin: [0, -2, 0, -2],
-                                        text: 'інше (зазначити)   ___________________________'
                                     }
                                 ]
                             ]}
                     },
                     {
-                        fontSize: 4,
+                        fontSize: 3,
                         text: '\n'
+
                     },
                     {
                         fontSize: 9,
-                        italics: true,
-                        text: data.documents.other + '.'
+                        table: {
+                            widths: [4, 530],
+                            body: [
+                                [{
+                                    margin: [-2, -5, -2, -5],
+                                    fontSize: 14,
+                                    bold: true,
+                                    text: (data.documents.other.indexOf('____') == -1 ? 'X' : '')
+                                },
+                                    {
+                                        border: [false, false, false, false],
+                                        margin: [0, -2, 0, -2],
+                                        text: [
+                                            {
+                                                text: 'інше (зазначити)  '
+                                            },
+                                            {
+                                                italics: true,
+                                                text: data.documents.other
+                                            }]
+                                    }
+                                ]
+                            ]}
+                    },
+                    {
+                        fontSize: 9,
+                        text: '____________________________________________________________________________________________________________________________________.'
+
                     },
                     {
                         fontSize: 4,

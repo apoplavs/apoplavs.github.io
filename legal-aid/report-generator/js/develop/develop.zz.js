@@ -216,7 +216,13 @@ var data = {
 	sum: 0
 };
 
-// IN F
+/**
+ * записує дані в глобальний масив data[]
+ * @param attr
+ * @param field
+ * @param value
+ * @param type
+ */
 function setData(attr, field, value, type) {
     switch (type) {
         case 'num' :
@@ -233,9 +239,12 @@ function setData(attr, field, value, type) {
     }
 }
 
+/**
+ * викликається при натисненні кнопки створити звіт
+ * робить підготовчі дій по формуванню pdf файлу
+ * @returns {boolean}
+ */
 function makeReport() {
-	console.log('(2 x ' + data.numTrips.k() + ' + ' + '2 x ' + data.specCategory.k() + ' x ' + data.numActs.k() + ' x ' +
-        data.osk.k() + ' x ' + data.terminatePart.k() + ') x ' + data.paymentPerHour.k() + ' x ' + data.actsInNight.k() + ' x ' + data.termSubmission.k());
 // розрахунок розміру винагороди
     data.sum = (2 * data.numTrips.k() + 2 * data.specCategory.k() * data.numActs.k() * data.osk.k() * data.terminatePart.k())
 		* data.paymentPerHour.k() * data.actsInNight.k() * data.termSubmission.k();

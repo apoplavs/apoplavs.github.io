@@ -3,7 +3,7 @@
 		<table class="main-table" align="center">
 		<tr>
 			<th colspan="3">Розрахунок розміру винагороди адвоката за надання безоплатної вторинної правової допомоги</br>
-				особі, до якої застосовано адміністративне затримання та/або адміністративний арешт (АЗ)</th>
+				у разі залучення до окремої процесуальної дії (ОПД)</th>
 		</tr>
 			<tr>
 				<th colspan="3"></th>
@@ -86,7 +86,7 @@
 		</tr>
 		<tr>
 			<td colspan="2">- у якої виявлено інфекційну хворобу, що підтверджується відповідною медичною довідкою</td>
-			<td><input type="checkbox" name="onoffswitch6" class="onoffswitch-checkbox" id="myonoffswitch6" onchange="if(this.checked){turnOn(['document8']);setData('documents', 'v6', true, '');setData('specCategory', 'v4', true, '');}else{turnOff(['document8']);setData('documents', 'v6', false, '');setData('specCategory', 'v4', false, '');}">
+			<td><input type="checkbox" name="onoffswitch6" class="onoffswitch-checkbox" id="myonoffswitch6" onchange="if(this.checked){turnOn(['document8']);setData('documents', 'v4', true, '');setData('specCategory', 'v4', true, '');}else{turnOff(['document8']);setData('documents', 'v4', false, '');setData('specCategory', 'v4', false, '');}">
 				<label class="onoffswitch-label" for="myonoffswitch6">
 					<span class="onoffswitch-inner"></span>
 				</label>
@@ -159,19 +159,11 @@
 			<td colspan="2"></td>
 		</tr>
 		<tr class="no-border widter">
-			<td> №3 - <input type="text" name="meet3" maxlength="80" onchange="setData('meetings', 'v3', this.value, '');showNextField(this);"></td>
+			<td> №3 - <input type="text" name="meet3" maxlength="80" onchange="setData('meetings', 'v3', this.value, '');"></td>
 			<td colspan="2"></td>
 		</tr>
 		<tr class="no-border widter">
-			<td> №4 - <input type="text" name="meet4" maxlength="80" onchange="setData('meetings', 'v4', this.value, '');showNextField(this);"></td>
-			<td colspan="2"></td>
-		</tr>
-		<tr class="no-border widter">
-			<td> №5 - <input type="text" name="meet5" maxlength="80" onchange="setData('meetings', 'v5', this.value, '');"></td>
-			<td colspan="2"></td>
-		</tr>
-		<tr class="no-border widter">
-			<td> №6 - <input type="text" name="meet6" maxlength="80" onchange="setData('meetings', 'v6', this.value, '');"></td>
+			<td> №4 - <input type="text" name="meet4" maxlength="80" onchange="setData('meetings', 'v4', this.value, '');"></td>
 			<td colspan="2"></td>
 		</tr>
 		</colgroup>
@@ -195,7 +187,7 @@
 			<td><input type="date" name="date-end-proc-action2" class="date-time" onchange="setData('procActions', 'de2', this.value, 'date');"><input type="time" name="time-end-proc-action2" class="date-time" onchange="setData('procActions', 'te2', this.value, '');"></td>
 		</tr>
 		<tr class="widter">
-			<td> №3 - <input type="text" name="proc-action3" maxlength="80" onchange="setData('procActions', 'v3', this.value, '');showNextField(this);"></td>
+			<td> №3 - <input type="text" name="proc-action3" maxlength="80" onchange="setData('procActions', 'v3', this.value, '');"></td>
 			<td><input type="date" name="date-start-proc-action3" class="date-time" onchange="setData('procActions', 'ds3', this.value, 'date');"><input type="time" name="time-start-proc-action3" class="date-time" onchange="setData('procActions', 'ts3', this.value, '');"></td>
 			<td><input type="date" name="date-end-proc-action3" class="date-time" onchange="setData('procActions', 'de3', this.value, 'date');"><input type="time" name="time-end-proc-action3" class="date-time" onchange="setData('procActions', 'te3', this.value, '');"></td>
 		</tr>
@@ -203,11 +195,6 @@
 			<td> №4 - <input type="text" name="proc-action4" maxlength="80" onchange="setData('procActions', 'v4', this.value, '');"></td>
 			<td><input type="date" name="date-start-proc-action4" class="date-time" onchange="setData('procActions', 'ds4', this.value, 'date');"><input type="time" name="time-start-proc-action4" class="date-time" onchange="setData('procActions', 'ts4', this.value, '');"></td>
 			<td><input type="date" name="date-end-proc-action4" class="date-time" onchange="setData('procActions', 'de4', this.value, 'date');"><input type="time" name="time-end-proc-action4" class="date-time" onchange="setData('procActions', 'te4', this.value, '');"></td>
-		</tr>
-		<tr class="widter">
-			<td> №5 - <input type="text" name="proc-action5" maxlength="80" onchange="setData('procActions', 'v5', this.value, '');"></td>
-			<td><input type="date" name="date-start-proc-action5" class="date-time" onchange="setData('procActions', 'ds5', this.value, 'date');"><input type="time" name="time-start-proc-action5" class="date-time" onchange="setData('procActions', 'ts5', this.value, '');"></td>
-			<td><input type="date" name="date-end-proc-action5" class="date-time" onchange="setData('procActions', 'de5', this.value, 'date');"><input type="time" name="time-end-proc-action5" class="date-time" onchange="setData('procActions', 'te5', this.value, '');"></td>
 		</tr>
 		</colgroup>
 		<tr>
@@ -229,7 +216,7 @@
 			<td><input type="time" name="time-proc-doc2" class="date-time" onchange="setData('procDocs', 't2', this.value, '');"></td>
 		</tr>
 		<tr class="widter">
-			<td> №3 - <input type="text" name="proc-doc3" maxlength="80" onchange="setData('procDocs', 'v3', this.value, '');showNextField(this);"></td>
+			<td> №3 - <input type="text" name="proc-doc3" maxlength="80" onchange="setData('procDocs', 'v3', this.value, '');"></td>
 			<td><input type="date" name="date-proc-doc3" class="date-time" onchange="setData('procDocs', 'd3', this.value, 'date');"></td>
 			<td><input type="time" name="time-proc-doc3" class="date-time" onchange="setData('procDocs', 't3', this.value, '');"></td>
 		</tr>
@@ -238,38 +225,25 @@
 			<td><input type="date" name="date-proc-doc4" class="date-time" onchange="setData('procDocs', 'd4', this.value, 'date');"></td>
 			<td><input type="time" name="time-proc-doc4" class="date-time" onchange="setData('procDocs', 't4', this.value, '');"></td>
 		</tr>
-		<tr class="widter">
-			<td> №5 - <input type="text" name="proc-doc5" maxlength="80" onchange="setData('procDocs', 'v5', this.value, '');"></td>
-			<td><input type="date" name="date-proc-doc5" class="date-time" onchange="setData('procDocs', 'd5', this.value, 'date');"></td>
-			<td><input type="time" name="time-proc-doc5" class="date-time" onchange="setData('procDocs', 't5', this.value, '');"></td>
-		</tr>
 		</colgroup>
 			<tr>
 			<th colspan="3">Перелік завірених адвокатом копій процесуальних та інших документів, що підтверджують наведені дані</th>
 		</tr>
 		<tr>
-			<td colspan="2">заява затриманого про відмову від захисника</td>
+			<td colspan="2">клопотання адвоката</td>
 			<td><input type="checkbox" class="checkbox" id="document1" onchange="setData('documents', 'v1', this.checked, '');"></td>
 		</tr>
 		<tr>
-			<td colspan="2">протокол про адміністративне затримання/правопорушення</td>
-			<td><input type="checkbox" class="checkbox" id="document2" checked onchange="setData('documents', 'v2', this.checked, '');"></td>
+			<td colspan="2">скарга(и) адвоката</td>
+			<td><input type="checkbox" class="checkbox" id="document2" onchange="setData('documents', 'v2', this.checked, '');"></td>
 		</tr>
 		<tr>
-			<td colspan="2">постанова суду (судді) про застосування адміністративного арешту</td>
+			<td colspan="2">протокол(и) процесуальної(их) дії(й)</td>
 			<td><input type="checkbox" class="checkbox" id="document3" onchange="setData('documents', 'v3', this.checked, '');"></td>
 		</tr>
 		<tr>
-			<td colspan="2">апеляційна скарга</td>
-			<td><input type="checkbox" class="checkbox" id="document4" onchange="setData('documents', 'v4', this.checked, '');"></td>
-		</tr>
-		<tr>
-			<td colspan="2">ухвала суду апеляційної інстанції</td>
-			<td><input type="checkbox" class="checkbox" id="document5" onchange="setData('documents', 'v5', this.checked, '');"></td>
-		</tr>
-			<tr>
 			<td colspan="2">медична довідка, що підтверджує наявність у особи інфекційної хвороби</td>
-			<td><input type="checkbox" class="checkbox" id="document8" onchange="setData('documents', 'v6', this.checked, '');"></td>
+			<td><input type="checkbox" class="checkbox" id="document8" onchange="setData('documents', 'v4', this.checked, '');"></td>
 		</tr>
 			<tr>
 			<td colspan="2" class="widter"><input type="text" name="meet3" maxlength="100" id="document11" onchange="setData('documents', 'other', this.value, '');"></td>
@@ -277,7 +251,7 @@
 		</tr>
 		<tr>
 			<td colspan="2">Загальна кількість аркушів документів</td>
-			<td><input type="number" min="0" id="document-pages" required  onchange="setData('documents', 'sheets', this.value, 'num');"></td>
+			<td><input type="number" value="1" min="0" id="document-pages" required  onchange="setData('documents', 'sheets', this.value, 'num');"></td>
 		</tr>
 		<tr class="no-border">
 			<td></td>
@@ -285,4 +259,4 @@
 		</tr>
 		</table>
 		</form>
-			<script type="text/javascript" src="report-generator/js/az.js"></script>
+			<script type="text/javascript" src="report-generator/js/opd.js"></script>
