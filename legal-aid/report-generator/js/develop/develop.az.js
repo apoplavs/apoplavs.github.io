@@ -207,9 +207,9 @@ function makePDF() {
 									color: 'white',
                                     colSpan: 4,
                                     alignment: 'center',
-                                    text: 'Розмір винагороди адвоката за надання БВПД (обрати)\n' +
-                                    '[ЗЗ] особі, яка відповідно до положень кримінального процесуального законодавства вважається затриманою\n' +
-                                    'та / або стосовно якої обрано запобіжний захід у вигляді тримання під вартою'
+                                    text: 'Розмір винагороди адвоката за надання БВПД\n' +
+                                    '[АЗ] особі, до якої застосовано адміністративне затримання та / або адміністративний арешт,\n' +
+                                    'або [ОПД] у разі залучення до окремої процесуальної дії'
 								},{}, {}, {}],
 								[
 									{border: [false, false, false, false], text: '\n'},
@@ -660,115 +660,15 @@ function makePDF() {
                                         fillColor: '#d9d9d9',
                                         border: [true, true, true, false],
                                         bold: true,
-                                        text: '6. Обрання затриманій особі запобіжного заходу (ЗЗ) у вигляді тримання під вартою:'
+                                        text: '6. Коефіцієнт оскарження рішення щодо обрання запобіжного заходу особі, якій\nнадається правова допомога'
                                     },
                                     {
                                         fillColor: '#d9d9d9',
                                         border: [true, true, true, false],
                                         text: ''
-                                    },
-                                    {
-                                        fillColor: '#d9d9d9',
-                                        border: [true, true, true, false],
-                                        text: ''
-                                    },
-                                    {
-                                        border: [true, true, true, false],
-                                        fillColor: '#d9d9d9',
-                                        text: ''
-                                    }
-                                ],
-
-                                [
-                                    {
-                                        fillColor: '#d9d9d9',
-                                        border: [true, false, true, false],
-                                       	text: 'А. Чи подавалося слідчим / прокурором клопотання '+
-										'про обрання затриманій особі ЗЗ у вигляді тримання під вартою?'
-                                    },
-                                    {
-                                        fillColor: '#dbe6c4',
-                                        border: [true, true, true, false],
-                                        alignment: 'center',
-                                        margin: [0, 5, 0, 5],
-                                        text: (data.osk.takePetition ? 'так' : 'ні')
-                                    },
-                                    {
-                                        fillColor: '#d9d9d9',
-                                        border: [true, false, true, false],
-                                        text: ''
-                                    },
-                                    {
-                                        fillColor: '#d9d9d9',
-                                        border: [true, false, true, false],
-                                        text: ''
-                                    }
-                                ],
-
-                                [
-                                    {
-                                        fillColor: '#ffffff',
-                                        border: [true, false, true, false],
-                                        italics: true,
-                                        text: 'Яке рішення прийняв суд за підсумками розгляду такого клопотання?'
-                                    },
-                                    {
-                                        fillColor: '#d9d9d9',
-                                        border: [true, true, true, false],
-                                        text: ''
-                                    },
-                                    {
-                                        border: [true, false, true, false],
-                                        fillColor: '#d9d9d9',
-                                        text: ''
-                                    },
-                                    {
-                                        border: [true, false, true, false],
-                                        fillColor: '#d9d9d9',
-                                        text: ''
-                                    }
-                                ],
-
-                                [
-                                    {
-                                        fillColor: '#dbe6c4',
-                                        border: [true, false, true, false],
-                                        text: (data.osk.satisfiedPetition ? 'обрано ЗЗ у вигляді тримання під вартою' : 'обрано більш м’який ЗЗ або постановлено ухвалу про відмову в застосуванні ЗЗ')
-                                    },
-                                    {
-                                        fillColor: '#d9d9d9',
-                                        border: [true, false, true, false],
-                                        text: ''
-                                    },
-                                    {
-                                        border: [true, false, true, false],
-                                        fillColor: '#d9d9d9',
-                                        text: ''
-                                    },
-                                    {
-                                        border: [true, false, true, false],
-                                        fillColor: '#d9d9d9',
-                                        text: ''
-                                    }
-                                ],
-
-                                [
-                                    {
-                                        fillColor: '#d9d9d9',
-                                        border: [true, true, true, false],
-                                        text: 'Б. Чи подавали Ви апеляційну скаргу адвоката на судове рішення '+
-                                        'про обрання ЗЗ у вигляді тримання під вартою?'
-                                    },
-                                    {
-                                        fillColor: '#dbe6c4',
-                                        border: [true, true, true, false],
-                                        alignment: 'center',
-                                        margin: [0, 5, 0, 5],
-                                        text: (data.osk.appealLawer ? 'так' : 'ні')
                                     },
                                     {
                                         bold: true,
-                                        border: [true, false, true, false],
                                         margin: [0, 5, 0, 5],
                                         alignment: 'center',
                                         fillColor: '#d9d9d9',
@@ -776,132 +676,10 @@ function makePDF() {
                                     },
                                     {
                                         bold: true,
-                                        border: [true, false, true, false],
                                         margin: [0, 5, 0, 5],
                                         alignment: 'center',
                                         fillColor: '#d9d9d9',
                                         text: comma(data.osk.k())
-                                    }
-                                ],
-
-                                [
-                                    {
-                                        fillColor: '#ffffff',
-                                        border: [true, false, true, false],
-                                        italics: true,
-                                        text: 'Яке рішення прийняв суд за результатами розгляду такої апеляційної скарги?'
-                                    },
-                                    {
-                                        fillColor: '#d9d9d9',
-                                        border: [true, true, true, false],
-                                        text: ''
-                                    },
-                                    {
-                                        border: [true, false, true, false],
-                                        fillColor: '#d9d9d9',
-                                        text: ''
-                                    },
-                                    {
-                                        border: [true, false, true, false],
-                                        fillColor: '#d9d9d9',
-                                        text: ''
-                                    }
-                                ],
-
-                                [
-                                    {
-                                        fillColor: '#dbe6c4',
-                                        border: [true, false, true, false],
-                                        text: (data.osk.satisfiedAppealLawer ? 'ЗЗ у вигляді тримання під вартою змінено на більш м\'який' : 'ЗЗ у вигляді тримання під вартою залишено без змін')
-                                    },
-                                    {
-                                        fillColor: '#d9d9d9',
-                                        border: [true, false, true, false],
-                                        text: ''
-                                    },
-                                    {
-                                        border: [true, false, true, false],
-                                        fillColor: '#d9d9d9',
-                                        text: ''
-                                    },
-                                    {
-                                        border: [true, false, true, false],
-                                        fillColor: '#d9d9d9',
-                                        text: ''
-                                    }
-                                ],
-
-                                [
-                                    {
-                                        fillColor: '#d9d9d9',
-                                        border: [true, true, true, false],
-                                        text: 'В. Чи подавала сторона обвинувачення апеляційну скаргу на судове рішення '+
-										'про обрання ЗЗ більш м’якого, ніж тримання під вартою, або ухвалу про відмову '+
-										'в застосуванні ЗЗ?'
-                                    },
-                                    {
-                                        fillColor: '#dbe6c4',
-                                        border: [true, true, true, false],
-                                        alignment: 'center',
-                                        margin: [0, 5, 0, 5],
-                                        text: (data.osk.appealProsecutor ? 'так' : 'ні')
-                                    },
-                                    {
-                                        fillColor: '#d9d9d9',
-                                        border: [true, false, true, false],
-                                        text: ''
-                                    },
-                                    {
-                                        fillColor: '#d9d9d9',
-                                        border: [true, false, true, false],
-                                        text: ''
-                                    }
-                                ],
-
-                                [
-                                    {
-                                        fillColor: '#ffffff',
-                                        border: [true, false, true, false],
-                                        italics: true,
-                                        text: 'Яке рішення прийняв суд за результатами розгляду такої апеляційної скарги?'
-                                    },
-                                    {
-                                        fillColor: '#d9d9d9',
-                                        border: [true, true, true, false],
-                                        text: ''
-                                    },
-                                    {
-                                        border: [true, false, true, false],
-                                        fillColor: '#d9d9d9',
-                                        text: ''
-                                    },
-                                    {
-                                        border: [true, false, true, false],
-                                        fillColor: '#d9d9d9',
-                                        text: ''
-                                    }
-                                ],
-
-                                [
-                                    {
-                                        fillColor: '#dbe6c4',
-                                        border: [true, false, true, false],
-                                        text: (data.osk.satisfiedAppealProsecutor ? 'обрано ЗЗ у вигляді тримання під вартою' : 'ЗЗ чи ухвалу про відмову в застосуванні ЗЗ залишено без змін')
-                                    },
-                                    {
-                                        fillColor: '#d9d9d9',
-                                        border: [true, false, true, false],
-                                        text: ''
-                                    },
-                                    {
-                                        border: [true, false, true, false],
-                                        fillColor: '#d9d9d9',
-                                        text: ''
-                                    },
-                                    {
-                                        border: [true, false, true, false],
-                                        fillColor: '#d9d9d9',
-                                        text: ''
                                     }
                                 ],
 
@@ -1124,7 +902,7 @@ function makePDF() {
                             }]
                     },
                     {
-                        fontSize: 1,
+                        fontSize: 2,
                         text: '\n'
 
                     },
