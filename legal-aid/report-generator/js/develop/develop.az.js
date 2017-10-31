@@ -153,12 +153,8 @@ var data = {
 		v3: false, //постанова суду (судді) про застосування адміністративного арешту;
 		v4: false, //апеляційна скарга;
         v5: false, //ухвала суду апеляційної інстанції;
-        v6: false, //заперечення на апеляційну скаргу прокурора на ухвалу слідчого судді, суду про застосування запобіжного заходу
-        v7: false, //ухвала апеляційного суду за результатами розгляду апеляційної скарги прокурора/адвоката
-        v8: false, //медична довідка, що підтверджує наявність у особи інфекційної хвороби
-        v9: false, //скарга адвоката в порядку статті 206 КПК
-        v10: false, //ухвала слідчого судді за результатами розгляду скарги адвоката в порядку статті 206 КПК
-        other: '_______________________________________________________________________________________________________________', //інше
+        v6: false, //медична довідка, що підтверджує наявність у особи інфекційної хвороби
+        other: '_______________________________________________________________________________________________________________________________________', //інше
         sheets: 0 //Загальна кількість аркушів документів
 	},
 	sum: 0
@@ -263,7 +259,6 @@ function makePDF() {
 												text: '1. Кількість виїздів адвоката\n'
 											},
                                             {
-                                                bold: false,
                                                 fontSize: 8,
                                                 text: 'для побачення з особою, якій надається БВПД, участі у процесуальних діях та / або збирання доказів'
                                             }]
@@ -302,7 +297,6 @@ function makePDF() {
                                                 text: '2. Припинення участі адвоката до завершення строку дії доручення, '
                                             },
                                             {
-                                                bold: false,
                                                 text: ' якщо:'
                                             }]
                                     },
@@ -335,7 +329,6 @@ function makePDF() {
                                                 text: ' - під час першого конфіденційного побачення '
                                             },
                                             {
-                                                bold: false,
                                                 text: 'з адвокатом особа, якій надається '+
 												'БВПД, заявила про відмову від його послуг у письмовій формі, або ж адвокат внаслідок '+
 												'конфлікту інтересів чи з інших причин прийняв рішення про відмову від надання БВПД особі;'
@@ -371,7 +364,6 @@ function makePDF() {
                                         italics: true,
                                         text: [
                                             {
-                                                bold: false,
                                                 text: ' - адвокат припинив надання БВПД до завершення строку дії доручення '
                                             },
                                             {
@@ -379,7 +371,6 @@ function makePDF() {
                                                 text: 'в інший час після конфіденційного побачення '
                                             },
                                             {
-                                                bold: false,
                                                 text: 'з будь-яких інших підстав, визначених законом '
                                             }]
                                     },
@@ -546,7 +537,6 @@ function makePDF() {
                                                 text: '4. Сумарна кількість дій адвоката з надання БВПД,\n'
                                             },
                                             {
-                                                bold: false,
                                                 fontSize: 8,
                                                 text: 'зазначених у реєстрі дій адвоката (побачення з особою,'+
 												'якій надається БВПД, участь у процесуальних діях, складення процесуальних документів)'
@@ -581,7 +571,6 @@ function makePDF() {
                                                 text: '- у разі якщо кількість дій адвоката = 0, '
                                             },
                                             {
-                                                bold: false,
                                                 fontSize: 8,
                                                 text: 'вказати чи припав час виїзду повністю або частково на нічний час '+
                                                 '(з 22.00 до 6.00) або вихідні (субота, неділя), або святкові / неробочі дні'
@@ -927,7 +916,6 @@ function makePDF() {
                                                 text: '7. Розмір прожиткового мінімуму, грн.\n'
                                             },
                                             {
-                                                bold: false,
                                                 fontSize: 8,
                                                 text: 'для працездатних осіб на момент подання адвокатом акта'
                                             }]
@@ -966,7 +954,6 @@ function makePDF() {
                                                 text: '8. Строк подання акта\n'
                                             },
                                             {
-                                                bold: false,
                                                 fontSize: 7,
                                                 text: 'починаючи з дня, наступного за днем завершення надання БВПД / відповідної стадії провадження (процесу)'
                                             }]
@@ -1070,7 +1057,6 @@ function makePDF() {
                                 text: 'Розрахунок розміру винагороди адвоката за надання безоплатної вторинної правової допомоги\n'
                             },
                             {
-                                bold: false,
                                 text: 'особі, до якої застосовано адміністративне затримання та/або адміністративний арешт (АЗ)\n \n'
                             }]
                     },
@@ -1102,7 +1088,6 @@ function makePDF() {
                                 text: '1.1. П.І.Б. адвоката, який (яка) надав(ла) БВПД  '
                             },
                             {
-                                bold: false,
                                 text: data.commonData.lawyerName
                             }]
                     },
@@ -1119,7 +1104,6 @@ function makePDF() {
                                 text: '1.2. Доручення центру з надання БВПД  '
                             },
                             {
-                                bold: false,
                                 text: 'від ' + data.commonData.arrandDate + '   № ' + data.commonData.arrandNum
                             }]
                     },
@@ -1136,9 +1120,13 @@ function makePDF() {
                                 text: '1.3. П.І.Б., дата народження особи, якій надано БВПД\n'
                             },
                             {
-                                bold: false,
                                 text: data.commonData.detaineeName + '          ' + data.commonData.detaineeDate
                             }]
+                    },
+                    {
+                        fontSize: 1,
+                        text: '\n'
+
                     },
 
 // 2. ВИХІДНІ ДАНІ ДЛЯ РОЗРАХУНКУ ЗНАЧЕНЬ КОЕФІЦІЄНТІВ, ЩО ВИЗНАЧАЮТЬ РОЗМІР ВИНАГОРОДИ АДВОКАТА
@@ -1198,7 +1186,6 @@ function makePDF() {
                                 text: ') '
                             },
                             {
-                                bold: false,
                                 fontSize: 9,
                                 text: '(відмітити потрібне):'
                             }]
@@ -1207,7 +1194,6 @@ function makePDF() {
                         table: {
                             widths: [4, 520],
                             body: [[{
-                                border: [true, true, true, true],
                                 margin: [-2, -5, -2, -5],
                                 fontSize: 14,
                                 bold: true,
@@ -1230,7 +1216,6 @@ function makePDF() {
                         table: {
                             widths: [4, 520],
                             body: [[{
-                                border: [true, true, true, true],
                                 margin: [-2, -5, -2, -5],
                                 fontSize: 14,
                                 bold: true,
@@ -1253,7 +1238,6 @@ function makePDF() {
                         table: {
                             widths: [4, 520],
                             body: [[{
-                                border: [true, true, true, true],
                                 margin: [-2, -5, -2, -5],
                                 fontSize: 14,
                                 bold: true,
@@ -1276,7 +1260,6 @@ function makePDF() {
                         table: {
                             widths: [4, 520],
                             body: [[{
-                                border: [true, true, true, true],
                                 margin: [-2, -5, -2, -5],
                                 fontSize: 14,
                                 bold: true,
@@ -1318,7 +1301,6 @@ function makePDF() {
                                 text: ')*   _' + data.numActs.v1 + '_.\n'
                             },
                             {
-                                bold: false,
                                 fontSize: 6,
                                 text: '* У разі якщо затриману особу звільнено до моменту прибуття адвоката, вказується 0.'
                             }]
@@ -1345,7 +1327,6 @@ function makePDF() {
 //           Побачення з особою, якій надається БВПД
 
                     {
-                        bold: false,
                         fontSize: 9,
                         text: 'А. Побачення з особою, якій надається БВПД'
                     },
@@ -1438,7 +1419,6 @@ function makePDF() {
 //           Б. Участь у процесуальних діях
 
                     {
-                        bold: false,
                         fontSize: 9,
                         text: '\nБ. Участь у процесуальних діях'
                     },
@@ -1546,7 +1526,6 @@ function makePDF() {
 //           В. Складання процесуальних документів
 
                     {
-                        bold: false,
                         fontSize: 9,
                         text: '\nВ. Складання процесуальних документів'
                     },
@@ -1685,7 +1664,6 @@ function makePDF() {
                                 text: ') '
                             },
                             {
-                                bold: false,
                                 fontSize: 9,
                                 text: '(відмітити потрібне):'
                             }]
@@ -1697,7 +1675,6 @@ function makePDF() {
                             body: [
                                 [
                                     {
-                                        border: [true, true, true, true],
                                         margin: [-2, -5, -2, -6],
                                         fontSize: 14,
                                         bold: true,
@@ -1713,7 +1690,6 @@ function makePDF() {
                                     colSpan: 2,
                                     border: [false, false, false, false],
                                     margin: [0, -2, 0, -2],
-                                    alignment: 'left',
                                     text: 'у письмовій формі;'
                                 },
                                     {}]]}
@@ -1725,7 +1701,6 @@ function makePDF() {
                             body: [
                                 [
                                     {
-                                        border: [true, true, true, true],
                                         margin: [-2, -5, -2, -6],
                                         fontSize: 14,
                                         bold: true,
@@ -1741,7 +1716,6 @@ function makePDF() {
                                     colSpan: 2,
                                     border: [false, false, false, false],
                                     margin: [0, -2, 0, -2],
-                                    alignment: 'left',
                                     text: 'рішення про відмову від надання БВПД особі;'
                                 },
                                     {}]]}
@@ -1753,7 +1727,6 @@ function makePDF() {
                             body: [
                                 [
                                     {
-                                        border: [true, true, true, true],
                                         margin: [-2, -5, -2, -6],
                                         fontSize: 14,
                                         bold: true,
@@ -1769,7 +1742,6 @@ function makePDF() {
                                     colSpan: 2,
                                     border: [false, false, false, false],
                                     margin: [0, -2, 0, -2],
-                                    alignment: 'left',
                                     text: 'з будь-яких інших підстав, визначених законом.'
                                 },
                                     {}]]}
@@ -1791,7 +1763,6 @@ function makePDF() {
                                     'дні, від загальної кількості таких дій '
                             },
                             {
-                                bold: false,
                                 fontSize: 9,
                                 text: 'згідно з даними, наведеними у реєстрі дій адвоката '
                             },
@@ -1811,7 +1782,6 @@ function makePDF() {
                                 text: ') '
                             },
                             {
-                                bold: false,
                                 fontSize: 9,
                                 text: '(відмітити потрібне):'
                             }]
@@ -1821,7 +1791,6 @@ function makePDF() {
                             widths: [4, 50, 4, 80, 4, 80, 4, 80, 4, 80],
                             body: [
                                 [{
-                                border: [true, true, true, true],
                                 margin: [-2, -5, -2, -5],
                                 fontSize: 14,
                                 bold: true,
@@ -1834,7 +1803,6 @@ function makePDF() {
                                     text: 'до 10 %;'
                                 },
                                 {
-                                    border: [true, true, true, true],
                                     margin: [-2, -5, -2, -5],
                                     fontSize: 14,
                                     bold: true,
@@ -1847,7 +1815,6 @@ function makePDF() {
                                         text: 'від 10 % до 20 %;'
                                     },
                                 {
-                                    border: [true, true, true, true],
                                     margin: [-2, -5, -2, -5],
                                     fontSize: 14,
                                     bold: true,
@@ -1860,7 +1827,6 @@ function makePDF() {
                                         text: 'від 20 % до 30 %;'
                                     },
                                 {
-                                    border: [true, true, true, true],
                                     margin: [-2, -5, -2, -5],
                                     fontSize: 14,
                                     bold: true,
@@ -1873,7 +1839,6 @@ function makePDF() {
                                         text: 'від 30 % до 50 %;'
                                     },
                                 {
-                                    border: [true, true, true, true],
                                     margin: [-2, -5, -2, -5],
                                     fontSize: 14,
                                     bold: true,
@@ -1920,7 +1885,6 @@ function makePDF() {
                                 text: '2.7. Строк подання акта надання БВПД до центру з надання БВПД, '
                             },
                             {
-                                bold: false,
                                 fontSize: 9,
                                 text: 'починаючи з дня, наступного за днем завершення надання\nБВПД/стадії провадження чи процесу'
                             },
@@ -1940,7 +1904,6 @@ function makePDF() {
                                 text: ') '
                             },
                             {
-                                bold: false,
                                 fontSize: 9,
                                 text: '(відмітити потрібне):'
                             }]
@@ -1950,7 +1913,6 @@ function makePDF() {
                             widths: [4, 70, 4, 85, 4, 85, 4, 85, 4, 85],
                             body: [
                                 [{
-                                    border: [true, true, true, true],
                                     margin: [-2, -5, -2, -5],
                                     fontSize: 14,
                                     bold: true,
@@ -1963,7 +1925,6 @@ function makePDF() {
                                         text: 'до 45 днів;'
                                     },
                                     {
-                                        border: [true, true, true, true],
                                         margin: [-2, -5, -2, -5],
                                         fontSize: 14,
                                         bold: true,
@@ -1976,7 +1937,6 @@ function makePDF() {
                                         text: 'від 46 до 60 днів;'
                                     },
                                     {
-                                        border: [true, true, true, true],
                                         margin: [-2, -5, -2, -5],
                                         fontSize: 14,
                                         bold: true,
@@ -1989,7 +1949,6 @@ function makePDF() {
                                         text: 'від 61 до 90 днів;'
                                     },
                                     {
-                                        border: [true, true, true, true],
                                         margin: [-2, -5, -2, -5],
                                         fontSize: 14,
                                         bold: true,
@@ -2002,7 +1961,6 @@ function makePDF() {
                                         text: 'від 91 до 120 днів;'
                                     },
                                     {
-                                        border: [true, true, true, true],
                                         margin: [-2, -5, -2, -5],
                                         fontSize: 14,
                                         bold: true,
@@ -2041,12 +1999,10 @@ function makePDF() {
                                         text: '3.  ПЕРЕЛІК ЗАВІРЕНИХ АДВОКАТОМ КОПІЙ ПРОЦЕСУАЛЬНИХ ТА ІНШИХ ДОКУМЕНТІВ,  ЩО  ПІДТВЕРДЖУЮТЬ  НАВЕДЕНІ\nДАНІ '
                                     },
                                     {
-                                        bold: false,
                                         fontSize: 9,
                                         text: '(відмітити потрібне) (додаються на '
                                     },
                                     {
-                                        bold: false,
                                         fontSize: 9,
                                         italics: true,
                                         text: '_' + data.documents.sheets + '_ арк.):'
@@ -2064,7 +2020,6 @@ function makePDF() {
                             widths: [4, 200, 4, 310],
                             body: [
                                 [{
-                                    border: [true, true, true, true],
                                     margin: [-2, -5, -2, -5],
                                     fontSize: 14,
                                     bold: true,
@@ -2076,7 +2031,6 @@ function makePDF() {
                                         text: 'заява затриманого про відмову від захисника;'
                                     },
                                     {
-                                        border: [true, true, true, true],
                                         margin: [-2, -5, -2, -5],
                                         fontSize: 14,
                                         bold: true,
@@ -2098,10 +2052,9 @@ function makePDF() {
                     {
                         fontSize: 8.7,
                         table: {
-                            widths: [4, 280, 4, 75, 4, 142],
+                            widths: [4, 278, 4, 75, 4, 142],
                             body: [
                                 [{
-                                        border: [true, true, true, true],
                                         margin: [-2, -5, -2, -5],
                                         fontSize: 14,
                                         bold: true,
@@ -2109,11 +2062,10 @@ function makePDF() {
                                     },
                                     {
                                         border: [false, false, false, false],
-                                        margin: [-2, -2, -2, -2],
+                                        margin: [-1, -2, -2, -2],
                                         text: 'постанова суду (судді) про застосування адміністративного арешту;'
                                     },
                                     {
-                                        border: [true, true, true, true],
                                         margin: [-2, -5, -2, -5],
                                         fontSize: 14,
                                         bold: true,
@@ -2125,7 +2077,6 @@ function makePDF() {
                                         text: 'апеляційна скарга;'
                                     },
                                     {
-                                        border: [true, true, true, true],
                                         margin: [-2, -5, -2, -5],
                                         fontSize: 14,
                                         bold: true,
@@ -2133,7 +2084,7 @@ function makePDF() {
                                     },
                                     {
                                         border: [false, false, false, false],
-                                        margin: [0, -2, 0, -2],
+                                        margin: [-2, -2, 0, -2],
                                         text: 'ухвала суду апеляційної інстанції;'
                                     }
                                 ]
@@ -2150,7 +2101,6 @@ function makePDF() {
                             widths: [4, 315, 4, 190],
                             body: [
                                 [{
-                                    border: [true, true, true, true],
                                     margin: [-2, -5, -2, -5],
                                     fontSize: 14,
                                     bold: true,
@@ -2162,7 +2112,6 @@ function makePDF() {
                                         text: 'медична довідка, що підтверджує наявність у особи інфекційної хвороби;'
                                     },
                                     {
-                                        border: [true, true, true, true],
                                         margin: [-2, -5, -2, -5],
                                         fontSize: 14,
                                         bold: true,
@@ -2171,26 +2120,19 @@ function makePDF() {
                                     {
                                         border: [false, false, false, false],
                                         margin: [0, -2, 0, -2],
-                                        text: [
-                                            {
-                                                text: 'інше (зазначити)  '
-                                            },
-                                            {
-                                                italics: true,
-                                                text: data.documents.other
-                                            }]
+                                        text: 'інше (зазначити)   ___________________________'
                                     }
                                 ]
                             ]}
                     },
                     {
-                        fontSize: 2,
+                        fontSize: 4,
                         text: '\n'
                     },
                     {
                         fontSize: 9,
-                        text: '____________________________________________________________________________________________________________________________________.'
-
+                        italics: true,
+                        text: data.documents.other + '.'
                     },
                     {
                         fontSize: 4,
@@ -2277,10 +2219,8 @@ function makePDF() {
                                 {
                                     border: [false, false, false, false],
                                     alignment: 'center',
-                                    margin: [-4, -1, -4, 0],
-                                    italics: true,
-                                    fontSize: 11,
-                                    text: '_' + comma(data.osk.k()) + '_'
+                                    margin: [-5, 0, -5, 0],
+                                    text: comma(data.osk.k())
 
                                 },
                                 {
@@ -2655,7 +2595,7 @@ function makePDF() {
                                         border: [false, false, false, false],
                                         margin: [0, -4, 0, 0],
                                         alignment: 'center',
-                                        text: '(підпис адвоката)'
+                                        text: '(підпис)'
                                     }
                                 ]]
                         }
