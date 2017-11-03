@@ -1,10 +1,10 @@
 @media only screen and (max-width: 1340px) {
 	body{font-size: .9em;}
 }
-
 body{
 	background : white;
 	margin: 0;
+	height: 100vh;
 }
 
 .tab-container{
@@ -228,4 +228,79 @@ ul.tabs > li > a{
 	100%{
 		background-color:rgb(255,255,255);
 	}
+}
+
+#wrap {
+	min-height: calc(100vh - 160px);
+}
+footer {
+	position: relative;
+	height: 50px;
+	/*width: 95vw;*/
+	background: none repeat scroll 0% 0% rgba(220, 250, 230, 0.5);
+	box-shadow: 0 -1px 10px 1px #c5d8c5;
+	font-size: 12px;
+	/*color: #0CC;*/
+	text-align: center;
+	padding: 10px 10px 0;
+	margin-top: 100px;
+	/*margin-top: calc(100% - 50px);*/
+	/*bottom: -10px;*/
+
+}
+
+#copyright {
+	text-align: left;
+	float: left;
+	width: 200px;
+}
+#donate {
+	float: right;
+	width: 200px;
+}
+#donate > button{
+	/*background: linear-gradient(to top, #d4e053, #e8f29d);*/
+	background-color: white;
+	outline: #d4e053 solid;
+	border: none;
+	color: #1578b2;
+	padding: 5px 12px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 14px;
+	border-radius: 5px;
+	font-weight: bolder;
+	/*outline-style: none;*/
+	transition: .3s;
+}
+#donate:after {
+	content: '';
+	background-color: white;
+	border-radius: 15px;
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	top: 14px;
+	right: 18px;
+	-webkit-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+}
+#donate:before {
+	content: '';
+	background-color: white;
+	border-radius: 15px;
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	top: 14px;
+	right: 182px;
+	-webkit-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+}
+#donate > button:hover {
+	/*background: linear-gradient(to top, #a8b240, #e8f29d);*/
+	padding: 7px 13px;
+	color: #1896e0;
+
 }

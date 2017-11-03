@@ -24,3 +24,15 @@ var tabs = $('.tabs > li');
 				}
 			})
 		});
+
+		$('#open-donate').click(function (event) {
+            $('#floatingCirclesG').show();
+            $('#content').hide();
+            tabs.removeClass('active');
+            $.ajax({
+				url: 'donate.html',
+				success: function (response) {
+					$('#content').html(response);
+                }
+			})
+        });
