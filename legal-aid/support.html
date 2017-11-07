@@ -1,0 +1,130 @@
+<style>
+    #main-container{
+        width:400px;
+        margin:30px auto;
+        box-shadow: 0 1px 20px 2px #ccc;
+    }
+
+    #main-container #form-container{
+        background-color:#fff;
+        padding:15px;
+    }
+
+    #main-container td{
+        white-space:nowrap;
+    }
+
+    #main-container h1{
+        color:#555;
+        font-size:22px;
+        font-weight:normal;
+        text-transform:uppercase;
+        margin-bottom:5px;
+    }
+
+    #main-container h2{
+        font-weight:normal;
+        font-size:10px;
+        text-transform:uppercase;
+        color:#aaaaaa;
+        margin-bottom:15px;
+        border-bottom:1px solid #eeeeee;
+        padding-bottom:10px;
+    }
+
+    #main-container label{
+        text-transform:uppercase;
+        font-size:10px;
+        font-family:Tahoma,Arial,Sans-serif,serif;
+    }
+
+    #main-container textarea{
+        color:#404040;
+        font-family:Arial,Helvetica,sans-serif;
+        font-size:12px;
+        resize: none;
+        outline-color: rgb(0, 100, 0);
+    }
+    #main-container td > button{
+        text-indent:8px;
+    }
+    #main-container span {
+        color: red;
+        vertical-align: top;
+    }
+    #main-container input, #main-container select {
+        outline-color: rgb(0, 100, 0);
+    }
+</style>
+<div id="main-container">
+
+    <div id="form-container">
+        <h1>Форма зворонтього зв`язку</h1>
+        <h2>Дані для зворотнього зв`язку</h2>
+
+        <form id="contact-form" name="contact-form" onsubmit="alert('before send message');sendMessage();return(false);">
+            <table width="100%" border="0" cellspacing="0" cellpadding="5">
+                <tr>
+                    <td width="15%"><label for="name">Ваше імя:</label></td>
+                    <td width="70%"><input type="text" class="validate[required,custom[onlyLetter]]" name="name" id="name" value="" /></td>
+                    <td width="15%" id="errOffset">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td><label for="email">Ваш e-mail:</label><span>*</span></td>
+                    <td><input type="text" class="validate[required,custom[email]]" name="email" id="email" value="" required/></td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="3"><h2>Тема листа і текст повідомлення</h2></td>
+                </tr>
+                <tr>
+                    <td><label for="subject">Тема:</label><span>*</span></td>
+                    <td><select name="subject" id="subject">
+                        <option value="без теми" selected="selected"> - без теми -</option>
+                        <option value="Знайшов помилку!">Знайшов помилку!</option>
+                        <option value="Запитання">Запитання</option>
+                        <option value="Потрібна допомога">Потрібна допомога</option>
+                        <option value="Є пропозиція">Є пропозиція</option>
+                        <option value="Інше">Інше</option>
+                    </select></td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td valign="top"><label for="message">Повідомлення:</label><span>*</span></td>
+                    <td><textarea name="message" id="message" class="validate[required]" cols="40" rows="10"></textarea></td>
+                    <td valign="top">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td valign="top">&nbsp;</td>
+                    <td colspan="2"><input type="submit" name="button" id="button" value="Надіслати" />&nbsp;
+                        <input type="reset" name="button2" id="button2" value="Очистити" />
+                </tr>
+            </table>
+        </form>
+    </div>
+    <script>
+        function sendMessage() {
+            alert('відправляю');
+            var xmlhttp = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
+            xmlhttp.open('POST', 'https://mandrillapp.com/api/1.0/messages/send.json');
+            xmlhttp.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+            xmlhttp.onreadystatechange = function() {
+                if (xmlhttp.readyState == 4) {
+                    if(xmlhttp.status == 200) alert('Mail sended!')
+                    else if(xmlhttp.status == 500) alert('Check apikey')
+                    else alert('Request error');
+                }
+            }
+            xmlhttp.send(JSON.stringify({'key': 'ZBDF4przFDQ4chxc1ECzSA',
+                'message': {
+                    'from_email': 'kateriniparalia2014@gmail.com',
+                    'to': [{'email': 'p.andriy.v@gmail.com', 'type': 'to'}],
+                    'autotext': 'true',
+                    'subject': 'Yeah!',
+                    'html': '<h1>Its work!</h1>'
+                }}));
+            alert('відправлено');
+            return false;
+        }
+    </script>
+</div>
