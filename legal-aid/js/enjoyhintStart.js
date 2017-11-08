@@ -66,7 +66,7 @@ function enjoyhintStart() {
                     'знайшли помилку;<br/>'+
                     'маєте пропозиції щодо вдосконалення сервісу;<br/>'+
                     'інші технічні питання;<br/>'+
-                    'пишіть сюди</p>',
+                    'пишіть сюди.</p>',
                     shape: 'rect',
                     margin: 27,
                     nextButton: {text: 'ОК'},
@@ -76,7 +76,6 @@ function enjoyhintStart() {
             ];
             hintInstance.set(hintSteps);
             hintInstance.run();
-            console.log(hintSteps);
     });
 }
 
