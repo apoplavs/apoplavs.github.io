@@ -6,6 +6,7 @@
 	width: 600px;
 	height: 300px;
 	background: radial-gradient(#aaaa55, #77773c, #888844);
+	box-shadow: 0 -1px 10px 1px #c5d8c5;
 }
 #area {
 	width: 100%;
@@ -13,7 +14,7 @@
 	resize: none;
 }
 #area, #part, #article {
-	background: #e0ebeb;
+	background: #eaf7ec;
 	border-radius: 1px;
 	font-size: 12px;
 }
