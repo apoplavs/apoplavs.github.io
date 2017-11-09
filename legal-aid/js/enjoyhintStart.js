@@ -23,7 +23,7 @@ function enjoyhintStart() {
                     showSkip: false
                 },
                 {
-                    "click ul.tabs>li:nth-child(3)": 'спробуйте натиснути на одну з них',
+                    "click ul.tabs>li:nth-child(3)": 'спробуйте перейти на одну з них',
                     shape: 'rect',
                     bottom: 25,
                     left: 5,
@@ -32,10 +32,11 @@ function enjoyhintStart() {
                     showSkip: false
                 },
                 {
-                    "next tbody>tr>th": 'Ви можете створити звіт про надання адвокатом правової допомоги<br/>'+
-                    'просто заповнивши дану форму',
+                    "next div.tab-container": 'Тут Ви можете створити звіт до органу БВПД<br/>'+
+                    'про надання адвокатом правової допомоги<br/>'+
+                    'просто заповнивши форму',
                     shape: 'rect',
-                    margin: 10,
+                    bottom: 38,
                     nextButton: {text: 'Далі'},
                     showSkip: false
                 },
@@ -50,6 +51,7 @@ function enjoyhintStart() {
                     "next table.main-table>tbody:nth-child(1)>tr:nth-child(25)>td:nth-child(2)>select": 'те ж саме можна робити з випадаючими списками.<br/>'+
                     'Перейти до наступного поля можна натиснувши <img src="keyTab.png" width="80px"><br/><br/>',
                     shape: 'rect',
+                    scrollAnimationSpeed: 1000,
                     nextButton: {text: 'Далі'},
                     showSkip: false
                 },
@@ -58,6 +60,7 @@ function enjoyhintStart() {
                     'і звіт буде створений',
                     shape: 'rect',
                     margin: 15,
+                    scrollAnimationSpeed: 1500,
                     nextButton: {text: 'Далі'},
                     showSkip: false
                 },
