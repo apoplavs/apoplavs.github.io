@@ -17,7 +17,6 @@
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 	<script type="text/javascript" src='report-generator/js/pdfmake/build/pdfmake.min.js'></script>
 	<script type="text/javascript" src='report-generator/js/pdfmake/build/vfs_fonts.js'></script>
-	<!--<link rel="import" href="calculator/calculator.html">-->
 </head>
 <noscript>
 	<style type="text/css">
@@ -32,7 +31,8 @@
 </noscript>
 	<body>
 	<script>
-		if (screen.width < 800) {
+		if (screen.width < 1024) {
+			alert('Ви переглядаєте мобільну версію сайту з обмеженим функціоналом');
 			window.location.replace(document.location.href + 'calculator/m.calculator.html');
 		} else if (navigator.userAgent.search(/Chrome/) < 0) {
 			alert('для коректної роботи сайту необхідно відкрити його в Google Chrome на десктопному пристрої');
