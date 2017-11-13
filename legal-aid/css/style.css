@@ -219,6 +219,7 @@ footer {
 #donate {
 	float: right;
 	width: 200px;
+	display: none;
 }
 #donate > button{
 	background-color: white;
