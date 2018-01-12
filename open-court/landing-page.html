@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>landing page</title>
+	<link rel="stylesheet" type="text/css" href="css/landing-page.css">
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript" src='js/landing-page.js'></script>
+</head>
+<body>
+	<div id="main-menu">
+		основне меню
+	</div>
+	<div id="center-body">
+		
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['цивільні',     110056],
+          ['Eat',      27665],
+          ['Commute',  29865],
+          ['Watch TV', 29965],
+          ['Sleep',    78756]
+        ]);
+
+        var options = {
+          title: 'My Daily Activities'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+
+   <script type="text/javascript">
+
+     google.load("visualization", "1", {packages:["corechart"]});
+
+     google.setOnLoadCallback(drawChart);
+
+     function drawChart() {
+
+       var data = google.visualization.arrayToDataTable([
+
+         ['CMS', 'Сайты на базе систем управления контентом'],
+
+         ['WordPress',     60.7],
+
+         ['Joomla',     7.4],
+
+         ['Drupal',     5.1],
+
+         ['Blogger',     2.9],
+
+         ['Magento',     2.8],
+
+         ['TYPO3',     1.6],
+
+         ['PrestaShop',     1.3],
+
+         ['Bitrix',     1.2],
+
+         ['vBulletin',     1.0],
+
+         ['OpenCart',     0.9],
+
+       ]);
+
+       var options = {
+
+       title: 'Самы популярные CMS в 2015 году',
+
+            pieHole: 0.9,
+
+         pieSliceTextStyle: {
+
+           color: 'black',
+
+         },
+
+         legend: 'none'
+
+       };
+
+       var chart = new google.visualization.PieChart(document.getElementById('donut_single'));
+
+       chart.draw(data, options);
+
+     }
+
+   </script>
+<div id="piechart" style="width: 900px; height: 500px;"></div>
+   <div id="donut_single" style="width: 500px; height: 300px;"></div>
+	</div>
+</body>
+</html>
