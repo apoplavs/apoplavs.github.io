@@ -14,89 +14,100 @@
 	</div>
 	<div id="center-body">
 		
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
+	<script type="text/javascript">
+	  google.charts.load('current', {'packages':['corechart']});
+	  google.charts.setOnLoadCallback(drawChart);
 
-      function drawChart() {
+	  function drawChart() {
 
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['цивільні',     110056],
-          ['Eat',      27665],
-          ['Commute',  29865],
-          ['Watch TV', 29965],
-          ['Sleep',    78756]
-        ]);
+		var data = google.visualization.arrayToDataTable([
+		  ['категорія', 'кількість справ'],
+		  ['цивільні',     519],
+		  ['кримінальні',      342],
+		  ['справи про адміністративні правопорушення',  156]
+		]);
 
-        var options = {
-          title: 'My Daily Activities'
-        };
+		var options = {
+		  title: 'Категорії розглянутих справ',
+		  is3D: true,
+		};
 
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+		var chart = new google.visualization.PieChart(document.getElementById('piechart-cases-categories'));
 
-        chart.draw(data, options);
-      }
-    </script>
+		chart.draw(data, options);
+	  }
+	</script>
 
    <script type="text/javascript">
 
-     google.load("visualization", "1", {packages:["corechart"]});
+	 google.load("visualization", "1", {packages:["corechart"]});
 
-     google.setOnLoadCallback(drawChart);
+	 google.setOnLoadCallback(drawChart);
 
-     function drawChart() {
+	 function drawChart() {
 
-       var data = google.visualization.arrayToDataTable([
+	   var data = google.visualization.arrayToDataTable([
 
-         ['CMS', 'Сайты на базе систем управления контентом'],
+		 ['CMS', 'Сайты на базе систем управления контентом'],
 
-         ['WordPress',     60.7],
+		 ['WordPress',     60.7],
 
-         ['Joomla',     7.4],
+		 ['Joomla',     7.4],
 
-         ['Drupal',     5.1],
+		 ['Drupal',     5.1],
 
-         ['Blogger',     2.9],
+		 ['Blogger',     2.9],
 
-         ['Magento',     2.8],
+		 ['Magento',     2.8],
 
-         ['TYPO3',     1.6],
+		 ['TYPO3',     1.6],
 
-         ['PrestaShop',     1.3],
+		 ['PrestaShop',     1.3],
 
-         ['Bitrix',     1.2],
+		 ['Bitrix',     1.2],
 
-         ['vBulletin',     1.0],
+		 ['vBulletin',     1.0],
 
-         ['OpenCart',     0.9],
+		 ['OpenCart',     0.9],
 
-       ]);
+	   ]);
 
-       var options = {
+	   var options = {
 
-       title: 'Самы популярные CMS в 2015 году',
+	   title: 'Статистика по кримінальних справах',
 
-            pieHole: 0.9,
+			pieHole: 0.9,
 
-         pieSliceTextStyle: {
+		 pieSliceTextStyle: {
 
-           color: 'black',
+		   color: 'black',
 
-         },
+		 },
 
-         legend: 'none'
+		 legend: 'none'
 
-       };
+	   };
 
-       var chart = new google.visualization.PieChart(document.getElementById('donut_single'));
+	   var chart = new google.visualization.PieChart(document.getElementById('donut_single'));
 
-       chart.draw(data, options);
+	   chart.draw(data, options);
 
-     }
+	 }
 
    </script>
-<div id="piechart" style="width: 900px; height: 500px;"></div>
+   <div id="judge-info">
+	<img src="portfolio1.jpg" id="photo-judge">
+	<div id="judge-contact-info">
+		<h1>Петренко Іван Васильович</h1>
+		<br/>
+		<h2>Печерський районний суд міста Києва</h2>
+		01601, м. Київ, вул. Хрещатик, 42-А
+	</div>
+   </div>
+   <br/><br/><br/><br/><br/><br/>
+   <hr>
+<div id="piechart-cases-categories"></div>
+<hr>
    <div id="donut_single" style="width: 500px; height: 300px;"></div>
 	</div>
 </body>
