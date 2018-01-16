@@ -15,12 +15,12 @@ body {
 #primary_nav_wrap
 {
 	margin-top:15px;
-	/*margin-left: 50%;*/
 
 }
 
 #primary_nav_wrap ul
 {
+	background:#e8f8fc;
 	list-style:none;
 	position:relative;
 	float:right;
@@ -34,7 +34,7 @@ body {
 	color:#333;
 	text-decoration:none;
 	font-weight:700;
-	font-size:12px;
+	font-size:15px;
 	line-height:32px;
 	padding:0 15px;
 	font-family:"HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif
@@ -55,7 +55,7 @@ body {
 
 #primary_nav_wrap ul li:hover
 {
-	background:#f6f6f6
+	background:#e6e6e6
 }
 
 #primary_nav_wrap ul ul
