@@ -10,8 +10,63 @@
 </head>
 <body>
 	<div id="main-menu">
-		основне меню
+		<nav id="primary_nav_wrap">
+<ul>
+  <li class="current-menu-item"><a href="#">Home</a></li>
+  <li><a href="#">Menu 1</a>
+    <ul>
+      <li><a href="#">Sub Menu 1</a></li>
+      <li><a href="#">Sub Menu 2</a></li>
+      <li><a href="#">Sub Menu 3</a></li>
+      <li><a href="#">Sub Menu 4</a>
+        <ul>
+          <li><a href="#">Deep Menu 1</a>
+            <ul>
+              <li><a href="#">Sub Deep 1</a></li>
+              <li><a href="#">Sub Deep 2</a></li>
+              <li><a href="#">Sub Deep 3</a></li>
+                <li><a href="#">Sub Deep 4</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Deep Menu 2</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Sub Menu 5</a></li>
+    </ul>
+  </li>
+  <li><a href="#">Menu 2</a>
+    <ul>
+      <li><a href="#">Sub Menu 1</a></li>
+      <li><a href="#">Sub Menu 2</a></li>
+      <li><a href="#">Sub Menu 3</a></li>
+    </ul>
+  </li>
+  <li><a href="#">Menu 3</a>
+    <ul>
+      <li class="dir"><a href="#">Sub Menu 1</a></li>
+      <li class="dir"><a href="#">Sub Menu 2 THIS IS SO LONG IT MIGHT CAUSE AN ISSEUE BUT MAYBE NOT?</a>
+        <ul>
+          <li><a href="#">Category 1</a></li>
+          <li><a href="#">Category 2</a></li>
+          <li><a href="#">Category 3</a></li>
+          <li><a href="#">Category 4</a></li>
+          <li><a href="#">Category 5</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Sub Menu 3</a></li>
+      <li><a href="#">Sub Menu 4</a></li>
+      <li><a href="#">Sub Menu 5</a></li>
+    </ul>
+  </li>
+  <li><a href="#">Menu 4</a></li>
+  <li><a href="#">Menu 5</a></li>
+  <li><a href="#">Menu 6</a></li>
+  <li><a href="#">Contact Us</a></li>
+</ul>
+</nav>
 	</div>
+	<br/>
+	<br/>
 	<div id="center-body">
 		
 	<script type="text/javascript">
@@ -95,6 +150,7 @@
 	 }
 
    </script>
+
    <div id="judge-info">
 	<img src="img/portfolio1.jpg" id="photo-judge">
 	<div id="judge-contact-info">
@@ -105,12 +161,14 @@
 		<div>
 			<span id="judge-status">на роботі</span> <img src="img/chesno.png" id="chesno-logo"><img src="img/facebook-logo.png" id="facebook-logo">
 		</div>
+		<br/>
 		<div>
-			<img src="img/unlike.png" id="unlike-img"><img src="img/rank.png" id="rank-img"> <span id="judge-rank">82%</span><img src="img/like.png" id="like-img">
+			<img src="img/unlike.png" id="unlike-img"> <span id="unlikes">12</span>
+			<img src="img/rank2.png" id="rank-img"> <span id="judge-rank">41</span>
+			<img src="img/like.png" id="like-img"> <span id="likes">32</span>
 		</div>
 	</div>
    </div>
-   <br/><br/><br/><br/><br/><br/>
    <hr>
 <div id="piechart-cases-categories"></div>
 <hr>

@@ -1,25 +1,109 @@
 body {
 	background-color: white;
 }
+
+#main-menu {
+	background-color: gray;
+	position: relative;
+	width: 99%;
+	height: 100%;
+	text-align: center;
+	align-content: right;
+	/*margin-bottom: 50px;*/
+	z-index: 1;
+}
+#primary_nav_wrap
+{
+	margin-top:15px;
+	/*margin-left: 50%;*/
+
+}
+
+#primary_nav_wrap ul
+{
+	list-style:none;
+	position:relative;
+	float:right;
+	margin:0;
+	padding:0
+}
+
+#primary_nav_wrap ul a
+{
+	display:block;
+	color:#333;
+	text-decoration:none;
+	font-weight:700;
+	font-size:12px;
+	line-height:32px;
+	padding:0 15px;
+	font-family:"HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif
+}
+
+#primary_nav_wrap ul li
+{
+	position:relative;
+	float:left;
+	margin:0;
+	padding:0
+}
+
+#primary_nav_wrap ul li.current-menu-item
+{
+	background:#ddd
+}
+
+#primary_nav_wrap ul li:hover
+{
+	background:#f6f6f6
+}
+
+#primary_nav_wrap ul ul
+{
+	display:none;
+	position:absolute;
+	top:100%;
+	left:0;
+	background:#fff;
+	padding:0
+}
+
+#primary_nav_wrap ul ul li
+{
+	float:none;
+	width:200px
+}
+
+#primary_nav_wrap ul ul a
+{
+	line-height:120%;
+	padding:10px 15px
+}
+
+#primary_nav_wrap ul ul ul
+{
+	top:0;
+	left:100%
+}
+
+#primary_nav_wrap ul li:hover > ul
+{
+	display:block
+}
+
+
+
 #center-body {
 	background-color: whitesmoke;
 	width: 80%;
-	min-width: 850px;
-	max-width: 1000px;
+	min-width: 900px;
+	max-width: 950px;
 	height: 100%;
 	/*text-align: center;
 	align-content: right;*/
 	margin: 0 auto;
 	text-align: center;
 }
-#main-menu {
-	background-color: gray;
-	width: 99%;
-	height: 100%;
-	text-align: center;
-	margin-bottom: 1%;
-}
-
 #piechart {
 	margin-left: 7%;
 }
@@ -68,25 +152,35 @@ bottom: 10px;
 	border-radius: 10px;
 }
 #chesno-logo {
-	height: 35px;
-	margin-left: 120px;
+	height: 30px;
+	margin-left: 200px;
 }
 #facebook-logo {
-	height: 32px;
-	margin-left: 20px;
-}
-#like-img {
-	height: 30px;
-	margin-left: 100px;
+	height: 27px;
+	margin-left: 35px;
 }
 #unlike-img {
-	height: 30px;
-	margin-right: 100px;
+	height: 20px;
+	position: relative;
+	top: 5px;
+}
+#unlikes {
+	color: red;
+	margin-right: 120px;
+	font-size: 15px;
 }
 #rank-img {
-	width: 50px;
+	height: 20px;
 }
 #judge-rank {
-	color: green;
-	font-size: 40px;
+	color: rgb(61, 155, 233);
+	font-size: 30px;
+}
+#like-img {
+	height: 20px;
+	margin-left: 120px;
+}
+#likes {
+	font-size: 15px;
+	color: rgb(61, 155, 233);
 }
