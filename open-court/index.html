@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Responsive HTML5 Website Landing Page for Developers">
+    <meta name="description" content="Landing Page Judge Profile">
     <meta name="author" content="Xiaoying Riley at 3rd Wave Media">    
     <link rel="shortcut icon" href="favicon.ico">  
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic' rel='stylesheet' type='text/css'>
@@ -49,9 +49,14 @@
                     <li title="Чесно фільтруй суд"><a href="#"><i class="fa fa-gavel"></i></a></li>                   
                     <li title="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
                     <li title="linkedin"><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                    <!-- <li><a href="#"><i class="fa fa-github-alt"></i></a></li>                  
-                    <li class="last-item"><a href="#"><i class="fa fa-hacker-news"></i></a></li> -->                 
-                </ul> 
+                    <li id="on-work"><i class="fa fa-briefcase"></i><span class="sr-only">Статус:</span> на роботі</li>            
+                </ul>
+                <br/>
+                <ul class="list-inline" id="social-assessment" align="center">
+                    <li title="likes" id="likes">57<a href="#"><i class="fa fa-thumbs-up"></i></a></li>
+                    <li title="рейтинг" id="rating"><a href="#"><i class="fa fa-balance-scale"></i></a>21</li>
+                    <li title="unlikes" id="unlikes"><a href="#"><i class="fa fa-thumbs-down"></i></a>12</li>             
+               </ul>
             </div><!--//profile-->
             <!-- <a class="btn btn-cta-primary pull-right" href="http://themes.3rdwavemedia.com/" target="_blank"><i class="fa fa-paper-plane"></i> Contact Me</a> -->              
         </div><!--//container-->
@@ -62,40 +67,49 @@
             <div class="primary col-md-8 col-sm-12 col-xs-12">
                 <section class="about section">
                     <div class="section-inner">
-                        <h2 class="heading">Загальна статистика</h2>
+                        <h2 class="heading">Загальна статистика розглянутих справ</h2>
                         <div class="content">
                                 <div id="common-statistic"></div>
-                            <ul class="social list-inline" id="social-assessment" align="center">
-                                <li title="likes" id="likes">57<a href="#"><i class="fa fa-thumbs-up"></i></a><br>подобається</li>
-                                <li title="рейтинг" id="rating"><a href="#"><i class="fa fa-balance-scale"></i></a>21<br>рейтинг</li>
-                                <li title="unlikes" id="unlikes"><a href="#"><i class="fa fa-thumbs-down"></i></a>12<br>не подобається</li>
-                                <!-- <li><a href="#"><i class="fa fa-github-alt"></i></a></li>                  
-                                <li class="last-item"><a href="#"><i class="fa fa-hacker-news"></i></a></li> -->               
-                            </ul>
+                            
                             <!-- <p>Write a brief intro about yourself.</p> -->
-                         
                         </div><!--//content-->
                     </div><!--//section-inner-->                 
                 </section><!--//section-->
-                <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-                <section class="about section">
+            
+               <section class="skills aside section">
                     <div class="section-inner">
-                        <h2 class="heading">нижче поки не дивитись__________________________________________________</h2>
+                        <h2 class="heading">Навантаження</h2>
                         <div class="content">
-                                <div id="common-statistic"></div>
-                            <ul class="social list-inline" id="social-assessment" align="center">
-                                <li title="likes" id="likes">57<a href="#"><i class="fa fa-thumbs-up"></i></a><br>подобається</li>
-                                <li title="рейтинг" id="rating"><a href="#"><i class="fa fa-balance-scale"></i></a>21<br>рейтинг</li>
-                                <li title="unlikes" id="unlikes"><a href="#"><i class="fa fa-thumbs-down"></i></a>12<br>не подобається</li>
-                                <!-- <li><a href="#"><i class="fa fa-github-alt"></i></a></li>                  
-                                <li class="last-item"><a href="#"><i class="fa fa-hacker-news"></i></a></li> -->               
-                            </ul>
-                            <!-- <p>Write a brief intro about yourself.</p> -->
-                         
-                        </div><!--//content-->
+                            <p class="intro">
+                                розприділено 1000 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; розглянуто 400
+                                <br/>
+                                <small>тут може бути 2 речення тексту про навантаження</small></p>
+                            
+                            <div class="skillset">
+                                <div class="item">
+                                    <h3 class="level-title">Компетентність<span class="level-label" data-toggle="tooltip" data-placement="left" data-animation="true" title="You can use the tooltip">76%</span></h3>
+                                    <div class="level-bar">
+                                        <div class="level-bar-inner" data-level="76%">
+                                        </div>                                      
+                                    </div><!--//level-bar-->                                 
+                                </div><!--//item-->
+                                
+                                <div class="item">
+                                    <h3 class="level-title">Своєчасність<span class="level-label">52%</span></h3>
+                                    <div class="level-bar">
+                                        <div class="level-bar-inner" data-level="52%">
+                                        </div>                                      
+                                    </div><!--//level-bar-->                                 
+                                </div><!--//item-->
+                                
+                                <!-- <p><a class="more-link" href="#"><i class="fa fa-external-link"></i> More on Coderwall</a></p>  -->
+                            </div>              
+                        </div><!--//content-->  
                     </div><!--//section-inner-->                 
                 </section><!--//section-->
-    
+
+
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
                <section class="latest section">
                     <div class="section-inner">
                         <h2 class="heading">Latest Projects</h2>
@@ -237,7 +251,6 @@
                         <h2 class="heading sr-only">Контактна інформація</h2>
                         <div class="content">
                             <ul class="list-unstyled">
-                                <li id="on-work"><i class="fa fa-briefcase"></i><span class="sr-only">Статус:</span>на роботі</li>
                                 <li><i class="fa fa-map-marker"></i><span class="sr-only">Адреса:</span>01601, м. Київ, вул. Хрещатик, 42-А</li>
                                 <li><i class="fa fa-envelope-o"></i><span class="sr-only">Email:</span><a href="#"> inbox@pc.ki.court.gov.ua</a></li>
                                 <li><i class="fa fa-link"></i><span class="sr-only">Сайт:</span><a href="#">https://pc.ki.court.gov.ua/sud2606</a></li>
@@ -246,18 +259,19 @@
                         </div><!--//content-->  
                     </div><!--//section-inner-->                 
                 </aside><!--//aside-->
-                
+
+
+                <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
                 <aside class="skills aside section">
                     <div class="section-inner">
                         <h2 class="heading">Навантаження</h2>
                         <div class="content">
                             <p class="intro">
-                                розприділено 1000 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; розглянуто 400
+                                розприділено 1000 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; розглянуто 400
                                 <br/>
                                 тут може бути 2 речення тексту про навантаження</p>
                             
                             <div class="skillset">
-                               
                                 <div class="item">
                                     <h3 class="level-title">Компетентність<span class="level-label" data-toggle="tooltip" data-placement="left" data-animation="true" title="You can use the tooltip">76%</span></h3>
                                     <div class="level-bar">
@@ -279,7 +293,7 @@
                         </div><!--//content-->  
                     </div><!--//section-inner-->                 
                 </aside><!--//section-->
-                <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                
                 <aside class="testimonials aside section">
                     <div class="section-inner">
                         <h2 class="heading">Податкові декларації</h2>
