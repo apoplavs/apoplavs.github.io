@@ -1,16 +1,17 @@
 /*   
- * Template Name: Developer - Responsive Website Template for Developers
- * Version: 1.5
- * Author: Xiaoying Riley
- * Twitter: @3rdwave_themes
+ * Template Name: Developer - Responsive Website Template for judges
+ * Version: 0.5
+ * Author: Andriy Poplavskiy
  * License: Creative Commons Attribution 3.0 License
- * Website: http://themes.3rdwavemedia.com/
+ * Website: http://apoplavs.github.io/open-court
 */
 /* ======= Base ======= */
 body {
   font-family: 'Lato', arial, sans-serif;
   color: #434343;
-  background: #DAE3E7;
+  /*background: #DAE3E7;*/
+  background:linear-gradient(-40deg, rgba(67, 126, 140, 0.8), rgba(42, 132, 121, 0.5), rgba(32, 140, 126, 0.6), rgba(52, 153, 140, 0.5), rgba(32, 140, 126, 0.6), rgba(23, 155, 139, 0.5));
+  /*background:linear-gradient(-45deg, #0085a1, #23bba8);*/
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -105,22 +106,26 @@ a.dotted-link:hover {
 
 /* ======= main-menu ======= */
 #main-menu {
-  background-color: gray;
+  /*background-color: gray;*/
+  background: rgba(250, 250, 250, 0.8);
+  /*opacity: 0.8;*/
   position: relative;
-  width: 99%;
-  height: 100%;
+  width: 100%;
+  height: 40px;
   text-align: center;
   align-content: right;
   z-index: 1;
 }
 #primary_nav_wrap
 {
-  margin-top:2px;
+  margin-top:0;
+  padding-top: 5px;
+  width: 100%;
 }
 
 #primary_nav_wrap ul
 {
-  background:#DAE3E7;
+  /*background:#DAE3E7;*/
   list-style:none;
   position:relative;
   float:right;
@@ -136,7 +141,7 @@ a.dotted-link:hover {
   font-weight:700;
   font-size:1.3em;
   line-height:32px;
-  padding:0 80px;
+  padding: 0 50px 0 20px;
   font-family:"HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif
 }
 
@@ -150,12 +155,14 @@ a.dotted-link:hover {
 
 #primary_nav_wrap ul li.current-menu-item
 {
-  background:#ddd
+  /*background:#ddd*/
 }
 
 #primary_nav_wrap ul li:hover
 {
-  background:#f5f5f5;
+  background:rgba(45, 190, 170, 0.3);
+  transition: .4s;
+  border-radius: 2px;
 }
 
 #primary_nav_wrap ul ul
@@ -165,19 +172,20 @@ a.dotted-link:hover {
   top:100%;
   left:0;
   background:#fff;
-  padding:0
+  padding:0;
+  box-shadow: 0 4px 8px gray;
 }
 
 #primary_nav_wrap ul ul li
 {
   float:none;
-  width:200px
+  width:150px;
 }
 
 #primary_nav_wrap ul ul a
 {
   line-height:120%;
-  padding:10px 15px
+  padding:10px 15px;
 }
 
 #primary_nav_wrap ul ul ul
@@ -189,6 +197,7 @@ a.dotted-link:hover {
 #primary_nav_wrap ul li:hover > ul
 {
   display:block;
+  color: red;
   z-index: 2;
 }
 
@@ -269,6 +278,18 @@ iframe {
 }
 .section {
   margin-bottom: 30px;
+  box-shadow: 0 4px 8px gray;
+  -webkit-transition: all 0.3s ease;;
+  -moz-transition: all 0.3s ease;;
+  -o-transition: all 0.3s ease;;
+  transition: all 0.3s ease;
+}
+.section:hover {
+  -webkit-transform: scale(1.02);
+  -ms-transform: scale(1.02);
+  transform: scale(1.02);
+  box-shadow: 0 3px 15px gray;
+  transition: .4s;
 }
 .section .section-inner {
   background: #fff;
@@ -517,8 +538,8 @@ iframe {
   margin-bottom: 10;
 }
 .skills .skillset .level-title .level-label {
-  color: #ccd1d6;
-  font-size: 14px;
+  color: #9fa6ad;
+  font-size: 18px;
   font-weight: 400;
   font-family: "Lato", arial, sans-serif;
   position: absolute;

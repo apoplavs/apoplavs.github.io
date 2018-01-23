@@ -54,20 +54,17 @@ jQuery(document).ready(function($) {
         }
     );
     
-    /* Github Calendar - https://github.com/IonicaBizau/github-calendar */
-    GitHubCalendar("#github-graph", "IonicaBizau");
-    
-    
-    /* Github Activity Feed - https://github.com/caseyscarborough/github-activity */
-    GitHubActivity.feed({ username: "caseyscarborough", selector: "#ghfeed" });
+  });
 
+/**
+* функція для малювання графіка
+* загальної статистики по карегоріях розглянутих справ
+*/
+function commonStatistic () {
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawCommonStatistic);
 
-});
-
- google.charts.load('current', {'packages':['corechart']});
- google.charts.setOnLoadCallback(drawCommonStatistic);
-
-      function drawCommonStatistic() {
+    function drawCommonStatistic() {
         var data = google.visualization.arrayToDataTable([
           ['категорія', 'кількість справ'],
           ['цивільні',     519],
@@ -82,9 +79,38 @@ jQuery(document).ready(function($) {
         };
         var chart = new google.visualization.PieChart(document.getElementById('common-statistic'));
         chart.draw(data, options);
-      }
- google.load("visualization", "1", {packages:["corechart"]});
- google.setOnLoadCallback(drawCommonStatistic);
+    }
+    google.load("visualization", "1", {packages:["corechart"]});
+    google.setOnLoadCallback(drawCommonStatistic);
+}
+
+/**
+* функція для малювання графіків
+* статистики по цивільних справах
+*/
+function civilStatistic () {
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawCivilStatistic);
+
+    function drawCivilStatistic() {
+        var data = google.visualization.arrayToDataTable([
+          ['категорія',                               'кількість справ'],
+          ['задоволено позовні вимоги позивача',                    519],
+          ['відмовлено у задоволенні позовних вимог позивача',      342]
+        ]);
+        var options = {
+          title: 'задоволено/відмовлено у задоволенні позовних вимог',
+          pieHole: 0.9,
+          legend:{position:'left'},
+          chartArea:{left:0,top:0,width:'50%',height:'50%'}
+        };
+        var chart = new google.visualization.PieChart(document.getElementById('civil-statistic1'));
+        chart.draw(data, options);
+    }
+    google.load("visualization", "1", {packages:["corechart"]});
+    google.setOnLoadCallback(drawCivilStatistic);
+}
+ 
 
 
 
@@ -126,3 +152,8 @@ jQuery(document).ready(function($) {
        chart.draw(data, options);
 
      }
+
+
+
+commonStatistic();
+// civilStatistic();

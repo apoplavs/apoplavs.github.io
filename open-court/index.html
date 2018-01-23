@@ -18,15 +18,9 @@
     <!-- Plugins CSS -->
     <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.css">
     
-    <!-- github calendar css -->
-    <link rel="stylesheet" href="assets/plugins/github-calendar/dist/github-calendar.css"
-/>
-    <!-- github acitivity css -->
-    <link rel="stylesheet" href="assets/plugins/github-activity/src/github-activity.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/octicons/2.0.2/octicons.min.css">
-    
     <!-- Theme CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/styles.css">
+    <link id="circle-style" rel="stylesheet" href="assets/css/circle.css">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -68,7 +62,6 @@
                 <ul>
                   <li><a href="#">Судді</a></li>
                   <li><a href="#">Суди</a></li>
-                  <li><a href="#">Регіони</a></li>
                 </ul>
               </li>
               <!-- <li><a href="#">Menu 3</a>
@@ -95,8 +88,7 @@
             </ul>
         </nav>
     </div> <!-- //main-menu -->
-    <br/>
-    <br/>
+
     <!-- ******HEADER****** --> 
     <header class="header">
         <div class="container">                       
@@ -113,7 +105,7 @@
                 <br/>
                 <ul class="list-inline" id="social-assessment" align="center">
                     <li title="likes" id="likes">57<a href="#"><i class="fa fa-thumbs-up"></i></a></li>
-                    <li title="рейтинг" id="rating"><a href="#"><i class="fa fa-balance-scale"></i></a>81%</li>
+                    <li title="рейтинг" id="rating"><a href="#"><i class="fa fa-line-chart"></i></a>72%</li>
                     <li title="unlikes" id="unlikes"><a href="#"><i class="fa fa-thumbs-down"></i></a>12</li>             
                </ul>
             </div><!--//profile-->
@@ -130,21 +122,20 @@
                         <h2 class="heading">Навантаження</h2>
                         <div class="content">
                             <p class="intro">
-                                розприділено 1000 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; розглянуто 400
-                                <br/>
                                 <small>тут може бути 2 речення тексту про навантаження</small></p>
-                            
                             <div class="skillset">
                                 <div class="item">
-                                    <h3 class="level-title">Компетентність<span class="level-label" data-toggle="tooltip" data-placement="left" data-animation="true" title="You can use the tooltip">76%</span></h3>
+                                    <h4 class="level-title">Середньомісячне навантаження <span class="level-label" data-toggle="tooltip" data-placement="left" data-animation="true" title="справ/місяць">35,6 <sup>справ/місяць</sup></span></h4>
+                                    <br/>
+                                    <h3 class="level-title">Компетентність<span class="level-label" data-toggle="tooltip" data-placement="left" data-animation="true" title="You can use the tooltip">86%</span></h3>
                                     <div class="level-bar">
-                                        <div class="level-bar-inner" data-level="76%">
+                                        <div class="level-bar-inner" data-level="86%">
                                         </div>                                      
                                     </div><!--//level-bar-->                                 
                                 </div><!--//item-->
                                 
                                 <div class="item">
-                                    <h3 class="level-title">Своєчасність<span class="level-label">52%</span></h3>
+                                    <h3 class="level-title">Своєчасність<span class="level-label">58%</span></h3>
                                     <div class="level-bar">
                                         <div class="level-bar-inner" data-level="52%">
                                         </div>                                      
@@ -167,6 +158,62 @@
                         </div><!--//content-->
                     </div><!--//section-inner-->                 
                 </section><!--//section-->
+
+                <section class="about section">
+                    <div class="section-inner">
+                        <h2 class="heading">Цивільне судочинство</h2>
+                        <div class="content" style="height: 400px;">
+                                <!-- <div id="civil-statistic1"></div> -->
+                                <div class="c100 p25 big">
+                                    <span>25%</span>
+                                    <div class="slice">
+                                        <div class="bar"></div>
+                                        <div class="fill"></div>
+                                    </div>
+                                </div>
+                                <div class="c100 p64 big">
+                                    <span>64%</span>
+                                    <div class="slice">
+                                        <div class="bar"></div>
+                                        <div class="fill"></div>
+                                    </div>
+                                </div>
+                                <div class="c100 p25">
+                                    <span>25%</span>
+                                    <div class="slice">
+                                        <div class="bar"></div>
+                                        <div class="fill"></div>
+                                    </div>
+                                </div>
+
+                            <!-- <p>Write a brief intro about yourself.</p> -->
+                        </div><!--//content-->
+                    </div><!--//section-inner-->                 
+                </section><!--//section-->
+
+                <section class="about section">
+                    <div class="section-inner">
+                        <h2 class="heading">Кримінальне судочинство</h2>
+                        <div class="content">
+                                <div id="common-statistic"></div>
+                            
+                            <!-- <p>Write a brief intro about yourself.</p> -->
+                        </div><!--//content-->
+                    </div><!--//section-inner-->                 
+                </section><!--//section-->
+
+                <section class="about section">
+                    <div class="section-inner">
+                        <h2 class="heading">Судочинство в порядку КУпАП</h2>
+                        <div class="content">
+                                <div id="common-statistic"></div>
+                            
+                            <!-- <p>Write a brief intro about yourself.</p> -->
+                        </div><!--//content-->
+                    </div><!--//section-inner-->                 
+                </section><!--//section-->
+
+
 
 
                 <!-- правий блок -->
@@ -227,13 +274,6 @@
     <script type="text/javascript" src="assets/plugins/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>    
     <script type="text/javascript" src="assets/plugins/jquery-rss/dist/jquery.rss.min.js"></script> 
-    <!-- github calendar plugin -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/3.0.2/es6-promise.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fetch/0.10.1/fetch.min.js"></script>
-    <script type="text/javascript" src="assets/plugins/github-calendar/dist/github-calendar.min.js"></script>
-    <!-- github activity plugin -->
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min.js"></script>
-    <script type="text/javascript" src="assets/plugins/github-activity/src/github-activity.js"></script>
     <!-- custom js -->
     <script type="text/javascript" src="assets/js/main.js"></script>            
 </body>
