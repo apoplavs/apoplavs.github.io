@@ -230,8 +230,14 @@
   height: 1em;
   border-radius: 50%;
   float: left;
-  margin: 0 8% 0.4em 12%;
+  margin: 0.1em 8% 0.4em 12%;
   background-color: #cccccc;
+}
+@media (max-width: 1200px) {
+  .c100 {
+  font-size: 180px;
+  margin: 0.1em 3% 0.4em 10%;
+  }
 }
 .circle-line-describe {
   content: url(../images/line1.png);
@@ -245,7 +251,6 @@
   position: relative;
   width: 100%;
   text-align: center;
-  /*line-height: 12em;*/
   font-size: 0.09em;
   color: #111;
   display: block;

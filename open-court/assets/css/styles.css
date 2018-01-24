@@ -285,9 +285,9 @@ iframe {
   transition: all 0.3s ease;
 }
 .section:hover {
-  -webkit-transform: scale(1.02);
-  -ms-transform: scale(1.02);
-  transform: scale(1.02);
+  -webkit-transform: scale(1.01);
+  -ms-transform: scale(1.01);
+  transform: scale(1.01);
   box-shadow: 0 3px 15px gray;
   transition: .4s;
 }
@@ -489,6 +489,9 @@ iframe {
   color: #999;
   font-weight: normal;
 }
+
+
+
 /* Git section */
 .github-graph {
   margin-bottom: 30px;
@@ -524,6 +527,8 @@ iframe {
 .info li:last-child {
   margin-bottom: 0;
 }
+
+
 /* Skills Section */
 .skills .intro {
   margin-bottom: 30px;
@@ -554,6 +559,36 @@ iframe {
   height: 15px;
   background: #66cb8c;
 }
+#civil-statistic, #criminal-statistic, #administrative-statistic {
+  margin-bottom: 300px;
+  min-height: 50px;
+}
+#civil-chart {
+  margin-bottom: 20px;
+  min-height: 400px;
+}
+.skills .skillset .level-red {
+  background: red;
+}
+.skills .skillset .level-title .level-persents-left {
+  color: #fff;
+  font-family: "Lato", arial, sans-serif;
+  position: relative;
+  float: left;
+  right: -3px;
+  top: 25px;
+}
+.skills .skillset .level-title .level-persents-right {
+  color: #fff;
+  font-family: "Lato", arial, sans-serif;
+  position: relative;
+  float: right;
+  right: 3px;
+  top: 25px;
+}
+
+
+
 /* Testimonials section */
 .testimonials .item {
   margin-bottom: 30px;
@@ -605,6 +640,11 @@ iframe {
   color: #b0b7bf;
   font-weight: 500;
 }
+
+
+
+
+
 /* Language Section */
 .languages .item {
   margin-bottom: 15px;
@@ -704,13 +744,22 @@ iframe {
   .project-image {
     margin-bottom: 15px;
   }
+  #main-menu {
+  height: 85px;
+  }
+  #primary_nav_wrap ul a {
+  padding: 0 60px 15px 90px;
+  }
 }
 /* Small devices (tablets, 768px and up) */
 /* Medium devices (desktops, 992px and up) */
 /* Large devices (large desktops, 1200px and up) */
-/* Ex-Large devices (large desktops, 1200px and up) */
+/* Ex-Large devices (large desktops, 1900px and up) */
 @media (min-width: 1400px) {
   .container {
     width: 1360px;
+  }
+  #primary_nav_wrap ul a {
+  padding: 0 90px 0 60px;
   }
 }

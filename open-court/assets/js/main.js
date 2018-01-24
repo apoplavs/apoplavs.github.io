@@ -89,71 +89,79 @@ function commonStatistic () {
 * статистики по цивільних справах
 */
 function civilStatistic () {
-    google.charts.load('current', {'packages':['corechart']});
-    google.charts.setOnLoadCallback(drawCivilStatistic);
 
-    function drawCivilStatistic() {
-        var data = google.visualization.arrayToDataTable([
-          ['категорія',                               'кількість справ'],
-          ['задоволено позовні вимоги позивача',                    519],
-          ['відмовлено у задоволенні позовних вимог позивача',      342]
-        ]);
-        var options = {
-          title: 'задоволено/відмовлено у задоволенні позовних вимог',
-          pieHole: 0.9,
-          legend:{position:'left'},
-          chartArea:{left:0,top:0,width:'50%',height:'50%'}
-        };
-        var chart = new google.visualization.PieChart(document.getElementById('civil-statistic1'));
-        chart.draw(data, options);
-    }
-    google.load("visualization", "1", {packages:["corechart"]});
-    google.setOnLoadCallback(drawCivilStatistic);
+    google.charts.load("current", {packages:['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ["Element", "відсотків", { role: "style" } ],
+        ["відмовлено повністю %", 28.94, "red"],
+        ["задоволено частково %", 31.61, "gold"],
+        ["задоволено повністю %", 39.45, "green"]
+      ]);
+
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+      var options = {
+        title: "співвідношення задоволених/частково/відмовлених позовних заяв",
+       chartArea:{left:50,top:40,bottom:40,width:'80%',height:'99%'},
+        bar: {groupWidth: "85%"},
+        legend: { position: "none" },
+      };
+      var chart = new google.visualization.ColumnChart(document.getElementById("civil-chart"));
+      chart.draw(view, options);
+  }
 }
  
 
 
 
-     function drawChart() {
-       var data = google.visualization.arrayToDataTable([
-         ['CMS', 'Сайты на базе систем управления контентом'],
+     // function drawChart() {
+     //   var data = google.visualization.arrayToDataTable([
+     //     ['CMS', 'Сайты на базе систем управления контентом'],
 
-         ['WordPress',     60.7],
+     //     ['WordPress',     60.7],
 
-         ['Joomla',     7.4],
+     //     ['Joomla',     7.4],
 
-         ['Drupal',     5.1],
+     //     ['Drupal',     5.1],
 
-         ['Blogger',     2.9],
+     //     ['Blogger',     2.9],
 
-         ['Magento',     2.8],
+     //     ['Magento',     2.8],
 
-         ['TYPO3',     1.6],
+     //     ['TYPO3',     1.6],
 
-         ['PrestaShop',     1.3],
+     //     ['PrestaShop',     1.3],
 
-         ['Bitrix',     1.2],
+     //     ['Bitrix',     1.2],
 
-         ['vBulletin',     1.0],
+     //     ['vBulletin',     1.0],
 
-         ['OpenCart',     0.9],
+     //     ['OpenCart',     0.9],
 
-       ]);
+     //   ]);
 
-       var options = {
-       title: 'Статистика по кримінальних справах',
-            pieHole: 0.9,
-         pieSliceTextStyle: {
-           color: 'black',
-         },
-         legend: 'none'
-       };
-       var chart = new google.visualization.PieChart(document.getElementById('donut_single'));
-       chart.draw(data, options);
+     //   var options = {
+     //   title: 'Статистика по кримінальних справах',
+     //        pieHole: 0.9,
+     //     pieSliceTextStyle: {
+     //       color: 'black',
+     //     },
+     //     legend: 'none'
+     //   };
+     //   var chart = new google.visualization.PieChart(document.getElementById('donut_single'));
+     //   chart.draw(data, options);
 
-     }
+     // }
 
 
 
 commonStatistic();
-// civilStatistic();
+civilStatistic();
