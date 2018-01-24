@@ -10,7 +10,7 @@ body {
   font-family: 'Lato', arial, sans-serif;
   color: #434343;
   /*background: #DAE3E7;*/
-  background:linear-gradient(-40deg, rgba(67, 126, 140, 0.8), rgba(42, 132, 121, 0.5), rgba(32, 140, 126, 0.6), rgba(52, 153, 140, 0.5), rgba(32, 140, 126, 0.6), rgba(23, 155, 139, 0.5));
+  background:linear-gradient(-40deg, rgba(67, 126, 140, 1), rgba(42, 132, 121, 0.7), rgba(32, 140, 126, 0.8), rgba(52, 153, 140, 0.7), rgba(32, 140, 126, 0.8), rgba(23, 155, 139, 0.7));
   /*background:linear-gradient(-45deg, #0085a1, #23bba8);*/
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
