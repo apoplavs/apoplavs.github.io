@@ -7,7 +7,8 @@
 */
 /* ======= Base ======= */
 body {
-  font-family: 'Lato', arial, sans-serif;
+  /*font-family: 'Lato', arial, sans-serif;*/
+  font-family: Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif;
   color: #434343;
   /*background: #DAE3E7;*/
   background:linear-gradient(-40deg, rgba(67, 126, 140, 1), rgba(42, 132, 121, 0.7), rgba(32, 140, 126, 0.8), rgba(52, 153, 140, 0.7), rgba(32, 140, 126, 0.8), rgba(23, 155, 139, 0.7));
@@ -108,10 +109,10 @@ a.dotted-link:hover {
 #main-menu {
   /*background-color: gray;*/
   background: rgba(250, 250, 250, 0.8);
-  /*opacity: 0.8;*/
+  box-shadow: 0 4px 8px gray;
   position: relative;
   width: 100%;
-  height: 40px;
+  height: 50px;
   text-align: center;
   align-content: right;
   z-index: 1;
@@ -220,7 +221,7 @@ iframe {
 .header {
   padding: 30px 0;
   background: #f5f5f5;
-  border-top: 10px solid #778492;
+  /*border-top: 10px solid #778492;*/
 }
 .header .btn {
   margin-top: 60px;
@@ -228,6 +229,8 @@ iframe {
 }
 .header .profile-image {
   margin-right: 30px;
+  width: 300px;
+  height: 220px;
 }
 .header .profile-content .name {
   color: #49515a;
@@ -273,12 +276,12 @@ iframe {
 }
 /* ======= Sections======= */
 .sections-wrapper {
-  padding-top: 60px;
+  padding-top: 30px;
   padding-bottom: 60px;
 }
 .section {
   margin-bottom: 30px;
-  box-shadow: 0 4px 8px gray;
+  box-shadow: 0 2px 4px gray;
   -webkit-transition: all 0.3s ease;;
   -moz-transition: all 0.3s ease;;
   -o-transition: all 0.3s ease;;
